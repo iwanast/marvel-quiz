@@ -1,4 +1,25 @@
 
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBAjhZsNJ7urNqtWrUTam_f8_qiVdO3lhc",
+    authDomain: "marvel-quiz-616.firebaseapp.com",
+    projectId: "marvel-quiz-616",
+    storageBucket: "marvel-quiz-616.appspot.com",
+    messagingSenderId: "987419001414",
+    appId: "1:987419001414:web:e2c1132f189ba86b040047"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+
+
+
 //DECLARE global array easy variable
 //DECLARE global array hard variable
 //DECLARE global variable for difficulty
