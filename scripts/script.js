@@ -11,7 +11,7 @@ import {
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// Import Firebase configuration settings
 const firebaseConfig = {
   apiKey: "AIzaSyBAjhZsNJ7urNqtWrUTam_f8_qiVdO3lhc",
   authDomain: "marvel-quiz-616.firebaseapp.com",
@@ -25,18 +25,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-//DECLARE global array easy variable
-//DECLARE global array hard variable
-//DECLARE global variable for difficulty
-//DECLARE global variable questionCounter
-//DECLARE global variable correctAnswers
-//DECLARE global variable easyAVG
-//DECLARE global variable hardAVG
-//DECLARE two arrays for scoreGif and scoreText
+//DECLARE easyQuestionsArray global array easy variable
+//DECLARE hardQuestionsArray global array hard variable
+//DECLARE currentDifficulty global variable for difficulty
+//DECLARE questionCounter global variable
+//DECLARE correctAnswers global variable
+//DECLARE easyAvg global object
+//DECLARE hardAvg global object
+//DECLARE scoreGif global array
+//DECLARE scoreText global array
+//DECLARE answersClickable global variable to true
 
 //on page load, onclick difficulty and onclick try again from end page
 function toggleLandingPage() {
-  //TOGGLE div class to animate show or not show
+  //TOGGLE div class to show or hide the landing page
 }
 
 //onclick difficulty (event listener)
@@ -44,9 +46,11 @@ function startGame(difficulty) {
   //ASSIGN difficulty to global variable
   //RESET var questionCunter to 0
   //RESET var correctAnswers to 0
+  //RESET answersClickable to true
   //RUN toggleLandingPage()
   //RUN nextQuestion()
 }
+
 retrieveDataFromFirebase();
 //run onload
 async function retrieveDataFromFirebase() {
@@ -65,10 +69,12 @@ async function retrieveDataFromFirebase() {
   //AWAIT FETCH THEN RUN assignGlobalVariablesFromFirebase()
 }
 
-async function assignGlobalVariablesFromFirebase() {
-  //ASSIGN the data in the easy array from firebase into the easy global variable
-  //ASSIGN the data in the hard array from firebase into the hard global variable
-  //ASSIGN the data in the global variables easyAVG and hardAVG
+async function assignVariablesFromFirebase() {
+  //ASSIGN the data in the easy questions array from firebase into the easyQuestionsArray
+  //ASSIGN the data in the hard questions array from firebase into the hardQuestionsArray
+  //ASSIGN the data in the easy average array into the easyAvg global object
+  //ASSIGN the data in the easy average array into the hardAvg global object
+
 }
 
 function shuffleArray(difficulty) {
@@ -76,52 +82,77 @@ function shuffleArray(difficulty) {
 }
 
 //called by startGame() and onclick next question button
-function gotoNextQuestion() {
-  // if statement, compare question counter to array index
-  // if (counter = 10)
-  // RUN calculateAVG()
-  // RUN toggleScorePage()
-  // return/break
-  // else if (counter < 10)
-  // take array (difficulty) index counter and insert in innerHTML
+function goToNextQuestion() {
+
+  //COMPARE question counter to array index
+  //if (counter = 10)
+    //RUN calculateAvg()
+    //RUN toggleScorePage()
+    //BREAK
+  //else if (counter < 10)
+    //INSERT question from easy/hard array at same index as counter into the HTML
+    //RUN randomizeAnswers(i) (creates answer array)
+    //INSERT created array of answers into the four answer divs
+    //SET answersClickable to true
+
   //ADD +1 to question counter
 }
 
-// onclick on answer, RUN hightlightAnswer()
-function hightlightAnswer() {
-  // highlight green when clicked answer = true
-  // hightlight red when clicked answer = false
-  // if (clicked answer = true)
-  // add +1 to correctAnswers
+function randomizeAnswers(i) {
+  //CREATE an array randomizedQuestions
+  //INSERT answers for the question matching i into the array
+  //SHUFFLE the array
+  //RETURN the array
 }
 
-function calculateAVG(difficulty) {
-  //ADD user score to easyScores or hardScores
-  // ADD ++ to easyUsers or hardUsers
-  //calculate average score
-  //display average score on innerHTML
-  //RUN saveAVGscoreToFirebase()
+// onclick on answer
+function hightlightAnswer() {
+  // CHECK if answersClickable = true
+  // if answersClickable = true
+
+    // SET answersClickable to false
+    // highlight the answer where correctAnswer = true to green (apply a .correct class?)
+    // CHECK if the clicked answer has correctAnswer = false
+      // if it does, highlight the clicked answer red (apply a .incorrect class?)
+      // else if it doesn't, add +1 ro correctAnswers
+
+  // else if answersClickable = false
+    //BREAK
+}
+
+function calculateAvg(difficulty) {
+  //ADD user score to easyScores or hardScores, depending on difficulty
+  //ADD ++ to easyUsers or hardUsers, depending on difficulty setting
+  //CALCULATE average score (scores / users)
+  //DISPLAY average score by changing innerHTML
+  //RUN saveAvgscoreToFirebase()
 }
 
 function toggleScorePage() {
-  // show user score, average score, and play again button in innerHTML
-  // RUN showScoreInfo()
-  // toggle scorepage
+  //DISPLAY user score, average score, and play again button in innerHTML
+  //RUN showScoreInfo()
+  //TOGGLE scorepage display class
 }
 
-// eventlistener
-// if play again button is clicked
-// RUN toggleScorePage() and toggleLandingPage()
+//eventlistener
+//if play again button is clicked
+//RUN toggleScorePage() and toggleLandingPage()
 
-function saveAVGscoreToFirebase() {
-  // save the global variables easyAVG and hardAVG
+function saveAvgScoreToFirebase() {
+  //INSERT save the updated variable easyAvg/hardAvg into firebase
 }
 
 function showScoreInfo() {
-  // display scoreGif and scoreText depending on correctAnswers
+  //DISPLAY scoreGif and scoreText in innerHTML depending on correctAnswers
 }
 
-//data structure - duplicate for hard
+
+
+
+
+
+
+//data structure
 /*let easy = [
     {
         picture =
@@ -175,11 +206,11 @@ let hard = [
 ]
 
 //To insert into the database
-// easyAVG {
+// easyAvg {
 // let easyScores = (total sum of all easy scores)
 // let easyUsers = (total count of all easy players)}
 
-// hardAVG {
+// hardAvg {
 // let hardScores = (total sum of all hard scores)
 // let hardUsers = (total count of all hard players)}
 */
