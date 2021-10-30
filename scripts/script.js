@@ -109,6 +109,7 @@ function randomizeAnswers(i) {
 function hightlightAnswer() {
   // CHECK if answersClickable = true
   // if answersClickable = true
+  //--alternatively, check if HTML forms have a function for this built in
 
     // SET answersClickable to false
     // highlight the answer where correctAnswer = true to green (apply a .correct class?)
