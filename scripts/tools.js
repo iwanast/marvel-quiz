@@ -23,7 +23,7 @@ const db = getFirestore(app);
 
 
 //Run a loop to insert multiple documents into Firebase at once
-document.getElementById("loop-button").addEventListener("click", firebaseLoop);
+// document.getElementById("loop-button").addEventListener("click", firebaseLoop);
 
 async function firebaseLoop() {
   for (let i = 1; i <= 45; i++){
