@@ -160,7 +160,12 @@ video.addEventListener('ended', function() {
 }, false);
 
 
-
+// setTimeout(function(){ 
+//   let header = document.getElementById("title-wrapper");
+//   let buttons = document.getElementById("button-wrapper");
+//   header.classList.toggle("hidden");
+//   buttons.classList.toggle("hidden");
+//  }, 34000);
 
 
 
