@@ -41,6 +41,17 @@ function toggleLandingPage() {
   //TOGGLE div class to show or hide the landing page
 }
 
+//Hide the landing page overlay and start the game when the easy or hard button is clicked
+document.getElementById("easy-btn").addEventListener("click", function() {
+  document.getElementById("landing-page").classList.toggle("hidden-overlay");
+  startGame(easy);
+});
+
+document.getElementById("hard-btn").addEventListener("click", function() {
+  document.getElementById("landing-page").classList.toggle("hidden-overlay");
+  startGame(hard);
+});
+
 //onclick difficulty (event listener)
 function startGame(difficulty) {
   //ASSIGN difficulty to global variable
