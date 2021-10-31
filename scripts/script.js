@@ -147,15 +147,15 @@ function showScoreInfo() {
   //DISPLAY scoreGif and scoreText in innerHTML depending on correctAnswers
 }
 
-//Pause video as static image on last frame
+//Pause landing page video as static image on last frame
 // select the video element
-var video = document.querySelector('.video');
+let video = document.querySelector('.video');
 
-// listen for the event that fires when your video has finished playing
+//Listen for the event that fires when your video has finished playing
 video.addEventListener('ended', function() {
-    // pause the video
+    //Pause the video
     this.pause();
-    // set play time to the last frame
+    //Set play time to the last frame
     this.currentTime = this.duration;
 }, false);
 
