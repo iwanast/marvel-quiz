@@ -15,6 +15,7 @@
     text-align: center;
     font-family: "Dekko", cursive;
     font-size: 40px;
+    text-shadow: -3px 3px $black;
   }
   h2 {
     color: $white;
@@ -74,7 +75,7 @@ body {
   letter-spacing: 0.2rem;
   font-weight: 700;
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
-    $white;
+    $btn-blue;
   background-size: 12px, 100%;
   /* solid border */
   border: 0.4rem solid $black;
@@ -85,7 +86,7 @@ body {
 /* for the highlight container change the solid backgorund to a yellow-ish hue */
 .button--alternate {
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.8" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23d68810"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
-    #ffcd28;
+    $btn-yellow;
   background-size: 12px, 100%;
 }
 
@@ -105,6 +106,12 @@ body {
   z-index: -5;
 }
 
+.button:hover {
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+  $white;
+  background-size: 12px, 100%;
+}
+
 video {
   height: auto;
   min-height:100%;
@@ -112,12 +119,13 @@ video {
   width: 100%;
   min-width: 100%;
 }
+
 #video-wrapper {
   height: 100%;
   min-height:100%;
   width: 100%;
   min-width: 100%;
-  background-color: black;
+  background-color: $black;
 }
 
 .fade-in {

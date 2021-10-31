@@ -16,6 +16,7 @@
   text-align: center;
   font-family: "Dekko", cursive;
   font-size: 40px;
+  text-shadow: -3px 3px #000000;
 }
 
 * h2 {
@@ -82,10 +83,10 @@ body #main {
   font-size: 1.5rem;
   letter-spacing: 0.2rem;
   font-weight: 700;
-  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #efefef;
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ADD8E6;
   background-size: 12px, 100%;
   /* solid border */
-  border: 0.4rem solid #171717;
+  border: 0.4rem solid #000000;
   /* position relative for the :before pseudo element */
   position: relative;
 }
@@ -105,10 +106,15 @@ body #main {
   width: 100%;
   height: 100%;
   /* with the same texture, but different color, for both the texture and the background */
-  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(35)" opacity="1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #171717;
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(35)" opacity="1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #000000;
   background-size: 12px, 100%;
-  border: 0.4rem solid #171717;
+  border: 0.4rem solid #000000;
   z-index: -5;
+}
+
+.button:hover {
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #efefef;
+  background-size: 12px, 100%;
 }
 
 video {
@@ -124,7 +130,7 @@ video {
   min-height: 100%;
   width: 100%;
   min-width: 100%;
-  background-color: black;
+  background-color: #000000;
 }
 
 .fade-in {
