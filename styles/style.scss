@@ -47,7 +47,7 @@ body {
   z-index: 2;
 }
 
-#button-wrapper {
+#landing-btn-wrapper {
   width: 100vw;
   height: 80px;
   position: absolute;
@@ -61,11 +61,9 @@ body {
 
 }
 
-/* .button containers: add the texture above a solid background */
-.button {
-  /* cap the width */
+/* .landing-btn containers: add the texture above a solid background */
+.landing-btn {
   max-width: 500px;
-  /* give ample whitespace around and inside of the container */
   margin: 2rem 0;
   padding: 0.2rem 1.25rem;
   text-align: center;
@@ -77,21 +75,20 @@ body {
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
     $btn-blue;
   background-size: 12px, 100%;
-  /* solid border */
   border: 0.4rem solid $black;
   /* position relative for the :before pseudo element */
   position: relative;
 }
 
 /* for the highlight container change the solid backgorund to a yellow-ish hue */
-.button--alternate {
+.landing-btn--alternate {
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.8" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23d68810"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
     $btn-yellow;
   background-size: 12px, 100%;
 }
 
 /* for every .button container add a solid background behind the container itself, slightly offset */
-.button:before {
+.landing-btn:before {
   content: "";
   position: absolute;
   left: -1rem;
@@ -106,7 +103,7 @@ body {
   z-index: -5;
 }
 
-.button:hover {
+.landing-btn:hover {
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
   $white;
   background-size: 12px, 100%;
