@@ -159,16 +159,6 @@ video.addEventListener('ended', function() {
     this.currentTime = this.duration;
 }, false);
 
-
-// setTimeout(function(){ 
-//   let header = document.getElementById("title-wrapper");
-//   let buttons = document.getElementById("button-wrapper");
-//   header.classList.toggle("hidden");
-//   buttons.classList.toggle("hidden");
-//  }, 34000);
-
-
-
 //data structure
 /*let easy = [
     {
