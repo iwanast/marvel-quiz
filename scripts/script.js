@@ -41,6 +41,11 @@ function toggleLandingPage() {
   document.getElementById("landing-page").classList.toggle("hidden-overlay");
 }
 
+setTimeout(function(){ 
+  document.querySelector(".landing-btn").style.pointerEvents = 'auto';
+  document.querySelector(".landing-btn--alternate").style.pointerEvents = 'auto';
+ }, 35000);
+
 //Hide the landing page overlay and start the game when the easy or hard button is clicked
 document.getElementById("easy-btn").addEventListener("click", function() {
   toggleLandingPage();
