@@ -13,19 +13,26 @@
   <body id="bodyId">
     <main id="main">
       <div id="landing-page">
-        <!-- temp button for inserting into firebase -->
-        <!-- <button id="loop-button">Run Function</button> -->
+        <div id="video-wrapper">
+          <video class="video" autoplay muted poster="./images/Logo Video Still.png">
+            <source src="./videos/Marvel Intro.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div id="title-wrapper">
+          <h1>THE ULTIMATE FAN QUIZ</h1>
+        </div>
         <div id="button-wrapper">
           <div class="button">
             EASY
           </div>
-          <!-- bubble highlighting something  -->
           <div class="button button--alternate">
             HARD
           </div>
         </div>
       </div>
       <div id="question-page"></div>
+      <!-- temp button for inserting into firebase -->
+      <!-- <button id="loop-button">Run Function</button> -->
       <div id="score-page"></div>
     </main>
     <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js" type="module"></script>
