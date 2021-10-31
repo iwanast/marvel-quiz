@@ -15,6 +15,7 @@
   color: #efefef;
   text-align: center;
   font-family: "Dekko", cursive;
+  font-size: 40px;
 }
 
 * h2 {
@@ -37,12 +38,12 @@ body #main {
   background-color: transparent;
 }
 
-#title.wrapper {
+#title-wrapper {
   width: 100vw;
   height: 80px;
   position: absolute;
   bottom: 70%;
-  background-color: grey;
+  background-color: transparent;
   z-index: 2;
 }
 
@@ -123,6 +124,6 @@ video {
   min-height: 100%;
   width: 100%;
   min-width: 100%;
-  background-color: #171717;
+  background-color: black;
 }
 /*# sourceMappingURL=style.css.map */
