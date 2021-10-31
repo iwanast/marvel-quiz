@@ -36,19 +36,19 @@ const db = getFirestore(app);
 //DECLARE scoreText global array
 //DECLARE answersClickable global variable to true
 
-//on page load, onclick difficulty and onclick try again from end page
+//Onclick difficulty and onclick try again from end page
 function toggleLandingPage() {
-  //TOGGLE div class to show or hide the landing page
+  document.getElementById("landing-page").classList.toggle("hidden-overlay");
 }
 
 //Hide the landing page overlay and start the game when the easy or hard button is clicked
 document.getElementById("easy-btn").addEventListener("click", function() {
-  document.getElementById("landing-page").classList.toggle("hidden-overlay");
+  toggleLandingPage();
   startGame(easy);
 });
 
 document.getElementById("hard-btn").addEventListener("click", function() {
-  document.getElementById("landing-page").classList.toggle("hidden-overlay");
+  toggleLandingPage();
   startGame(hard);
 });
 
