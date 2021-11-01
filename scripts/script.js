@@ -25,16 +25,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-//DECLARE easyQuestionsArray global array easy variable
-//DECLARE hardQuestionsArray global array hard variable
-//DECLARE currentDifficulty global variable for difficulty
-//DECLARE questionCounter global variable
-//DECLARE correctAnswers global variable
-//DECLARE easyAvg global object
-//DECLARE hardAvg global object
-//DECLARE scoreGif global array
-//DECLARE scoreText global array
-//DECLARE answersClickable global variable to true
+let easyQuestionsArray = [];
+let hardQuestionsArray = [];
+let currentDifficulty = "";
+let questionCounter = 0;
+let correctAnswers = 0;
+let easyAvg = {};
+let hardAvg = {};
+let scoreGif = [];
+let scoreText = [];
+let answersClickable = true;
 
 //Onclick difficulty and onclick try again from end page
 function toggleLandingPage() {
@@ -58,13 +58,12 @@ document.getElementById("hard-btn").addEventListener("click", function() {
 });
 
 //onclick difficulty (event listener)
-function startGame(difficulty) {
-  //ASSIGN difficulty to global variable
-  //RESET var questionCunter to 0
-  //RESET var correctAnswers to 0
-  //RESET answersClickable to true
-  //RUN toggleLandingPage()
-  //RUN nextQuestion()
+function startGame() {
+  questionCounter = 0;
+  correctAnswers = 0;
+  answersClickable = true;
+  toggleLandingPage()
+  nextQuestion()
 }
 
 retrieveDataFromFirebase();
