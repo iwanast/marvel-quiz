@@ -74,8 +74,8 @@ async function retrieveDataFromFirebase() {
   let easyAvgDb = await retrieveAvgDocs("easy");
   let hardAvgDb = await retrieveAvgDocs("hard");
 
-  populateEasyArray(easyQuestionsDb);
-  populateHardArray(hardQuestionsDb);
+  populateEasyQuestionsArray(easyQuestionsDb);
+  populateHardQuestionsArray(hardQuestionsDb);
   populateAvgVariables(easyAvgDb, hardAvgDb);
 
   consoleLogs();
@@ -95,7 +95,8 @@ async function retrieveAvgDocs(diff) {
   return avg;
 }
 
-function populateEasyArray(db) {
+//Insert each of the docs into the easyQuestionsArray
+function populateEasyQuestionsArray(db) {
   let i = 0;
   db.forEach((doc) => {
     let question = {
@@ -108,7 +109,8 @@ function populateEasyArray(db) {
   });
 }
 
-function populateHardArray(db) {
+//Insert each of the docs into the hardQuestionsArray
+function populateHardQuestionsArray(db) {
   let i = 0;
   db.forEach((doc) => {
     let question = {
@@ -123,7 +125,6 @@ function populateHardArray(db) {
 
 //Populate the avg global variables with data from firebase
 function populateAvgVariables(easyDb, hardDb) {
-  //forEach is unnecessary - replace with single run syntax
   easyDb.forEach((doc) => {
     easyAvg = {
       scores: doc.data().scores,
