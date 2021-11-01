@@ -88,7 +88,7 @@ async function retrieveQuestionDocs(diff) {
   return questions;
 }
 
-//Retrieve each of the difficulty databases
+//Retrieve each of the avg databases
 async function retrieveAvgDocs(diff) {
   let coll = diff + "-avg";
   const avg = await getDocs(collection(db, coll));
