@@ -36,10 +36,26 @@ const db = getFirestore(app);
 //DECLARE scoreText global array
 //DECLARE answersClickable global variable to true
 
-//on page load, onclick difficulty and onclick try again from end page
+//Onclick difficulty and onclick try again from end page
 function toggleLandingPage() {
-  //TOGGLE div class to show or hide the landing page
+  document.getElementById("landing-page").classList.toggle("hidden-overlay");
 }
+
+setTimeout(function(){ 
+  document.querySelector(".landing-btn").style.pointerEvents = 'auto';
+  document.querySelector(".landing-btn--alternate").style.pointerEvents = 'auto';
+ }, 35000);
+
+//Hide the landing page overlay and start the game when the easy or hard button is clicked
+document.getElementById("easy-btn").addEventListener("click", function() {
+  toggleLandingPage();
+  startGame(easy);
+});
+
+document.getElementById("hard-btn").addEventListener("click", function() {
+  toggleLandingPage();
+  startGame(hard);
+});
 
 //onclick difficulty (event listener)
 function startGame(difficulty) {
@@ -147,11 +163,17 @@ function showScoreInfo() {
   //DISPLAY scoreGif and scoreText in innerHTML depending on correctAnswers
 }
 
+//Pause landing page video as static image on last frame
+// select the video element
+let video = document.querySelector('.video');
 
-
-
-
-
+//Listen for the event that fires when your video has finished playing
+video.addEventListener('ended', function() {
+    //Pause the video
+    this.pause();
+    //Set play time to the last frame
+    this.currentTime = this.duration;
+}, false);
 
 //data structure
 /*let easy = [

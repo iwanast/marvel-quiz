@@ -21,6 +21,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
+// Insert this button into html to run the loop function
+// <button id="loop-button">Run Loop Function</button>
 
 //Run a loop to insert multiple documents into Firebase at once
 document.getElementById("loop-button").addEventListener("click", firebaseLoop);
@@ -40,17 +42,17 @@ async function firebaseLoop() {
     ];
 
     if (i.toString().length == 1) {
-      id = "eq00" + i;
-      image = "./images/eq00" + i; 
+      id = "hq00" + i;
+      image = "./images/hq00" + i; 
     } else if (i.toString().length == 2) {
-      id = "eq0" + i;
-      image = "./images/eq0" + i; 
+      id = "hq0" + i;
+      image = "./images/hq0" + i; 
     } else if (i.toString().length == 3) {
-      id = "eq" + i;
-      image = "./images/eq" + i; 
+      id = "hq" + i;
+      image = "./images/hq" + i; 
     }
 
-    await setDoc(doc(db, "easy-questions", id), {
+    await setDoc(doc(db, "hard-questions", id), {
       question: question,
       image: image,
       related: related,

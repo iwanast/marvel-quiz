@@ -1,16 +1,24 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-family: monospace;
 }
+
 * p {
   color: #efefef;
   font-size: 14px;
 }
+
 * h1 {
   color: #efefef;
+  text-align: center;
+  font-family: "Dekko", cursive;
+  font-size: 2rem;
+  text-shadow: -3px 3px #000000;
 }
+
 * h2 {
   color: #efefef;
 }
@@ -19,9 +27,161 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
 body #main {
   width: 100vw;
   height: 100vh;
 }
 
+#landing-page {
+  height: 100vh;
+  width: 100vw;
+  background-color: transparent;
+  -webkit-transition: all .3s linear;
+  transition: all .3s linear;
+}
+
+.hidden-overlay {
+  position: absolute;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+#title-wrapper {
+  width: 100vw;
+  height: 80px;
+  position: absolute;
+  bottom: 70%;
+  background-color: transparent;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 2vw 0 2vw;
+}
+
+#landing-btn-wrapper {
+  width: 100vw;
+  height: 80px;
+  position: absolute;
+  top: 70%;
+  background-color: transparent;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* .landing-btn containers: add the texture above a solid background */
+.landing-btn {
+  max-width: 500px;
+  margin: 2rem 0;
+  padding: 0.2rem 1.25rem;
+  text-align: center;
+  font-family: "Dekko", cursive;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  font-weight: 700;
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ADD8E6;
+  background-size: 12px, 100%;
+  border: 0.4rem solid #000000;
+  /* position relative for the :before pseudo element */
+  position: relative;
+  pointer-events: none;
+}
+
+/* for the highlight container change the solid backgorund to a yellow-ish hue */
+.landing-btn--alternate {
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.8" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23d68810"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffcd28;
+  background-size: 12px, 100%;
+  pointer-events: none;
+}
+
+/* for every .button container add a solid background behind the container itself, slightly offset */
+.landing-btn:before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 0.15rem;
+  width: 100%;
+  height: 100%;
+  /* with the same texture, but different color, for both the texture and the background */
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(35)" opacity="1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #000000;
+  background-size: 12px, 100%;
+  border: 0.4rem solid #000000;
+  z-index: -5;
+}
+
+.landing-btn:hover {
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #efefef;
+  background-size: 12px, 100%;
+  cursor: pointer;
+}
+
+video {
+  height: auto;
+  min-height: 100%;
+  max-height: 100%;
+  width: 100%;
+  min-width: 100%;
+}
+
+#video-wrapper {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
+  background-color: #000000;
+}
+
+.fade-in {
+  opacity: 0;
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-delay: 34s;
+          animation-delay: 34s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 /*# sourceMappingURL=style.css.map */
