@@ -1,0 +1,140 @@
+@import "variables";
+
+// Grid for the game-page
+.item1 { grid-area: header; }
+.item2 { grid-area: title; }
+.item3 { grid-area: picture; }
+.item4 { grid-area: question; }
+.item5 { grid-area: answers; }
+.item6 { grid-area: button; }
+.item7 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  height: 100vh;
+  grid-template-areas:
+    "header header title title title title title"
+    ". picture picture picture picture . ."
+    ". question question question question . ."
+    ". answers answers answers answers . ."
+    ". . . button . . ."
+    "footer footer footer footer footer footer footer";
+  grid-template-rows: 14vh 18vh 20vh 20vh 4vh 14vh;
+  grid-row-gap: 2vh;
+  //justify-content: space-between;
+  //background-color: #2196F3;
+
+  @media screen and (max-width: 481px) {
+    grid-template-areas:
+    "header header header"
+    "picture picture picture"
+    "question question question"
+    ". answers ."
+    ". button ."
+    "title title footer";
+    grid-template-rows: 8vh 20vh 20vh 30vh 4vh 8vh;
+  }
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 1.2em;
+
+}
+.grid-container > .item1, .grid-container > .item2, .grid-container > .item7{
+  background-color: $marvelred;
+  color: $marvelwhite;
+}
+#footer, #header, #title{
+  position: sticky;
+  font-size: 3em;
+  @media screen and (max-width: 699px) {
+    font-size: 2em;
+  }
+  @media screen and (max-width: 481px) {
+    font-size: 1.4em;
+  } 
+  #logo{
+    height: 12vh;
+    @media screen and (max-width: 481px) {
+      height: 6vh;
+  }
+  }
+}
+#header{
+  padding: 0; 
+}
+#picture{
+  border-radius: 25px;
+  padding: 0;
+  #game-picture{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+  }
+}
+#question{
+  border: 1px solid $marvelgrey; 
+  border-radius: 25px;
+  margin: 0 10px; 
+}
+#answers {
+  padding: 0;
+  margin: 0 10px;  
+  // height: 20vh; 
+}
+#button-next{
+  padding: 0;
+  height: 2vh;
+  #next-button{
+    padding: 3px; 
+    height: 30px;
+    border-radius: 25px;
+    background-color: $marvelwhite;
+  } 
+}
+
+
+// Grid for the answers
+.subitem1 { grid-area: answer1; }
+.subitem2 { grid-area: answer2; }
+.subitem3 { grid-area: answer3; }
+.subitem4 { grid-area: answer4; }
+
+.grid-sub-container {
+  display: grid;
+  grid-template-areas:
+    "answer1 answer2"
+    "answer3 answer4";
+  grid-gap: 2vh 4vh;
+  height: 20vh;
+  overflow: scroll; 
+  //padding: 10px;
+  //margin: auto;
+  @media screen and (max-width: 481px) {
+    grid-template-areas:
+    "answer1"
+    "answer2"
+    "answer3"
+    "answer4";
+    justify-content: space-evenly;
+    height: 30vh;
+  }
+}
+
+#form {
+  padding: 0;  
+  //height: 20vh; 
+}
+.grid-sub-container .answer1-4{
+  padding: 10px;
+  text-align: center;
+  border: 1px solid $marvelgrey; 
+  border-radius: 25px; 
+}
+
+
+
