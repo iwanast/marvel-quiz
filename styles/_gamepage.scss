@@ -48,7 +48,7 @@
   color: $marvelwhite;
 }
 #footer, #header, #title{
-  position: sticky;
+  // position: sticky;
   font-size: 3em;
   @media screen and (max-width: 699px) {
     font-size: 2em;
