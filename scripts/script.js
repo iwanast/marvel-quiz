@@ -37,8 +37,8 @@ let scoreText = [];
 let answersClickable = true;
 
 //Onclick difficulty and onclick try again from end page
-function toggleLandingPage() {
-  document.getElementById("landing-page").classList.toggle("hidden-overlay");
+function togglePage(page) {
+  document.getElementById(page).classList.toggle("hidden-overlay");
 }
 
 setTimeout(function(){ 
@@ -48,12 +48,12 @@ setTimeout(function(){
 
 //Hide the landing page overlay and start the game when the easy or hard button is clicked
 document.getElementById("easy-btn").addEventListener("click", function() {
-  toggleLandingPage();
+  togglePage("landing-page");
   startGame(easy);
 });
 
 document.getElementById("hard-btn").addEventListener("click", function() {
-  toggleLandingPage();
+  togglePage("landing-page");
   startGame(hard);
 });
 
@@ -62,23 +62,33 @@ function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
   answersClickable = true;
-  toggleLandingPage()
-   nextQuestion()
+  togglePage("landing-page");
+  nextQuestion();
 }
 
-retrieveDataFromFirebase();
-//run onload
-async function retrieveDataFromFirebase() {
-  let easyQuestionsDb = await retrieveQuestionDocs("easy");
-  let hardQuestionsDb = await retrieveQuestionDocs("hard");
-  let easyAvgDb = await retrieveAvgDocs("easy");
-  let hardAvgDb = await retrieveAvgDocs("hard");
+function playAgain() {
+  togglePage("score-page");
+  startGame();
+}
 
-  populateEasyQuestionsArray(easyQuestionsDb);
-  populateHardQuestionsArray(hardQuestionsDb);
-  populateAvgVariables(easyAvgDb, hardAvgDb);
+retrieveQuestionDataFromFirebase();
+//run onload
+async function retrieveQuestionDataFromFirebase() {
+  let easyQuestionsData = await retrieveQuestionDocs("easy");
+  let hardQuestionsData = await retrieveQuestionDocs("hard");
+
+  populateEasyQuestionsArray(easyQuestionsData);
+  populateHardQuestionsArray(hardQuestionsData);
+
 
   consoleLogs();
+}
+
+async function retrieveAvgDataFromFirebase() {
+  let easyAvgData = await retrieveAvgDocs("easy");
+  let hardAvgData = await retrieveAvgDocs("hard");
+
+  populateAvgVariables(easyAvgData, hardAvgData);
 }
 
 //Retrieve each of the difficulty databases
@@ -149,7 +159,7 @@ function consoleLogs() {
   console.log(hardAvg);
 }
 
-function shuffleArray(difficulty) {
+function shuffleArray(array) {
   //SHUFFLE question array matching difficulty
 }
 
@@ -158,8 +168,7 @@ function goToNextQuestion() {
 
   //COMPARE question counter to array index
   //if (counter = 10)
-    //RUN calculateAvg()
-    //RUN toggleScorePage()
+    //RUN finishGame();
     //BREAK
   //else if (counter < 10)
     //INSERT question from easy/hard array at same index as counter into the HTML
@@ -194,29 +203,31 @@ function hightlightAnswer() {
 }
 
 function calculateAvg(difficulty) {
-  //ADD user score to easyScores or hardScores, depending on difficulty
-  //ADD ++ to easyUsers or hardUsers, depending on difficulty setting
-  //CALCULATE average score (scores / users)
+  retrieveAvgDataFromFirebase();
+  //ADD user score and increment users by 1 (for difficulty setting)
+  saveAvgScoreToFirebase();
+
+  //CALCULATE average score (scores / users) using updated variables
   //DISPLAY average score by changing innerHTML
-  //RUN saveAvgscoreToFirebase()
 }
 
-function toggleScorePage() {
-  //DISPLAY user score, average score, and play again button in innerHTML
-  //RUN showScoreInfo()
+function finishGame() {
+  //DISPLAY user score and play again button in innerHTML
+  //RUN calculateAverage()  
+  //RUN showScorePageObjectsBasedOnScore()
   //TOGGLE scorepage display class
 }
 
 //eventlistener
 //if play again button is clicked
-//RUN toggleScorePage() and toggleLandingPage()
+//RUN toggleScorePage() and togglePage("landing-page")
 
 function saveAvgScoreToFirebase() {
   //INSERT save the updated variable easyAvg/hardAvg into firebase
 }
 
-function showScoreInfo() {
-  //DISPLAY scoreGif and scoreText in innerHTML depending on correctAnswers
+function showScorePageObjectsBasedOnScore() {
+  //DISPLAY scoreGif and scoreText in innerHTML depending on number of correctAnswers
 }
 
 //Pause landing page video as static image on last frame
@@ -293,3 +304,16 @@ let hard = [
 // let hardScores = (total sum of all hard scores)
 // let hardUsers = (total count of all hard players)}
 */
+
+
+
+
+function populateAnswers(i) {
+  //LET answerArray = [];
+  //GET the answers for question matching counter index and assign to answerArray
+  //let trueAnswer = answerArray[0];
+  //SHUFFLE answers
+  //INSERT answers into answer divs
+
+  //ONCLICK answer - check if innerHtml == trueAnswer
+}

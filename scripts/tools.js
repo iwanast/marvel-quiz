@@ -52,7 +52,7 @@ async function firebaseLoop() {
       image = "./images/hq" + i; 
     }
 
-    await setDoc(doc(db, "hard-questions", id), {
+    await setDoc(doc(db, "INSERTDB", id), {
       question: question,
       image: image,
       related: related,
