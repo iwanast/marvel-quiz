@@ -71,7 +71,7 @@ function startGame() {
 
 function playAgain() {
   togglePage("score-page");
-  startGame();
+  togglePage("landing-page");
 }
 
 retrieveQuestionDataFromFirebase();
