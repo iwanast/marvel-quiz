@@ -164,6 +164,11 @@ function shuffleArray(array) {
   //SHUFFLE question array matching difficulty
 }
 
+// When user clicks next its calling the goToNextQuestion function
+document.getElementById("button-next").onclick = function() {
+  goToNextQuestion()
+};
+
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
  //SET answersClickable to true
