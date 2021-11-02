@@ -25,16 +25,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-//DECLARE easyQuestionsArray global array easy variable
-//DECLARE hardQuestionsArray global array hard variable
-//DECLARE currentDifficulty global variable for difficulty
-//DECLARE questionCounter global variable
-//DECLARE correctAnswers global variable
-//DECLARE easyAvg global object
-//DECLARE hardAvg global object
-//DECLARE scoreGif global array
-//DECLARE scoreText global array
-//DECLARE answersClickable global variable to true
+let easyQuestionsArray = [];
+let hardQuestionsArray = [];
+let easyAvg = {};
+let hardAvg = {};
+let currentDifficulty = "";
+let questionCounter = 0;
+let correctAnswers = 0;
+let scoreGif = [];
+let scoreText = [];
+let answersClickable = true;
 
 //Onclick difficulty and onclick try again from end page
 function toggleLandingPage() {
@@ -58,39 +58,95 @@ document.getElementById("hard-btn").addEventListener("click", function() {
 });
 
 //onclick difficulty (event listener)
-function startGame(difficulty) {
-  //ASSIGN difficulty to global variable
-  //RESET var questionCunter to 0
-  //RESET var correctAnswers to 0
-  //RESET answersClickable to true
-  //RUN toggleLandingPage()
-  //RUN nextQuestion()
+function startGame() {
+  questionCounter = 0;
+  correctAnswers = 0;
+  answersClickable = true;
+  toggleLandingPage()
+   nextQuestion()
 }
 
 retrieveDataFromFirebase();
 //run onload
 async function retrieveDataFromFirebase() {
-  let namesInDb = await getNames();
-  //   clearContentOfElement(id);
-  namesInDb.forEach((doc) => {
-    console.log({ id: doc.id, name: doc.data().name });
-  });
-  //Get all from firebase
-  async function getNames() {
-    const names = await getDocs(collection(db, "names"));
-    return names;
-  }
-  //FETCH data from Firebase from both easy and hard arrays
-  //FETCH the variables for the avg result, both easy and hard, from firebase
-  //AWAIT FETCH THEN RUN assignGlobalVariablesFromFirebase()
+  let easyQuestionsDb = await retrieveQuestionDocs("easy");
+  let hardQuestionsDb = await retrieveQuestionDocs("hard");
+  let easyAvgDb = await retrieveAvgDocs("easy");
+  let hardAvgDb = await retrieveAvgDocs("hard");
+
+  populateEasyQuestionsArray(easyQuestionsDb);
+  populateHardQuestionsArray(hardQuestionsDb);
+  populateAvgVariables(easyAvgDb, hardAvgDb);
+
+  consoleLogs();
 }
 
-async function assignVariablesFromFirebase() {
-  //ASSIGN the data in the easy questions array from firebase into the easyQuestionsArray
-  //ASSIGN the data in the hard questions array from firebase into the hardQuestionsArray
-  //ASSIGN the data in the easy average array into the easyAvg global object
-  //ASSIGN the data in the easy average array into the hardAvg global object
+//Retrieve each of the difficulty databases
+async function retrieveQuestionDocs(diff) {
+  let coll = diff + "-questions";
+  const questions = await getDocs(collection(db, coll));
+  return questions;
+}
 
+//Retrieve each of the avg databases
+async function retrieveAvgDocs(diff) {
+  let coll = diff + "-avg";
+  const avg = await getDocs(collection(db, coll));
+  return avg;
+}
+
+//Insert each of the docs into the easyQuestionsArray
+function populateEasyQuestionsArray(db) {
+  let i = 0;
+  db.forEach((doc) => {
+    let question = {
+      question: doc.data().question,
+      image: doc.data().image,
+      answers: doc.data().answers
+    }
+    easyQuestionsArray[i] = question;
+    i++;
+  });
+}
+
+//Insert each of the docs into the hardQuestionsArray
+function populateHardQuestionsArray(db) {
+  let i = 0;
+  db.forEach((doc) => {
+    let question = {
+      question: doc.data().question,
+      image: doc.data().image,
+      answers: doc.data().answers
+    }
+    hardQuestionsArray[i] = question;
+    i++;
+  });
+}
+
+//Populate the avg global variables with data from firebase
+function populateAvgVariables(easyDb, hardDb) {
+  easyDb.forEach((doc) => {
+    easyAvg = {
+      scores: doc.data().scores,
+      users: doc.data().users
+    }
+  });
+  
+  hardDb.forEach((doc) => {
+    hardAvg = {
+      scores: doc.data().scores,
+      users: doc.data().users
+    }
+  }); 
+}
+
+//To check the arrays and objects are being populated properly - remove later
+function consoleLogs() {
+  console.log(easyQuestionsArray);
+  console.log(hardQuestionsArray);
+
+  console.log(easyAvg);
+  console.log(hardAvg);
 }
 
 function shuffleArray(difficulty) {
