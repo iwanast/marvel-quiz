@@ -180,7 +180,7 @@ function goToNextQuestion() {
     }
     //Inserts created random array of answers into the four answer divs
     for(let i = 0; i < randomizedAnswersArray.length; i++){
-      insertHTML(`answer${i}`, randomizedAnswersArray[i]);
+      insertHTML(`answer${i+1}`, randomizedAnswersArray[i]);
     }
   }
   else if (questionCounter = 10){
