@@ -51,13 +51,13 @@ setTimeout(function(){
 document.getElementById("easy-btn").addEventListener("click", function() {
   currentDifficulty = "easy";
   togglePage("landing-page");
-  startGame(easy);
+  startGame();
 });
 
 document.getElementById("hard-btn").addEventListener("click", function() {
   currentDifficulty = "hard";
   togglePage("landing-page");
-  startGame(hard);
+  startGame();
 });
 
 //onclick difficulty (event listener)
