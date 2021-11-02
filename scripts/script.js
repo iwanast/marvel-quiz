@@ -50,11 +50,13 @@ setTimeout(function(){
 //Hide the landing page overlay and start the game when the easy or hard button is clicked
 document.getElementById("easy-btn").addEventListener("click", function() {
   currentDifficulty = "easy";
+  shuffleArray(easyQuestionsArray);
   startGame();
 });
 
 document.getElementById("hard-btn").addEventListener("click", function() {
   currentDifficulty = "hard";
+  shuffleArray(hardQuestionsArray);
   startGame();
 });
 
