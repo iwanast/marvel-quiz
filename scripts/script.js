@@ -162,6 +162,14 @@ function consoleLogs() {
 
 function shuffleArray(array) {
   //SHUFFLE question array matching difficulty
+  /* Randomize array in-place using Durstenfeld shuffle algorithm */
+  for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp; 
+  }
+  return array;
 }
 
 // When user clicks next its calling the goToNextQuestion function
@@ -208,10 +216,11 @@ function randomizeAnswers(array) {
   //INSERT answers for the question matching i into the array
   //SHUFFLE the array
   //RETURN the array
+
   //array = shuffleArray(array);
   for (var i of array) {
    randomizedAnswersArray.push(i)
-}
+  }
 }
 
 // onclick on answer
