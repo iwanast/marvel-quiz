@@ -172,6 +172,9 @@ document.getElementById("button-next").onclick = function() {
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
  //SET answersClickable to true
+ //Clean the array 
+ randomizedAnswersArray = [];
+
 
  // Decide if there should be a new question or not and call the different functions
   if (questionCounter < 10){
