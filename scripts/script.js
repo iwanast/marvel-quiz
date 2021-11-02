@@ -50,13 +50,11 @@ setTimeout(function(){
 //Hide the landing page overlay and start the game when the easy or hard button is clicked
 document.getElementById("easy-btn").addEventListener("click", function() {
   currentDifficulty = "easy";
-  togglePage("landing-page");
   startGame();
 });
 
 document.getElementById("hard-btn").addEventListener("click", function() {
   currentDifficulty = "hard";
-  togglePage("landing-page");
   startGame();
 });
 
@@ -193,7 +191,8 @@ function goToNextQuestion() {
 }
 
 function insertHTML(htmlId, htmlValue){
-    document.getElementById(`"${htmlId}"`).innerHTML = htmlValue;
+  console.log("htmlId: " + htmlId + "htmlValue" + htmlValue)
+    document.getElementById(`${htmlId}`).innerHTML = htmlValue;
 }
 
 function randomizeAnswers(array) {
@@ -201,8 +200,7 @@ function randomizeAnswers(array) {
   //INSERT answers for the question matching i into the array
   //SHUFFLE the array
   //RETURN the array
-  console.log("checking the array" + array)
-  array = shuffleArray(array);
+  //array = shuffleArray(array);
   for (var i of array) {
    randomizedAnswersArray.push(i)
 }
