@@ -35,6 +35,7 @@ let correctAnswers = 0;
 let scoreGif = [];
 let scoreText = [];
 let answersClickable = true;
+let randomizedAnswersArray = [];
 
 //Onclick difficulty and onclick try again from end page
 function togglePage(page) {
@@ -81,7 +82,9 @@ async function retrieveQuestionDataFromFirebase() {
   populateHardQuestionsArray(hardQuestionsData);
 
 
-  consoleLogs();
+consoleLogs();
+
+
 }
 
 async function retrieveAvgDataFromFirebase() {
@@ -161,6 +164,14 @@ function consoleLogs() {
 
 function shuffleArray(array) {
   //SHUFFLE question array matching difficulty
+  /* Randomize array in-place using Durstenfeld shuffle algorithm */
+  for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp; 
+  }
+  return array;
 }
 
 //called by startGame() and onclick next question button
@@ -179,11 +190,17 @@ function goToNextQuestion() {
   //ADD +1 to question counter
 }
 
-function randomizeAnswers(i) {
-  //CREATE an array randomizedQuestions
+function randomizeAnswers(array) {
+  //CREATE an array randomizedAnswers
   //INSERT answers for the question matching i into the array
   //SHUFFLE the array
   //RETURN the array
+  console.log("checking the array" + array)
+  array = shuffleArray(array);
+  for (var i of array) {
+   randomizedAnswersArray.push(i)
+   
+}
 }
 
 // onclick on answer
