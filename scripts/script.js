@@ -215,7 +215,7 @@ function finishGame() {
   //DISPLAY user score and play again button in innerHTML
   //RUN calculateAverage()  
   //RUN showScorePageObjectsBasedOnScore()
-  //TOGGLE scorepage display class
+  //RUN togglePage("score-page")
 }
 
 //eventlistener
