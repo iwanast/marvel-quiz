@@ -217,7 +217,7 @@ function randomizeAnswers(array) {
   //SHUFFLE the array
   //RETURN the array
 
-  //array = shuffleArray(array);
+  array = shuffleArray(array);
   for (var i of array) {
    randomizedAnswersArray.push(i)
   }
