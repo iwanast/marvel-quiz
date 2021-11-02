@@ -35,6 +35,7 @@ let correctAnswers = 0;
 let scoreGif = [];
 let scoreText = [];
 let answersClickable = true;
+let randomizedAnswersArray = [];
 
 //Onclick difficulty and onclick try again from end page
 function togglePage(page) {
@@ -63,7 +64,7 @@ function startGame() {
   correctAnswers = 0;
   answersClickable = true;
   togglePage("landing-page");
-  nextQuestion();
+  goToNextQuestion();
 }
 
 function playAgain() {
@@ -80,7 +81,7 @@ async function retrieveQuestionDataFromFirebase() {
   populateEasyQuestionsArray(easyQuestionsData);
   populateHardQuestionsArray(hardQuestionsData);
 
-
+console.log("the first answer: " + easyQuestionsArray[0].answers);
   consoleLogs();
 }
 
@@ -152,11 +153,11 @@ function populateAvgVariables(easyDb, hardDb) {
 
 //To check the arrays and objects are being populated properly - remove later
 function consoleLogs() {
-  console.log(easyQuestionsArray);
-  console.log(hardQuestionsArray);
+  // console.log(easyQuestionsArray);
+  // console.log(hardQuestionsArray);
 
-  console.log(easyAvg);
-  console.log(hardAvg);
+  // console.log(easyAvg);
+  // console.log(hardAvg);
 }
 
 function shuffleArray(array) {
@@ -165,18 +166,32 @@ function shuffleArray(array) {
 
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
+ //SET answersClickable to true
 
-  //COMPARE question counter to array index
-  //if (counter = 10)
-    //RUN finishGame();
-    //BREAK
-  //else if (counter < 10)
-    //INSERT question from easy/hard array at same index as counter into the HTML
-    //RUN randomizeAnswers(i) (creates answer array)
-    //INSERT created array of answers into the four answer divs
-    //SET answersClickable to true
+ // Decide if there should be a new question or not and call the different functions
+  if (questionCounter < 10){
+    if(currentDifficulty == "easy") {
+      insertHTML("question", easyQuestionsArray[questionCounter].question);
+      randomizeAnswers(easyQuestionsArray[questionCounter].answers);
+    }
+    else {
+      insertHTML("question", hardQuestionsArray[questionCounter].question);
+      randomizeAnswers(hardQuestionsArray[questionCounter].answers);
+    }
+    //Inserts created random array of answers into the four answer divs
+    for(let i = 0; i < randomizedAnswersArray.length; i++){
+      insertHTML(`answer${i}`, randomizedAnswersArray[i]);
+    }
+  }
+  else if (questionCounter = 10){
+    finishGame();
+    return;
+  }
+    questionCounter++;
+}
 
-  //ADD +1 to question counter
+function insertHTML(htmlId, htmlValue){
+    document.getElementById(`"${htmlId}"`).innerHTML = htmlValue;
 }
 
 function randomizeAnswers(i) {
@@ -202,7 +217,7 @@ function hightlightAnswer() {
     //BREAK
 }
 
-function calculateAvg(difficulty) {
+function calculateAvg(currentDifficulty) {
   retrieveAvgDataFromFirebase();
   //ADD user score and increment users by 1 (for difficulty setting)
   saveAvgScoreToFirebase();
