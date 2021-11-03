@@ -67,6 +67,7 @@ function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
   togglePage("landing-page");
+  document.getElementById("next-button").innerHTML = "next";
   goToNextQuestion();
 }
 
@@ -180,17 +181,19 @@ document.getElementById("button-next").onclick = function() {
   goToNextQuestion()
 };
 
+
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
  //SET the buttons onclick to a function again
-  for(let j = 1; j<= 4; j++){
-    putInOnclick(`answer${j}`, `function() { 
-    userAnswerIndex = ${j-1}; // index of the answer
-    for(let i = 1; i <= 4; i++){
-    putInOnclick(\`answer\${i}\`, ""); 
+ for(let j = 1; j<= 4; j++){
+   let funcBe = function (){ 
+    userAnswerIndex = (j - 1); // index of the answer
     hightlightAnswer();
-    }
-    }`); 
+    for(let i = 1; i <= 4; i++){
+      putInOnclick(`answer${i}`, "");
+      }  
+  }
+    putInOnclick(`answer${j}`, funcBe); 
   }
   // Set the background-color of the buttons to none again
   for(let i = 1; i <= 4; i++){
@@ -202,12 +205,12 @@ function goToNextQuestion() {
 
   // Decide if there should be a new question or not and call the different functions
   if (questionCounter < 10){
+    if(questionCounter == 9){
+      document.getElementById("next-button").innerHTML = "submit";
+    }
     if(currentDifficulty == "easy") {
-      console.log("Its coming before line 2008")
-      console.log(correctAnswerString)
-      //console.log(easyQuestionsArray[questionCounter].answer[0])
-      //correctAnswerString = easyQuestionsArray[questionCounter].answers[0];
-      console.log("Its coming after line 2008")
+      console.log("Correct answer string: " + correctAnswerString)
+      correctAnswerString = easyQuestionsArray[questionCounter].answers[0];
       insertHTML("question", easyQuestionsArray[questionCounter].question);
       randomizeAnswers(easyQuestionsArray[questionCounter].answers);
     }
@@ -247,35 +250,35 @@ function randomizeAnswers(array) {
 
 document.getElementById("answer1").onclick = function (){ 
   userAnswerIndex = 0; // index of the answer
+  hightlightAnswer();
   for(let i = 1; i <= 4; i++){
   putInOnclick(`answer${i}`, "");
   } 
-  hightlightAnswer();
 }
 document.getElementById("answer2").onclick = function (){ 
   userAnswerIndex = 1; // index of the answer
+  hightlightAnswer();
   for(let i = 1; i <= 4; i++){
     putInOnclick(`answer${i}`, "");
     } 
-  hightlightAnswer();
 }
 document.getElementById("answer3").onclick = function (){ 
   userAnswerIndex = 2; // index of the answer
+  hightlightAnswer();
   for(let i = 1; i <= 4; i++){
     putInOnclick(`answer${i}`, "");
     }  
-  hightlightAnswer();
 }
 document.getElementById("answer4").onclick = function (){ 
   userAnswerIndex = 3; // index of the answer
+  hightlightAnswer();
   for(let i = 1; i <= 4; i++){
     putInOnclick(`answer${i}`, "");
     } 
-  hightlightAnswer();
 }
 
 function putInOnclick(idHtml, theFunction){
-  document.getElementById(idHtml).onclick = theFunction; 
+  return document.getElementById(idHtml).onclick = theFunction; 
 }
 
 // onclick on answer
@@ -284,10 +287,12 @@ function hightlightAnswer() {
   for(let i = 0; i < 4; i++){
     if(correctAnswerString == randomizedAnswersArray[i]){
       document.getElementById(`answer${i + 1}`).style.background = "#35db35";
+      console.log("doing stuff in highlightAnswer")
       correctAnswers++;
     }
   }
   if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]){
+    console.log("doing stuff in highlightAnswer")
     document.getElementById(`answer${userAnswerIndex + 1}`).style.background = "#ed1d23";
     correctAnswers--;
   }
@@ -312,7 +317,7 @@ function finishGame() {
   //DISPLAY user score and play again button in innerHTML
   //RUN calculateAverage()  
   //RUN showScorePageObjectsBasedOnScore()
-  //RUN togglePage("score-page")
+  //togglePage("score-page")
 }
 
 //eventlistener
