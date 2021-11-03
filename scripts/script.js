@@ -183,11 +183,11 @@ document.getElementById("button-next").onclick = function() {
 
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
- //SET the buttons onclick to a function again
+ //SET the answerbuttons onclick to a function again
  for(let j = 1; j<= 4; j++){
    let funcBe = function (){ 
     userAnswerIndex = (j - 1); // index of the answer
-    hightlightAnswer();
+    hightlightAndCountingAnswer();
     for(let i = 1; i <= 4; i++){
       putInOnclick(`answer${i}`, "");
       }  
@@ -222,6 +222,7 @@ function goToNextQuestion() {
       insertHTML(`answer${i+1}`, randomizedAnswersArray[i]);
     }
   }
+  // call the finishGame function when 10 questions have been displayed
   else if (questionCounter = 10){
     finishGame();
     return;
@@ -229,12 +230,13 @@ function goToNextQuestion() {
     questionCounter++;
 }
 
+// a function to insert value inte the innerHTML on the DOM by id
 function insertHTML(htmlId, htmlValue){
   console.log("htmlId: " + htmlId + "htmlValue" + htmlValue)
     document.getElementById(`${htmlId}`).innerHTML = htmlValue;
 }
 
-// shuffles the array of answers and putting in in the randomizedAnssersArray
+// shuffles the array of answers and putting it in the randomizedAnssersArray
 function randomizeAnswers(array) {
   array = shuffleArray(array);
   for (var i of array) {
@@ -242,35 +244,43 @@ function randomizeAnswers(array) {
   }
 }
 
+// Button for the answer 1
 document.getElementById("answer1").onclick = function (){ 
   userAnswerIndex = 0; // index of the answer
-  hightlightAnswer();
+  hightlightAndCountingAnswer();
   for(let i = 1; i <= 4; i++){
   putInOnclick(`answer${i}`, "");
   } 
 }
+
+// Button for the answer 2
 document.getElementById("answer2").onclick = function (){ 
   userAnswerIndex = 1; // index of the answer
-  hightlightAnswer();
-  for(let i = 1; i <= 4; i++){
-    putInOnclick(`answer${i}`, "");
-    } 
-}
-document.getElementById("answer3").onclick = function (){ 
-  userAnswerIndex = 2; // index of the answer
-  hightlightAnswer();
-  for(let i = 1; i <= 4; i++){
-    putInOnclick(`answer${i}`, "");
-    }  
-}
-document.getElementById("answer4").onclick = function (){ 
-  userAnswerIndex = 3; // index of the answer
-  hightlightAnswer();
+  hightlightAndCountingAnswer();
   for(let i = 1; i <= 4; i++){
     putInOnclick(`answer${i}`, "");
     } 
 }
 
+// Button for the answer 3
+document.getElementById("answer3").onclick = function (){ 
+  userAnswerIndex = 2; // index of the answer
+  hightlightAndCountingAnswer();
+  for(let i = 1; i <= 4; i++){
+    putInOnclick(`answer${i}`, "");
+    }  
+}
+
+// Button for the answer 4
+document.getElementById("answer4").onclick = function (){ 
+  userAnswerIndex = 3; // index of the answer
+  hightlightAndCountingAnswer();
+  for(let i = 1; i <= 4; i++){
+    putInOnclick(`answer${i}`, "");
+    } 
+}
+
+// function to put a function after onclick 
 function putInOnclick(idHtml, theFunction){
   return document.getElementById(idHtml).onclick = theFunction; 
 }
@@ -278,18 +288,16 @@ function putInOnclick(idHtml, theFunction){
 // this function is hightlighting the correct answer green and
 // if the user clicked wrong, the wrong one red
 // this function adds the correctAnswers variable (for calculating the user score)
-function hightlightAnswer() {
+function hightlightAndCountingAnswer() {
   // hightlight the correct answer green and adds 1 to correctAnswer
   for(let i = 0; i < 4; i++){
     if(correctAnswerString == randomizedAnswersArray[i]){
       document.getElementById(`answer${i + 1}`).style.background = "#35db35";
-      console.log("doing stuff in highlightAnswer")
       correctAnswers++;
     }
   }
   // if the user clicked the wrong answer, it will become red and the variable correctAnswer will get -1
   if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]){
-    console.log("doing stuff in highlightAnswer")
     document.getElementById(`answer${userAnswerIndex + 1}`).style.background = "#ed1d23";
     correctAnswers--;
   }
