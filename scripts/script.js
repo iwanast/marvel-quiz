@@ -181,7 +181,6 @@ document.getElementById("button-next").onclick = function() {
   goToNextQuestion()
 };
 
-
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
  //SET the buttons onclick to a function again
@@ -209,13 +208,12 @@ function goToNextQuestion() {
       document.getElementById("next-button").innerHTML = "submit";
     }
     if(currentDifficulty == "easy") {
-      console.log("Correct answer string: " + correctAnswerString)
       correctAnswerString = easyQuestionsArray[questionCounter].answers[0];
       insertHTML("question", easyQuestionsArray[questionCounter].question);
       randomizeAnswers(easyQuestionsArray[questionCounter].answers);
     }
     else {
-      correctAnswerString = easyQuestionsArray[questionCounter].answer[0];
+      correctAnswerString = hardQuestionsArray[questionCounter].answers[0];
       insertHTML("question", hardQuestionsArray[questionCounter].question);
       randomizeAnswers(hardQuestionsArray[questionCounter].answers);
     }
@@ -236,12 +234,8 @@ function insertHTML(htmlId, htmlValue){
     document.getElementById(`${htmlId}`).innerHTML = htmlValue;
 }
 
+// shuffles the array of answers and putting in in the randomizedAnssersArray
 function randomizeAnswers(array) {
-  //CREATE an array randomizedAnswers
-  //INSERT answers for the question matching i into the array
-  //SHUFFLE the array
-  //RETURN the array
-
   array = shuffleArray(array);
   for (var i of array) {
    randomizedAnswersArray.push(i)
@@ -281,9 +275,11 @@ function putInOnclick(idHtml, theFunction){
   return document.getElementById(idHtml).onclick = theFunction; 
 }
 
-// onclick on answer
+// this function is hightlighting the correct answer green and
+// if the user clicked wrong, the wrong one red
+// this function adds the correctAnswers variable (for calculating the user score)
 function hightlightAnswer() {
-
+  // hightlight the correct answer green and adds 1 to correctAnswer
   for(let i = 0; i < 4; i++){
     if(correctAnswerString == randomizedAnswersArray[i]){
       document.getElementById(`answer${i + 1}`).style.background = "#35db35";
@@ -291,17 +287,13 @@ function hightlightAnswer() {
       correctAnswers++;
     }
   }
+  // if the user clicked the wrong answer, it will become red and the variable correctAnswer will get -1
   if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]){
     console.log("doing stuff in highlightAnswer")
     document.getElementById(`answer${userAnswerIndex + 1}`).style.background = "#ed1d23";
     correctAnswers--;
   }
-
-    // highlight the answer where correctAnswer = true to green (apply a .correct class?)
-    // CHECK if the clicked answer has correctAnswer = false
-      // if it does, highlight the clicked answer red (apply a .incorrect class?)
-      // else if it doesn't, add +1 ro correctAnswers
-
+  console.log(correctAnswers);
 }
 
 function calculateAvg(currentDifficulty) {
