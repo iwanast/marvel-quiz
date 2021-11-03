@@ -35,7 +35,6 @@ let correctAnswers = 0;
 let correctAnswerString = ""; 
 let scoreGif = [];
 let scoreText = [];
-let answersClickable = true;
 let randomizedAnswersArray = [];
 let userAnswerIndex; // index of the answer the user selected
 
@@ -67,7 +66,6 @@ document.getElementById("hard-btn").addEventListener("click", function() {
 function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
-  answersClickable = true;
   togglePage("landing-page");
   goToNextQuestion();
 }
@@ -282,9 +280,7 @@ function putInOnclick(idHtml, theFunction){
 
 // onclick on answer
 function hightlightAnswer() {
-  // CHECK if answersClickable = true
-  // if answersClickable = true
-  //--alternatively, check if HTML forms have a function for this built in
+
   for(let i = 0; i < 4; i++){
     if(correctAnswerString == randomizedAnswersArray[i]){
       document.getElementById(`answer${i + 1}`).style.background = "#35db35";
@@ -296,14 +292,11 @@ function hightlightAnswer() {
     correctAnswers--;
   }
 
-    // SET answersClickable to false
     // highlight the answer where correctAnswer = true to green (apply a .correct class?)
     // CHECK if the clicked answer has correctAnswer = false
       // if it does, highlight the clicked answer red (apply a .incorrect class?)
       // else if it doesn't, add +1 ro correctAnswers
 
-  // else if answersClickable = false
-    //BREAK
 }
 
 function calculateAvg(currentDifficulty) {
