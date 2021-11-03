@@ -27,8 +27,14 @@ const db = getFirestore(app);
 
 let easyQuestionsArray = [];
 let hardQuestionsArray = [];
-let easyAvg = {};
-let hardAvg = {};
+let easyAvg = {
+  scores: 0,
+  users: 0,
+};
+let hardAvg = {
+  scores: 0,
+  users: 0,
+};
 let currentDifficulty = "";
 let questionCounter = 0;
 let correctAnswers = 0;
@@ -42,19 +48,20 @@ function togglePage(page) {
   document.getElementById(page).classList.toggle("hidden-overlay");
 }
 
-setTimeout(function(){ 
-  document.querySelector(".landing-btn").style.pointerEvents = 'auto';
-  document.querySelector(".landing-btn--alternate").style.pointerEvents = 'auto';
- }, 35000);
+setTimeout(function () {
+  document.querySelector(".landing-btn").style.pointerEvents = "auto";
+  document.querySelector(".landing-btn--alternate").style.pointerEvents =
+    "auto";
+}, 35000);
 
 //Hide the landing page overlay and start the game when the easy or hard button is clicked
-document.getElementById("easy-btn").addEventListener("click", function() {
+document.getElementById("easy-btn").addEventListener("click", function () {
   currentDifficulty = "easy";
   shuffleArray(easyQuestionsArray);
   startGame();
 });
 
-document.getElementById("hard-btn").addEventListener("click", function() {
+document.getElementById("hard-btn").addEventListener("click", function () {
   currentDifficulty = "hard";
   shuffleArray(hardQuestionsArray);
   startGame();
@@ -83,7 +90,7 @@ async function retrieveQuestionDataFromFirebase() {
   populateEasyQuestionsArray(easyQuestionsData);
   populateHardQuestionsArray(hardQuestionsData);
 
-console.log("the first answer: " + easyQuestionsArray[0].answers);
+  console.log("the first answer: " + easyQuestionsArray[0].answers);
   consoleLogs();
 }
 
@@ -115,8 +122,8 @@ function populateEasyQuestionsArray(db) {
     let question = {
       question: doc.data().question,
       image: doc.data().image,
-      answers: doc.data().answers
-    }
+      answers: doc.data().answers,
+    };
     easyQuestionsArray[i] = question;
     i++;
   });
@@ -129,8 +136,8 @@ function populateHardQuestionsArray(db) {
     let question = {
       question: doc.data().question,
       image: doc.data().image,
-      answers: doc.data().answers
-    }
+      answers: doc.data().answers,
+    };
     hardQuestionsArray[i] = question;
     i++;
   });
@@ -141,23 +148,22 @@ function populateAvgVariables(easyDb, hardDb) {
   easyDb.forEach((doc) => {
     easyAvg = {
       scores: doc.data().scores,
-      users: doc.data().users
-    }
+      users: doc.data().users,
+    };
   });
-  
+
   hardDb.forEach((doc) => {
     hardAvg = {
       scores: doc.data().scores,
-      users: doc.data().users
-    }
-  }); 
+      users: doc.data().users,
+    };
+  });
 }
 
 //To check the arrays and objects are being populated properly - remove later
 function consoleLogs() {
   // console.log(easyQuestionsArray);
   // console.log(hardQuestionsArray);
-
   // console.log(easyAvg);
   // console.log(hardAvg);
 }
@@ -166,51 +172,48 @@ function shuffleArray(array) {
   //SHUFFLE question array matching difficulty
   /* Randomize array in-place using Durstenfeld shuffle algorithm */
   for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp; 
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
   return array;
 }
 
 // When user clicks next its calling the goToNextQuestion function
-document.getElementById("button-next").onclick = function() {
-  goToNextQuestion()
+document.getElementById("button-next").onclick = function () {
+  goToNextQuestion();
 };
 
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
- //SET answersClickable to true
- //Clean the array 
- randomizedAnswersArray = [];
+  //SET answersClickable to true
+  //Clean the array
+  randomizedAnswersArray = [];
 
-
- // Decide if there should be a new question or not and call the different functions
-  if (questionCounter < 10){
-    if(currentDifficulty == "easy") {
+  // Decide if there should be a new question or not and call the different functions
+  if (questionCounter < 10) {
+    if (currentDifficulty == "easy") {
       insertHTML("question", easyQuestionsArray[questionCounter].question);
       randomizeAnswers(easyQuestionsArray[questionCounter].answers);
-    }
-    else {
+    } else {
       insertHTML("question", hardQuestionsArray[questionCounter].question);
       randomizeAnswers(hardQuestionsArray[questionCounter].answers);
     }
     //Inserts created random array of answers into the four answer divs
-    for(let i = 0; i < randomizedAnswersArray.length; i++){
-      insertHTML(`answer${i+1}`, randomizedAnswersArray[i]);
+    for (let i = 0; i < randomizedAnswersArray.length; i++) {
+      insertHTML(`answer${i + 1}`, randomizedAnswersArray[i]);
     }
-  }
-  else if (questionCounter = 10){
+  } else if ((questionCounter = 10)) {
     finishGame();
     return;
   }
-    questionCounter++;
+  questionCounter++;
 }
 
-function insertHTML(htmlId, htmlValue){
-  console.log("htmlId: " + htmlId + "htmlValue" + htmlValue)
-    document.getElementById(`${htmlId}`).innerHTML = htmlValue;
+function insertHTML(htmlId, htmlValue) {
+  console.log("htmlId: " + htmlId + "htmlValue" + htmlValue);
+  document.getElementById(`${htmlId}`).innerHTML = htmlValue;
 }
 
 function randomizeAnswers(array) {
@@ -221,7 +224,7 @@ function randomizeAnswers(array) {
 
   array = shuffleArray(array);
   for (var i of array) {
-   randomizedAnswersArray.push(i)
+    randomizedAnswersArray.push(i);
   }
 }
 
@@ -230,29 +233,35 @@ function hightlightAnswer() {
   // CHECK if answersClickable = true
   // if answersClickable = true
   //--alternatively, check if HTML forms have a function for this built in
-
-    // SET answersClickable to false
-    // highlight the answer where correctAnswer = true to green (apply a .correct class?)
-    // CHECK if the clicked answer has correctAnswer = false
-      // if it does, highlight the clicked answer red (apply a .incorrect class?)
-      // else if it doesn't, add +1 ro correctAnswers
-
+  // SET answersClickable to false
+  // highlight the answer where correctAnswer = true to green (apply a .correct class?)
+  // CHECK if the clicked answer has correctAnswer = false
+  // if it does, highlight the clicked answer red (apply a .incorrect class?)
+  // else if it doesn't, add +1 ro correctAnswers
   // else if answersClickable = false
-    //BREAK
+  //BREAK
 }
-
-function calculateAvg(currentDifficulty) {
+//PULLED BY SCORE PAGE//
+function calculateAvg() {
   retrieveAvgDataFromFirebase();
-  //ADD user score and increment users by 1 (for difficulty setting)
-  saveAvgScoreToFirebase();
-
-  //CALCULATE average score (scores / users) using updated variables
-  //DISPLAY average score by changing innerHTML
+  if (currentDifficulty == "easy") {
+    easyAvg.scores = easyAvg.scores + correctAnswers;
+    easyAvg.users++;
+    let avg = easyAvg.scores / easyAvg.users;
+  } else if (currentDifficulty == "hard") {
+    hardAvg.scores = hardAvg.scores + correctAnswers;
+    hardAvg.users++;
+    let avg = hardAvg.scores / hardAvg.users;
+  } else {
+    console.log("No difficulty set");
+  }
+  saveAvgDataToFirebase();
+  document.getElementById(INSERTID).innerHTML = avg;
 }
 
 function finishGame() {
   //DISPLAY user score and play again button in innerHTML
-  //RUN calculateAverage()  
+  //RUN calculateAverage()
   //RUN showScorePageObjectsBasedOnScore()
   //RUN togglePage("score-page")
 }
@@ -261,8 +270,18 @@ function finishGame() {
 //if play again button is clicked
 //RUN toggleScorePage() and togglePage("landing-page")
 
-function saveAvgScoreToFirebase() {
-  //INSERT save the updated variable easyAvg/hardAvg into firebase
+function saveAvgDataToFirebase() {
+  if (currentDifficulty == "easy") {
+    setDoc(doc(db, "easy-avg", eavg), {
+      scores: easyAvg.scores,
+      users: easyAvg.users,
+    });
+  } else if (currentDifficulty == "hard") {
+    setDoc(doc(db, "hard-avg", havg), {
+      scores: hardAvg.scores,
+      users: hardAvg.users,
+    });
+  }
 }
 
 function showScorePageObjectsBasedOnScore() {
@@ -271,15 +290,19 @@ function showScorePageObjectsBasedOnScore() {
 
 //Pause landing page video as static image on last frame
 // select the video element
-let video = document.querySelector('.video');
+let video = document.querySelector(".video");
 
 //Listen for the event that fires when your video has finished playing
-video.addEventListener('ended', function() {
+video.addEventListener(
+  "ended",
+  function () {
     //Pause the video
     this.pause();
     //Set play time to the last frame
     this.currentTime = this.duration;
-}, false);
+  },
+  false
+);
 
 //data structure
 /*let easy = [
@@ -344,15 +367,11 @@ let hard = [
 // let hardUsers = (total count of all hard players)}
 */
 
-
-
-
 function populateAnswers(i) {
   //LET answerArray = [];
   //GET the answers for question matching counter index and assign to answerArray
   //let trueAnswer = answerArray[0];
   //SHUFFLE answers
   //INSERT answers into answer divs
-
   //ONCLICK answer - check if innerHtml == trueAnswer
 }
