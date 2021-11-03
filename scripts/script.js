@@ -32,10 +32,13 @@ let hardAvg = {};
 let currentDifficulty = "";
 let questionCounter = 0;
 let correctAnswers = 0;
+let correctAnswerString = ""; 
 let scoreGif = [];
 let scoreText = [];
 let answersClickable = true;
 let randomizedAnswersArray = [];
+let userAnswerIndex; // index of the answer the user selected
+
 
 //Onclick difficulty and onclick try again from end page
 function togglePage(page) {
@@ -73,7 +76,7 @@ function playAgain() {
   togglePage("score-page");
   togglePage("landing-page");
 }
-
+///////////////////////////////FIREBASE FUNCTIONS////////////////////////////////////
 retrieveQuestionDataFromFirebase();
 //run onload
 async function retrieveQuestionDataFromFirebase() {
@@ -161,7 +164,7 @@ function consoleLogs() {
   // console.log(easyAvg);
   // console.log(hardAvg);
 }
-
+////////////////////////////////QUIZ FUNCTIONS///////////////////////////////////////
 function shuffleArray(array) {
   //SHUFFLE question array matching difficulty
   /* Randomize array in-place using Durstenfeld shuffle algorithm */
@@ -181,18 +184,33 @@ document.getElementById("button-next").onclick = function() {
 
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
- //SET answersClickable to true
- //Clean the array 
- randomizedAnswersArray = [];
+ //SET the buttons onclick to a function again
+  for(let j = 1; j<= 4; j++){
+    putInOnclick(`answer${j}`, `function (){ 
+    userAnswerIndex = ${j-1}; // index of the answer
+    for(let i = 1; i <= 4; i++){
+    putInOnclick(\`answer\${i}\`, ""); 
+    hightlightAnswer();
+    }
+    }`); 
+  }
+  // Set the background-color of the buttons to none again
+  for(let i = 1; i <= 4; i++){
+      document.getElementById(`answer${i}`).style.background = "#ffffff";
+    }
 
+  //Clear the array with the four answers 
+  randomizedAnswersArray = [];
 
- // Decide if there should be a new question or not and call the different functions
+  // Decide if there should be a new question or not and call the different functions
   if (questionCounter < 10){
     if(currentDifficulty == "easy") {
+      correctAnswerString = easyQuestionsArray[questionCounter].answer[0];
       insertHTML("question", easyQuestionsArray[questionCounter].question);
       randomizeAnswers(easyQuestionsArray[questionCounter].answers);
     }
     else {
+      correctAnswerString = easyQuestionsArray[questionCounter].answer[0];
       insertHTML("question", hardQuestionsArray[questionCounter].question);
       randomizeAnswers(hardQuestionsArray[questionCounter].answers);
     }
@@ -225,11 +243,52 @@ function randomizeAnswers(array) {
   }
 }
 
+document.getElementById("answer1").onclick = function (){ 
+  userAnswerIndex = 0; // index of the answer
+  for(let i = 1; i <= 4; i++){
+  putInOnclick(`answer${i}`, "");
+  } 
+  hightlightAnswer();
+}
+document.getElementById("answer2").onclick = function (){ 
+  userAnswerIndex = 1; // index of the answer
+  for(let i = 1; i <= 4; i++){
+    putInOnclick(`answer${i}`, "");
+    } 
+  hightlightAnswer();
+}
+document.getElementById("answer3").onclick = function (){ 
+  userAnswerIndex = 2; // index of the answer
+  for(let i = 1; i <= 4; i++){
+    putInOnclick(`answer${i}`, "");
+    }  
+  hightlightAnswer();
+}
+document.getElementById("answer4").onclick = function (){ 
+  userAnswerIndex = 3; // index of the answer
+  for(let i = 1; i <= 4; i++){
+    putInOnclick(`answer${i}`, "");
+    } 
+  hightlightAnswer();
+}
+
+function putInOnclick(idHtml, theFunction){
+  document.getElementById(idHtml).onclick = theFunction; 
+}
+
 // onclick on answer
 function hightlightAnswer() {
   // CHECK if answersClickable = true
   // if answersClickable = true
   //--alternatively, check if HTML forms have a function for this built in
+  for(let i = 0; i < 4; i++){
+    if(correctAnswerString == randomizedAnswersArray[i]){
+      document.getElementById(`answer${i + 1}`).style.background = "#35db35";
+    }
+  }
+  if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]){
+    document.getElementById(`answer${userAnswerIndex + 1}`).style.background = "#ed1d23";
+  }
 
     // SET answersClickable to false
     // highlight the answer where correctAnswer = true to green (apply a .correct class?)
