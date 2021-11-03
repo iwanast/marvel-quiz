@@ -48,7 +48,7 @@ function togglePage(page) {
 setTimeout(function(){ 
   document.querySelector(".landing-btn").style.pointerEvents = 'auto';
   document.querySelector(".landing-btn--alternate").style.pointerEvents = 'auto';
- }, 35000);
+ }, 0);
 
 //Hide the landing page overlay and start the game when the easy or hard button is clicked
 document.getElementById("easy-btn").addEventListener("click", function() {
@@ -186,7 +186,7 @@ document.getElementById("button-next").onclick = function() {
 function goToNextQuestion() {
  //SET the buttons onclick to a function again
   for(let j = 1; j<= 4; j++){
-    putInOnclick(`answer${j}`, `function (){ 
+    putInOnclick(`answer${j}`, `function() { 
     userAnswerIndex = ${j-1}; // index of the answer
     for(let i = 1; i <= 4; i++){
     putInOnclick(\`answer\${i}\`, ""); 
@@ -205,7 +205,11 @@ function goToNextQuestion() {
   // Decide if there should be a new question or not and call the different functions
   if (questionCounter < 10){
     if(currentDifficulty == "easy") {
-      correctAnswerString = easyQuestionsArray[questionCounter].answer[0];
+      console.log("Its coming before line 2008")
+      console.log(correctAnswerString)
+      //console.log(easyQuestionsArray[questionCounter].answer[0])
+      //correctAnswerString = easyQuestionsArray[questionCounter].answers[0];
+      console.log("Its coming after line 2008")
       insertHTML("question", easyQuestionsArray[questionCounter].question);
       randomizeAnswers(easyQuestionsArray[questionCounter].answers);
     }
@@ -284,10 +288,12 @@ function hightlightAnswer() {
   for(let i = 0; i < 4; i++){
     if(correctAnswerString == randomizedAnswersArray[i]){
       document.getElementById(`answer${i + 1}`).style.background = "#35db35";
+      correctAnswers++;
     }
   }
   if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]){
     document.getElementById(`answer${userAnswerIndex + 1}`).style.background = "#ed1d23";
+    correctAnswers--;
   }
 
     // SET answersClickable to false
