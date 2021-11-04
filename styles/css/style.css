@@ -27,24 +27,63 @@
 }
 
 .grid-container {
+  font-weight: 900;
   display: grid;
   height: 100vh;
-  grid-template-areas: "header header title title title title title" ". picture picture picture picture . ." ". question question question question . ." ". answers answers answers answers . ." ". . . button . . ." "footer footer footer footer footer footer footer";
-  grid-template-rows: 14vh 18vh 20vh 20vh 4vh 14vh;
+  grid-template-areas: "header header title title title title" "question question question picture picture picture" "answers answers answers picture picture picture" "answers answers answers picture picture picture" ". . . . button ." "footer footer footer footer footer footer";
+  grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
   grid-row-gap: 2vh;
 }
 @media screen and (max-width: 481px) {
   .grid-container {
-    grid-template-areas: "header header header" "picture picture picture" "question question question" ". answers ." ". button ." "title title footer";
-    grid-template-rows: 8vh 20vh 20vh 30vh 4vh 8vh;
+    grid-template-areas: "header header header header" "picture picture picture picture" "question question question question" ". answers . ." ". button . ." "title title title footer";
+    grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
   }
+}
+.grid-container button {
+  padding: 10px;
+  border-radius: 25px;
+  text-align: center;
+  font-weight: 900;
+  border: 1px solid #8b8b8b;
+}
+.grid-container h2, .grid-container p {
+  color: #000000;
+  border: 1px solid #8b8b8b;
+  padding: 10px;
 }
 
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 20px 0;
+  padding-top: 20px;
   font-size: 1.2em;
+}
+
+div.item5 {
+  padding: 0;
+}
+@media screen and (max-width: 481px) {
+  div.item5 {
+    padding-top: 10px;
+  }
+}
+
+div.item4 {
+  align-self: center;
+}
+
+@media screen and (max-width: 481px) {
+  div.item7 {
+    width: 0;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  div.item2 {
+    width: 100vw;
+    padding-top: 10px;
+  }
 }
 
 .grid-container > .item1, .grid-container > .item2, .grid-container > .item7 {
@@ -67,10 +106,12 @@
 }
 #footer #logo, #header #logo, #title #logo {
   height: 12vh;
+  margin: 1vh 0;
 }
 @media screen and (max-width: 481px) {
   #footer #logo, #header #logo, #title #logo {
     height: 6vh;
+    margin: 1vh 0;
   }
 }
 
@@ -80,7 +121,8 @@
 
 #picture {
   border-radius: 25px;
-  padding: 0;
+  padding-bottom: 8px;
+  margin: 0 10px;
 }
 #picture #game-picture {
   object-fit: cover;
@@ -92,23 +134,17 @@
 #question {
   border: 1px solid #8b8b8b;
   border-radius: 25px;
-  margin: 0 10px;
+  margin: 10px;
+  margin-top: 20px;
+}
+@media screen and (max-width: 481px) {
+  #question {
+    margin: 0 10px;
+  }
 }
 
 #answers {
-  padding: 0;
   margin: 0 10px;
-}
-
-#button-next {
-  padding: 0;
-  height: 2vh;
-}
-#button-next #next-button {
-  padding: 3px;
-  height: 30px;
-  border-radius: 25px;
-  background-color: white;
 }
 
 .subitem1 {
@@ -131,21 +167,25 @@
   display: grid;
   grid-template-areas: "answer1 answer2" "answer3 answer4";
   grid-gap: 2vh 4vh;
-  height: 20vh;
+  max-height: 40vh;
   overflow: scroll;
+  justify-content: center;
 }
 @media screen and (max-width: 481px) {
   .grid-sub-container {
     grid-template-areas: "answer1" "answer2" "answer3" "answer4";
     justify-content: space-evenly;
-    height: 30vh;
+    max-height: 36vh;
   }
 }
 
-.grid-sub-container .answer1-4 {
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #8b8b8b;
+#button-next {
+  padding: 0;
+  height: 6vh;
+}
+#button-next #next-button {
+  padding: 0px 18px;
+  height: 6vh;
   border-radius: 25px;
 }
 

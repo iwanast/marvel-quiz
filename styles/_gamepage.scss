@@ -10,38 +10,71 @@
 .item7 { grid-area: footer; }
 
 .grid-container {
+  font-weight: 900;
   display: grid;
   height: 100vh;
   grid-template-areas:
-    "header header title title title title title"
-    ". picture picture picture picture . ."
-    ". question question question question . ."
-    ". answers answers answers answers . ."
-    ". . . button . . ."
-    "footer footer footer footer footer footer footer";
-  grid-template-rows: 14vh 18vh 20vh 20vh 4vh 14vh;
+    "header header title title title title"
+    "question question question picture picture picture"
+    "answers answers answers picture picture picture"
+    "answers answers answers picture picture picture"
+    ". . . . button ."
+    "footer footer footer footer footer footer";
+  grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
   grid-row-gap: 2vh;
   //justify-content: space-between;
   //background-color: #2196F3;
 
   @media screen and (max-width: 481px) {
     grid-template-areas:
-    "header header header"
-    "picture picture picture"
-    "question question question"
-    ". answers ."
-    ". button ."
-    "title title footer";
-    grid-template-rows: 8vh 20vh 20vh 30vh 4vh 8vh;
+    "header header header header"
+    "picture picture picture picture"
+    "question question question question"
+    ". answers . ."
+    ". button . ."
+    "title title title footer";
+    grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
+  }
+  button{
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: 900;
+    border: 1px solid $marvelgrey;
+  }
+  h2, p{
+    color: $black;
+    border: 1px solid $marvelgrey;
+    padding: 10px;
   }
 }
 
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 20px 0;
+  padding-top: 20px;
   font-size: 1.2em;
+}
+div.item5{
+  padding: 0;
+  @media screen and (max-width: 481px) {
+    padding-top: 10px;
+  }
+}
+div.item4{
+  align-self: center;
+}
 
+div.item7{
+  @media screen and (max-width: 481px) {
+    width: 0;
+  }
+}
+div.item2{
+  @media screen and (max-width: 481px) {
+    width: 100vw;
+    padding-top: 10px;
+  }
 }
 .grid-container > .item1, .grid-container > .item2, .grid-container > .item7{
   background-color: $marvelred;
@@ -58,8 +91,11 @@
   } 
   #logo{
     height: 12vh;
+    margin: 1vh 0; 
     @media screen and (max-width: 481px) {
       height: 6vh;
+      margin: 1vh 0; 
+
   }
   }
 }
@@ -68,7 +104,8 @@
 }
 #picture{
   border-radius: 25px;
-  padding: 0;
+  padding-bottom: 8px;
+  margin: 0 10px;
   #game-picture{
     object-fit: cover;
     width: 100%;
@@ -79,22 +116,14 @@
 #question{
   border: 1px solid $marvelgrey; 
   border-radius: 25px;
-  margin: 0 10px; 
+  margin: 10px;
+  margin-top: 20px;
+  @media screen and (max-width: 481px) {
+    margin: 0 10px; 
+  }  
 }
 #answers {
-  padding: 0;
-  margin: 0 10px;  
-  // height: 20vh; 
-}
-#button-next{
-  padding: 0;
-  height: 2vh;
-  #next-button{
-    padding: 3px; 
-    height: 30px;
-    border-radius: 25px;
-    background-color: $marvelwhite;
-  } 
+  margin: 0 10px; 
 }
 
 
@@ -110,10 +139,9 @@
     "answer1 answer2"
     "answer3 answer4";
   grid-gap: 2vh 4vh;
-  height: 20vh;
-  overflow: scroll; 
-  //padding: 10px;
-  //margin: auto;
+  max-height: 40vh;
+  overflow: scroll;
+  justify-content: center; 
   @media screen and (max-width: 481px) {
     grid-template-areas:
     "answer1"
@@ -121,16 +149,17 @@
     "answer3"
     "answer4";
     justify-content: space-evenly;
-    height: 30vh;
+    max-height: 36vh;
   }
 }
 
-.grid-sub-container .answer1-4{
-  padding: 10px;
-  text-align: center;
-  border: 1px solid $marvelgrey; 
-  border-radius: 25px; 
+#button-next{
+  padding: 0;
+  height: 6vh;
+  #next-button{
+    padding: 0px 18px; 
+    height: 6vh;
+    border-radius: 25px;
 }
-
-
+}
 
