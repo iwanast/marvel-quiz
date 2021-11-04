@@ -229,7 +229,7 @@ function goToNextQuestion() {
     }
   }
   // call the finishGame function when 10 questions have been displayed
-  else if (questionCounter = 10){
+  else if (questionCounter == 10){
     finishGame();
     return;
   }
