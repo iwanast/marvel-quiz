@@ -202,7 +202,7 @@ function goToNextQuestion() {
   }
   // Set the background-color of the buttons to none again
   for(let i = 1; i <= 4; i++){
-      document.getElementById(`answer${i}`).style.background = "#ffffff";
+      document.getElementById(`answer${i}`).style.background = "";
     }
 
   //Clear the array with the four answers 
@@ -297,12 +297,17 @@ function hightlightAndCountingAnswer() {
   // hightlight the correct answer green and adds 1 to correctAnswer
   for(let i = 0; i < 4; i++){
     if(correctAnswerString == randomizedAnswersArray[i]){
+      let backgrGreen = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+      #35db35;`;
+      
       document.getElementById(`answer${i + 1}`).style.background = "#35db35";
       correctAnswers++;
     }
   }
   // if the user clicked the wrong answer, it will become red and the variable correctAnswer will get -1
   if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]){
+    let backgrRed = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+    #ed1d23;`;
     document.getElementById(`answer${userAnswerIndex + 1}`).style.background = "#ed1d23";
     correctAnswers--;
   }
