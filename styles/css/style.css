@@ -254,10 +254,11 @@
           align-items: center;
 }
 
-/* .landing-btn containers: add the texture above a solid background */
-.landing-btn {
-  max-width: 500px;
-  margin: 2rem 0;
+#landing-btn-wrapper button {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  width: 100%;
   padding: 0.2rem 1.25rem;
   text-align: center;
   font-family: "Dekko", cursive;
@@ -265,6 +266,13 @@
   font-size: 1.5rem;
   letter-spacing: 0.2rem;
   font-weight: 700;
+  cursor: pointer;
+}
+
+/* .landing-btn containers: add the texture above a solid background */
+.landing-btn-div {
+  max-width: 500px;
+  margin: 2rem 0;
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ADD8E6;
   background-size: 12px, 100%;
   border: 0.4rem solid #000000;
@@ -274,14 +282,19 @@
 }
 
 /* for the highlight container change the solid backgorund to a yellow-ish hue */
-.landing-btn--alternate {
+.landing-btn-div--alternate {
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.8" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23d68810"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffcd28;
   background-size: 12px, 100%;
   pointer-events: none;
 }
 
+.landing-btn-div:hover {
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
+  background-size: 12px, 100%;
+}
+
 /* for every .button container add a solid background behind the container itself, slightly offset */
-.landing-btn:before {
+.landing-btn-div:before {
   content: "";
   position: absolute;
   left: -1rem;
@@ -293,12 +306,6 @@
   background-size: 12px, 100%;
   border: 0.4rem solid #000000;
   z-index: -5;
-}
-
-.landing-btn:hover {
-  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
-  background-size: 12px, 100%;
-  cursor: pointer;
 }
 
 video {
@@ -318,20 +325,22 @@ video {
 }
 
 .fade-in {
-  opacity: 1;
+  opacity: 0;
   -webkit-animation-name: fadeIn;
           animation-name: fadeIn;
   -webkit-animation-duration: 3s;
           animation-duration: 3s;
   -webkit-animation-delay: 34s;
           animation-delay: 34s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes fadeIn {
   0% {
-    opacity: 1;
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -340,7 +349,7 @@ video {
 
 @keyframes fadeIn {
   0% {
-    opacity: 1;
+    opacity: 0;
   }
   100% {
     opacity: 1;
