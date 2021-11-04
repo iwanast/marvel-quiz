@@ -182,26 +182,21 @@ function shuffleArray(array) {
   return array;
 }
 
-// When user clicks next its calling the goToNextQuestion function
-document.getElementById("button-next").onclick = function () {
-  goToNextQuestion();
-};
-
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
+//Disable the next-button until an answer is clicked
+putInOnclick("button-next", function(event){event.stopPropagation();alert("Not shure which answer is correct? Trust the process.")})
+
  //SET the answerbuttons onclick to a function again
  for(let j = 1; j<= 4; j++){
-   let funcBe = function (){ 
-    userAnswerIndex = (j - 1); // index of the answer
-    hightlightAndCountingAnswer();
-    for(let i = 1; i <= 4; i++){
-      putInOnclick(`answer${i}`, "");
-      }  
-  }
+   let funcBe = function() { 
+    userAnswerIndex = (j - 1);
+    hightlightAndCountingAnswer(); 
+    }
     putInOnclick(`answer${j}`, funcBe); 
   }
   // Set the background-color of the buttons to none again
-  for(let i = 1; i <= 4; i++){
+  for(let i = 1; i <= 4; i++) {
       document.getElementById(`answer${i}`).style.background = "";
     }
 
@@ -248,41 +243,33 @@ function randomizeAnswers(array) {
     randomizedAnswersArray.push(i);
   }
 }
-
+function answerButtonNotClickable() {
+  for(let i = 1; i <= 4; i++){
+    putInOnclick(`answer${i}`, "");
+  }
+}
 // Button for the answer 1
 document.getElementById("answer1").onclick = function (){ 
   userAnswerIndex = 0; // index of the answer
   hightlightAndCountingAnswer();
-  for(let i = 1; i <= 4; i++){
-  putInOnclick(`answer${i}`, "");
-  } 
 }
 
 // Button for the answer 2
 document.getElementById("answer2").onclick = function (){ 
   userAnswerIndex = 1; // index of the answer
   hightlightAndCountingAnswer();
-  for(let i = 1; i <= 4; i++){
-    putInOnclick(`answer${i}`, "");
-    } 
 }
 
 // Button for the answer 3
 document.getElementById("answer3").onclick = function (){ 
   userAnswerIndex = 2; // index of the answer
   hightlightAndCountingAnswer();
-  for(let i = 1; i <= 4; i++){
-    putInOnclick(`answer${i}`, "");
-    }  
 }
 
 // Button for the answer 4
 document.getElementById("answer4").onclick = function (){ 
   userAnswerIndex = 3; // index of the answer
   hightlightAndCountingAnswer();
-  for(let i = 1; i <= 4; i++){
-    putInOnclick(`answer${i}`, "");
-    } 
 }
 
 // function to put a function after onclick 
@@ -294,12 +281,15 @@ function putInOnclick(idHtml, theFunction){
 // if the user clicked wrong, the wrong one red
 // this function adds the correctAnswers variable (for calculating the user score)
 function hightlightAndCountingAnswer() {
+  //Disable the answers to be clickable
+  answerButtonNotClickable();
+  // Enable the next-button to work again
+  putInOnclick("button-next", function(){goToNextQuestion()});
   // hightlight the correct answer green and adds 1 to correctAnswer
   for(let i = 0; i < 4; i++){
     if(correctAnswerString == randomizedAnswersArray[i]){
       let backgrGreen = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
       #35db35;`;
-      
       document.getElementById(`answer${i + 1}`).style.background = "#35db35";
       correctAnswers++;
     }
