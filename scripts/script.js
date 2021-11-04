@@ -265,7 +265,7 @@ function saveAvgScoreToFirebase() {
   //INSERT save the updated variable easyAvg/hardAvg into firebase
 }
 
-function showScorePageObjectsBasedOnScore() {
+function dispayScoreExtras(currentDifficulty, correctAnswers) {
   //DISPLAY scoreGif and scoreText in innerHTML depending on number of correctAnswers
 }
 
