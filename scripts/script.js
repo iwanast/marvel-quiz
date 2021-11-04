@@ -38,10 +38,12 @@ let hardAvg = {
 let currentDifficulty = "";
 let questionCounter = 0;
 let correctAnswers = 0;
+let correctAnswerString = ""; 
 let scoreGif = [];
 let scoreText = [];
-let answersClickable = true;
 let randomizedAnswersArray = [];
+let userAnswerIndex; // index of the answer the user selected
+
 
 //Onclick difficulty and onclick try again from end page
 function togglePage(page) {
@@ -71,8 +73,8 @@ document.getElementById("hard-btn").addEventListener("click", function () {
 function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
-  answersClickable = true;
   togglePage("landing-page");
+  document.getElementById("next-button").innerHTML = "next";
   goToNextQuestion();
 }
 
@@ -80,7 +82,7 @@ function playAgain() {
   togglePage("score-page");
   togglePage("landing-page");
 }
-
+///////////////////////////////FIREBASE FUNCTIONS////////////////////////////////////
 retrieveQuestionDataFromFirebase();
 //run onload
 async function retrieveQuestionDataFromFirebase() {
@@ -167,7 +169,7 @@ function consoleLogs() {
   // console.log(easyAvg);
   // console.log(hardAvg);
 }
-
+////////////////////////////////QUIZ FUNCTIONS///////////////////////////////////////
 function shuffleArray(array) {
   //SHUFFLE question array matching difficulty
   /* Randomize array in-place using Durstenfeld shuffle algorithm */
@@ -187,16 +189,37 @@ document.getElementById("button-next").onclick = function () {
 
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
-  //SET answersClickable to true
-  //Clean the array
+ //SET the answerbuttons onclick to a function again
+ for(let j = 1; j<= 4; j++){
+   let funcBe = function (){ 
+    userAnswerIndex = (j - 1); // index of the answer
+    hightlightAndCountingAnswer();
+    for(let i = 1; i <= 4; i++){
+      putInOnclick(`answer${i}`, "");
+      }  
+  }
+    putInOnclick(`answer${j}`, funcBe); 
+  }
+  // Set the background-color of the buttons to none again
+  for(let i = 1; i <= 4; i++){
+      document.getElementById(`answer${i}`).style.background = "#ffffff";
+    }
+
+  //Clear the array with the four answers 
   randomizedAnswersArray = [];
 
   // Decide if there should be a new question or not and call the different functions
-  if (questionCounter < 10) {
-    if (currentDifficulty == "easy") {
+  if (questionCounter < 10){
+    if(questionCounter == 9){
+      document.getElementById("next-button").innerHTML = "submit";
+    }
+    if(currentDifficulty == "easy") {
+      correctAnswerString = easyQuestionsArray[questionCounter].answers[0];
       insertHTML("question", easyQuestionsArray[questionCounter].question);
       randomizeAnswers(easyQuestionsArray[questionCounter].answers);
-    } else {
+    }
+    else {
+      correctAnswerString = hardQuestionsArray[questionCounter].answers[0];
       insertHTML("question", hardQuestionsArray[questionCounter].question);
       randomizeAnswers(hardQuestionsArray[questionCounter].answers);
     }
@@ -204,42 +227,86 @@ function goToNextQuestion() {
     for (let i = 0; i < randomizedAnswersArray.length; i++) {
       insertHTML(`answer${i + 1}`, randomizedAnswersArray[i]);
     }
-  } else if ((questionCounter = 10)) {
+  }
+  // call the finishGame function when 10 questions have been displayed
+  else if (questionCounter == 10){
     finishGame();
     return;
   }
   questionCounter++;
 }
 
+// a function to insert value inte the innerHTML on the DOM by id
 function insertHTML(htmlId, htmlValue) {
-  console.log("htmlId: " + htmlId + "htmlValue" + htmlValue);
   document.getElementById(`${htmlId}`).innerHTML = htmlValue;
 }
 
+// shuffles the array of answers and putting it in the randomizedAnssersArray
 function randomizeAnswers(array) {
-  //CREATE an array randomizedAnswers
-  //INSERT answers for the question matching i into the array
-  //SHUFFLE the array
-  //RETURN the array
-
   array = shuffleArray(array);
   for (var i of array) {
     randomizedAnswersArray.push(i);
   }
 }
 
-// onclick on answer
-function hightlightAnswer() {
-  // CHECK if answersClickable = true
-  // if answersClickable = true
-  //--alternatively, check if HTML forms have a function for this built in
-  // SET answersClickable to false
-  // highlight the answer where correctAnswer = true to green (apply a .correct class?)
-  // CHECK if the clicked answer has correctAnswer = false
-  // if it does, highlight the clicked answer red (apply a .incorrect class?)
-  // else if it doesn't, add +1 ro correctAnswers
-  // else if answersClickable = false
-  //BREAK
+// Button for the answer 1
+document.getElementById("answer1").onclick = function (){ 
+  userAnswerIndex = 0; // index of the answer
+  hightlightAndCountingAnswer();
+  for(let i = 1; i <= 4; i++){
+  putInOnclick(`answer${i}`, "");
+  } 
+}
+
+// Button for the answer 2
+document.getElementById("answer2").onclick = function (){ 
+  userAnswerIndex = 1; // index of the answer
+  hightlightAndCountingAnswer();
+  for(let i = 1; i <= 4; i++){
+    putInOnclick(`answer${i}`, "");
+    } 
+}
+
+// Button for the answer 3
+document.getElementById("answer3").onclick = function (){ 
+  userAnswerIndex = 2; // index of the answer
+  hightlightAndCountingAnswer();
+  for(let i = 1; i <= 4; i++){
+    putInOnclick(`answer${i}`, "");
+    }  
+}
+
+// Button for the answer 4
+document.getElementById("answer4").onclick = function (){ 
+  userAnswerIndex = 3; // index of the answer
+  hightlightAndCountingAnswer();
+  for(let i = 1; i <= 4; i++){
+    putInOnclick(`answer${i}`, "");
+    } 
+}
+
+// function to put a function after onclick 
+function putInOnclick(idHtml, theFunction){
+  return document.getElementById(idHtml).onclick = theFunction; 
+}
+
+// this function is hightlighting the correct answer green and
+// if the user clicked wrong, the wrong one red
+// this function adds the correctAnswers variable (for calculating the user score)
+function hightlightAndCountingAnswer() {
+  // hightlight the correct answer green and adds 1 to correctAnswer
+  for(let i = 0; i < 4; i++){
+    if(correctAnswerString == randomizedAnswersArray[i]){
+      document.getElementById(`answer${i + 1}`).style.background = "#35db35";
+      correctAnswers++;
+    }
+  }
+  // if the user clicked the wrong answer, it will become red and the variable correctAnswer will get -1
+  if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]){
+    document.getElementById(`answer${userAnswerIndex + 1}`).style.background = "#ed1d23";
+    correctAnswers--;
+  }
+  console.log(correctAnswers);
 }
 //PULLED BY SCORE PAGE//
 function calculateAvg() {
@@ -263,7 +330,7 @@ function finishGame() {
   //DISPLAY user score and play again button in innerHTML
   //RUN calculateAverage()
   //RUN showScorePageObjectsBasedOnScore()
-  //RUN togglePage("score-page")
+  //togglePage("score-page")
 }
 
 //eventlistener
