@@ -346,7 +346,7 @@ function saveAvgDataToFirebase() {
   }
 }
 
-function showScorePageObjectsBasedOnScore() {
+function dispayScoreExtras(currentDifficulty, correctAnswers) {
   //DISPLAY scoreGif and scoreText in innerHTML depending on number of correctAnswers
 }
 
