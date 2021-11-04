@@ -51,8 +51,8 @@ function togglePage(page) {
 }
 
 setTimeout(function () {
-  document.querySelector(".landing-btn").style.pointerEvents = "auto";
-  document.querySelector(".landing-btn--alternate").style.pointerEvents =
+  document.querySelector(".landing-btn-div").style.pointerEvents = "auto";
+  document.querySelector(".landing-btn-div--alternate").style.pointerEvents =
     "auto";
 }, 0);
 
