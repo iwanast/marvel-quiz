@@ -27,25 +27,75 @@
 }
 
 .grid-container {
+
+
+  font-weight: 900;
   display: grid;
   height: 100vh;
-  grid-template-areas: "header header title title title title title" ". picture picture picture picture . ." ". question question question question . ." ". answers answers answers answers . ." ". . . button . . ." "footer footer footer footer footer footer footer";
-  grid-template-rows: 14vh 18vh 20vh 20vh 4vh 14vh;
+  grid-template-areas: "header header title title title title" "question question question picture picture picture" "answers answers answers picture picture picture" "answers answers answers picture picture picture" ". . . . button ." "footer footer footer footer footer footer";
+  grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
+
+
   grid-row-gap: 2vh;
 }
 
 @media screen and (max-width: 481px) {
   .grid-container {
-    grid-template-areas: "header header header" "picture picture picture" "question question question" ". answers ." ". button ." "title title footer";
-    grid-template-rows: 8vh 20vh 20vh 30vh 4vh 8vh;
+
+
+    grid-template-areas: "header header header header" "picture picture picture picture" "question question question question" ". answers . ." ". button . ." "title title title footer";
+    grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
+
   }
+}
+.grid-container button {
+  padding: 10px;
+  border-radius: 25px;
+  text-align: center;
+  font-weight: 900;
+  font-family: "Dekko", cursive;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-weight: 700;
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
+  background-size: 12px, 100%;
+  border: 0.4rem solid #000000;
+}
+.grid-container h2, .grid-container p {
+  color: #000000;
+  padding: 10px;
 }
 
 .grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 20px 0;
+  padding-top: 20px;
   font-size: 1.2em;
+}
+
+div.item5 {
+  padding: 0;
+}
+@media screen and (max-width: 481px) {
+  div.item5 {
+    padding-top: 10px;
+  }
+}
+
+div.item4 {
+  align-self: center;
+}
+
+@media screen and (max-width: 481px) {
+  div.item7 {
+    width: 0;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  div.item2 {
+    width: 100vw;
+    padding-top: 10px;
+  }
 }
 
 .grid-container > .item1, .grid-container > .item2, .grid-container > .item7 {
@@ -71,11 +121,13 @@
 
 #footer #logo, #header #logo, #title #logo {
   height: 12vh;
+  margin: 1vh 0;
 }
 
 @media screen and (max-width: 481px) {
   #footer #logo, #header #logo, #title #logo {
     height: 6vh;
+    margin: 1vh 0;
   }
 }
 
@@ -85,7 +137,8 @@
 
 #picture {
   border-radius: 25px;
-  padding: 0;
+  padding-bottom: 8px;
+  margin: 0 10px;
 }
 
 #picture #game-picture {
@@ -96,15 +149,27 @@
 }
 
 #question {
-  border: 1px solid #8b8b8b;
+  font-family: "Dekko", cursive;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-weight: 700;
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
+  background-size: 12px, 100%;
+  border: 0.4rem solid #000000;
   border-radius: 25px;
-  margin: 0 10px;
+  margin: 10px;
+  margin-top: 20px;
+}
+@media screen and (max-width: 481px) {
+  #question {
+    margin: 0 10px;
+  }
 }
 
 #answers {
-  padding: 0;
   margin: 0 10px;
 }
+
 
 #button-next {
   padding: 0;
@@ -117,6 +182,7 @@
   border-radius: 25px;
   background-color: white;
 }
+
 
 .subitem1 {
   grid-area: answer1;
@@ -136,29 +202,47 @@
 
 .grid-sub-container {
   display: grid;
-  grid-template-areas: "answer1 answer2" "answer3 answer4";
+
   grid-gap: 2vh 4vh;
-  height: 20vh;
+  max-height: 40vh;
   overflow: scroll;
+  justify-content: center;
 }
 
 @media screen and (max-width: 481px) {
   .grid-sub-container {
-    grid-template-areas: "answer1" "answer2" "answer3" "answer4";
-    justify-content: space-evenly;
+
+
+        grid-template-areas: "answer1"
+ "answer2"
+ "answer3"
+ "answer4";
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+
     height: 30vh;
+
   }
 }
 
-#form {
+#button-next {
   padding: 0;
+  height: 6vh;
 }
-
-.grid-sub-container .answer1-4 {
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #8b8b8b;
+#button-next #next-button {
+  padding: 0px 18px;
+  height: 6vh;
   border-radius: 25px;
+  text-align: center;
+  font-family: "Dekko", cursive;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-weight: 700;
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ADD8E6;
+  background-size: 12px, 100%;
+  border: 0.4rem solid #000000;
+  pointer-events: none;
 }
 
 #landing-page {
@@ -203,10 +287,11 @@
   align-items: center;
 }
 
-/* .landing-btn containers: add the texture above a solid background */
-.landing-btn {
-  max-width: 500px;
-  margin: 2rem 0;
+#landing-btn-wrapper button {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  width: 100%;
   padding: 0.2rem 1.25rem;
   text-align: center;
   font-family: "Dekko", cursive;
@@ -214,6 +299,13 @@
   font-size: 1.5rem;
   letter-spacing: 0.2rem;
   font-weight: 700;
+  cursor: pointer;
+}
+
+/* .landing-btn containers: add the texture above a solid background */
+.landing-btn-div {
+  max-width: 500px;
+  margin: 2rem 0;
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ADD8E6;
   background-size: 12px, 100%;
   border: 0.4rem solid #000000;
@@ -223,14 +315,19 @@
 }
 
 /* for the highlight container change the solid backgorund to a yellow-ish hue */
-.landing-btn--alternate {
+.landing-btn-div--alternate {
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.8" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23d68810"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffcd28;
   background-size: 12px, 100%;
   pointer-events: none;
 }
 
+.landing-btn-div:hover {
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
+  background-size: 12px, 100%;
+}
+
 /* for every .button container add a solid background behind the container itself, slightly offset */
-.landing-btn:before {
+.landing-btn-div:before {
   content: "";
   position: absolute;
   left: -1rem;
@@ -242,12 +339,6 @@
   background-size: 12px, 100%;
   border: 0.4rem solid #000000;
   z-index: -5;
-}
-
-.landing-btn:hover {
-  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
-  background-size: 12px, 100%;
-  cursor: pointer;
 }
 
 video {
@@ -268,10 +359,7 @@ video {
 
 .fade-in {
   opacity: 0;
-  animation-name: fadeIn;
-  animation-duration: 3s;
-  animation-delay: 34s;
-  animation-fill-mode: forwards;
+
 }
 
 @keyframes fadeIn {

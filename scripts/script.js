@@ -27,34 +27,43 @@ const db = getFirestore(app);
 
 let easyQuestionsArray = [];
 let hardQuestionsArray = [];
-let easyAvg = {};
-let hardAvg = {};
+let easyAvg = {
+  scores: 0,
+  users: 0,
+};
+let hardAvg = {
+  scores: 0,
+  users: 0,
+};
 let currentDifficulty = "";
 let questionCounter = 0;
 let correctAnswers = 0;
+let correctAnswerString = ""; 
 let scoreGif = [];
 let scoreText = [];
-let answersClickable = true;
 let randomizedAnswersArray = [];
+let userAnswerIndex; // index of the answer the user selected
+
 
 //Onclick difficulty and onclick try again from end page
 function togglePage(page) {
   document.getElementById(page).classList.toggle("hidden-overlay");
 }
 
-setTimeout(function(){ 
-  document.querySelector(".landing-btn").style.pointerEvents = 'auto';
-  document.querySelector(".landing-btn--alternate").style.pointerEvents = 'auto';
- }, 35000);
+setTimeout(function () {
+  document.querySelector(".landing-btn-div").style.pointerEvents = "auto";
+  document.querySelector(".landing-btn-div--alternate").style.pointerEvents =
+    "auto";
+}, 0);
 
 //Hide the landing page overlay and start the game when the easy or hard button is clicked
-document.getElementById("easy-btn").addEventListener("click", function() {
+document.getElementById("easy-btn").addEventListener("click", function () {
   currentDifficulty = "easy";
   shuffleArray(easyQuestionsArray);
   startGame();
 });
 
-document.getElementById("hard-btn").addEventListener("click", function() {
+document.getElementById("hard-btn").addEventListener("click", function () {
   currentDifficulty = "hard";
   shuffleArray(hardQuestionsArray);
   startGame();
@@ -64,8 +73,8 @@ document.getElementById("hard-btn").addEventListener("click", function() {
 function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
-  answersClickable = true;
   togglePage("landing-page");
+  document.getElementById("next-button").innerHTML = "next";
   goToNextQuestion();
 }
 
@@ -73,7 +82,7 @@ function playAgain() {
   togglePage("score-page");
   togglePage("landing-page");
 }
-
+///////////////////////////////FIREBASE FUNCTIONS////////////////////////////////////
 retrieveQuestionDataFromFirebase();
 //run onload
 async function retrieveQuestionDataFromFirebase() {
@@ -83,7 +92,7 @@ async function retrieveQuestionDataFromFirebase() {
   populateEasyQuestionsArray(easyQuestionsData);
   populateHardQuestionsArray(hardQuestionsData);
 
-console.log("the first answer: " + easyQuestionsArray[0].answers);
+  console.log("the first answer: " + easyQuestionsArray[0].answers);
   consoleLogs();
 }
 
@@ -115,8 +124,8 @@ function populateEasyQuestionsArray(db) {
     let question = {
       question: doc.data().question,
       image: doc.data().image,
-      answers: doc.data().answers
-    }
+      answers: doc.data().answers,
+    };
     easyQuestionsArray[i] = question;
     i++;
   });
@@ -129,8 +138,8 @@ function populateHardQuestionsArray(db) {
     let question = {
       question: doc.data().question,
       image: doc.data().image,
-      answers: doc.data().answers
-    }
+      answers: doc.data().answers,
+    };
     hardQuestionsArray[i] = question;
     i++;
   });
@@ -141,128 +150,200 @@ function populateAvgVariables(easyDb, hardDb) {
   easyDb.forEach((doc) => {
     easyAvg = {
       scores: doc.data().scores,
-      users: doc.data().users
-    }
+      users: doc.data().users,
+    };
   });
-  
+
   hardDb.forEach((doc) => {
     hardAvg = {
       scores: doc.data().scores,
-      users: doc.data().users
-    }
-  }); 
+      users: doc.data().users,
+    };
+  });
 }
 
 //To check the arrays and objects are being populated properly - remove later
 function consoleLogs() {
   // console.log(easyQuestionsArray);
   // console.log(hardQuestionsArray);
-
   // console.log(easyAvg);
   // console.log(hardAvg);
 }
-
+////////////////////////////////QUIZ FUNCTIONS///////////////////////////////////////
 function shuffleArray(array) {
   //SHUFFLE question array matching difficulty
   /* Randomize array in-place using Durstenfeld shuffle algorithm */
   for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp; 
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
   return array;
 }
 
-// When user clicks next its calling the goToNextQuestion function
-document.getElementById("button-next").onclick = function() {
-  goToNextQuestion()
-};
-
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
- //SET answersClickable to true
- //Clean the array 
- randomizedAnswersArray = [];
+//Disable the next-button until an answer is clicked
+putInOnclick("button-next", function(event){event.stopPropagation();alert("Not shure which answer is correct? Trust the process.")})
 
+ //SET the answerbuttons onclick to a function again
+ for(let j = 1; j<= 4; j++){
+   let funcBe = function() { 
+    userAnswerIndex = (j - 1);
+    hightlightAndCountingAnswer(); 
+    }
+    putInOnclick(`answer${j}`, funcBe); 
+  }
+  // Set the background-color of the buttons to none again
+  for(let i = 1; i <= 4; i++) {
+      document.getElementById(`answer${i}`).style.background = "";
+    }
 
- // Decide if there should be a new question or not and call the different functions
+  //Clear the array with the four answers 
+  randomizedAnswersArray = [];
+
+  // Decide if there should be a new question or not and call the different functions
   if (questionCounter < 10){
+    if(questionCounter == 9){
+      document.getElementById("next-button").innerHTML = "submit";
+    }
     if(currentDifficulty == "easy") {
+      correctAnswerString = easyQuestionsArray[questionCounter].answers[0];
       insertHTML("question", easyQuestionsArray[questionCounter].question);
       randomizeAnswers(easyQuestionsArray[questionCounter].answers);
     }
     else {
+      correctAnswerString = hardQuestionsArray[questionCounter].answers[0];
       insertHTML("question", hardQuestionsArray[questionCounter].question);
       randomizeAnswers(hardQuestionsArray[questionCounter].answers);
     }
     //Inserts created random array of answers into the four answer divs
-    for(let i = 0; i < randomizedAnswersArray.length; i++){
-      insertHTML(`answer${i+1}`, randomizedAnswersArray[i]);
+    for (let i = 0; i < randomizedAnswersArray.length; i++) {
+      insertHTML(`answer${i + 1}`, randomizedAnswersArray[i]);
     }
   }
-  else if (questionCounter = 10){
+  // call the finishGame function when 10 questions have been displayed
+  else if (questionCounter == 10){
     finishGame();
     return;
   }
-    questionCounter++;
+  questionCounter++;
 }
 
-function insertHTML(htmlId, htmlValue){
-  console.log("htmlId: " + htmlId + "htmlValue" + htmlValue)
-    document.getElementById(`${htmlId}`).innerHTML = htmlValue;
+// a function to insert value inte the innerHTML on the DOM by id
+function insertHTML(htmlId, htmlValue) {
+  document.getElementById(`${htmlId}`).innerHTML = htmlValue;
 }
 
+// shuffles the array of answers and putting it in the randomizedAnssersArray
 function randomizeAnswers(array) {
-  //CREATE an array randomizedAnswers
-  //INSERT answers for the question matching i into the array
-  //SHUFFLE the array
-  //RETURN the array
-
   array = shuffleArray(array);
   for (var i of array) {
-   randomizedAnswersArray.push(i)
+    randomizedAnswersArray.push(i);
   }
 }
-
-// onclick on answer
-function hightlightAnswer() {
-  // CHECK if answersClickable = true
-  // if answersClickable = true
-  //--alternatively, check if HTML forms have a function for this built in
-
-    // SET answersClickable to false
-    // highlight the answer where correctAnswer = true to green (apply a .correct class?)
-    // CHECK if the clicked answer has correctAnswer = false
-      // if it does, highlight the clicked answer red (apply a .incorrect class?)
-      // else if it doesn't, add +1 ro correctAnswers
-
-  // else if answersClickable = false
-    //BREAK
+function answerButtonNotClickable() {
+  for(let i = 1; i <= 4; i++){
+    putInOnclick(`answer${i}`, "");
+  }
+}
+// Button for the answer 1
+document.getElementById("answer1").onclick = function (){ 
+  userAnswerIndex = 0; // index of the answer
+  hightlightAndCountingAnswer();
 }
 
-function calculateAvg(currentDifficulty) {
-  retrieveAvgDataFromFirebase();
-  //ADD user score and increment users by 1 (for difficulty setting)
-  saveAvgScoreToFirebase();
+// Button for the answer 2
+document.getElementById("answer2").onclick = function (){ 
+  userAnswerIndex = 1; // index of the answer
+  hightlightAndCountingAnswer();
+}
 
-  //CALCULATE average score (scores / users) using updated variables
-  //DISPLAY average score by changing innerHTML
+// Button for the answer 3
+document.getElementById("answer3").onclick = function (){ 
+  userAnswerIndex = 2; // index of the answer
+  hightlightAndCountingAnswer();
+}
+
+// Button for the answer 4
+document.getElementById("answer4").onclick = function (){ 
+  userAnswerIndex = 3; // index of the answer
+  hightlightAndCountingAnswer();
+}
+
+// function to put a function after onclick 
+function putInOnclick(idHtml, theFunction){
+  return document.getElementById(idHtml).onclick = theFunction; 
+}
+
+// this function is hightlighting the correct answer green and
+// if the user clicked wrong, the wrong one red
+// this function adds the correctAnswers variable (for calculating the user score)
+function hightlightAndCountingAnswer() {
+  //Disable the answers to be clickable
+  answerButtonNotClickable();
+  // Enable the next-button to work again
+  putInOnclick("button-next", function(){goToNextQuestion()});
+  // hightlight the correct answer green and adds 1 to correctAnswer
+  for(let i = 0; i < 4; i++){
+    if(correctAnswerString == randomizedAnswersArray[i]){
+      let backgrGreen = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+      #35db35;`;
+      document.getElementById(`answer${i + 1}`).style.background = "#35db35";
+      correctAnswers++;
+    }
+  }
+  // if the user clicked the wrong answer, it will become red and the variable correctAnswer will get -1
+  if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]){
+    let backgrRed = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+    #ed1d23;`;
+    document.getElementById(`answer${userAnswerIndex + 1}`).style.background = "#ed1d23";
+    correctAnswers--;
+  }
+  console.log(correctAnswers);
+}
+//PULLED BY SCORE PAGE//
+function calculateAvg() {
+  retrieveAvgDataFromFirebase();
+  if (currentDifficulty == "easy") {
+    easyAvg.scores = easyAvg.scores + correctAnswers;
+    easyAvg.users++;
+    let avg = easyAvg.scores / easyAvg.users;
+  } else if (currentDifficulty == "hard") {
+    hardAvg.scores = hardAvg.scores + correctAnswers;
+    hardAvg.users++;
+    let avg = hardAvg.scores / hardAvg.users;
+  } else {
+    console.log("No difficulty set");
+  }
+  saveAvgDataToFirebase();
+  document.getElementById(INSERTID).innerHTML = avg;
 }
 
 function finishGame() {
   //DISPLAY user score and play again button in innerHTML
-  //RUN calculateAverage()  
+  //RUN calculateAverage()
   //RUN showScorePageObjectsBasedOnScore()
-  //RUN togglePage("score-page")
+  //togglePage("score-page")
 }
 
 //eventlistener
 //if play again button is clicked
 //RUN toggleScorePage() and togglePage("landing-page")
 
-function saveAvgScoreToFirebase() {
-  //INSERT save the updated variable easyAvg/hardAvg into firebase
+function saveAvgDataToFirebase() {
+  if (currentDifficulty == "easy") {
+    setDoc(doc(db, "easy-avg", eavg), {
+      scores: easyAvg.scores,
+      users: easyAvg.users,
+    });
+  } else if (currentDifficulty == "hard") {
+    setDoc(doc(db, "hard-avg", havg), {
+      scores: hardAvg.scores,
+      users: hardAvg.users,
+    });
+  }
 }
 
 function dispayScoreExtras(currentDifficulty, correctAnswers) {
@@ -271,15 +352,19 @@ function dispayScoreExtras(currentDifficulty, correctAnswers) {
 
 //Pause landing page video as static image on last frame
 // select the video element
-let video = document.querySelector('.video');
+let video = document.querySelector(".video");
 
 //Listen for the event that fires when your video has finished playing
-video.addEventListener('ended', function() {
+video.addEventListener(
+  "ended",
+  function () {
     //Pause the video
     this.pause();
     //Set play time to the last frame
     this.currentTime = this.duration;
-}, false);
+  },
+  false
+);
 
 //data structure
 /*let easy = [
@@ -344,15 +429,11 @@ let hard = [
 // let hardUsers = (total count of all hard players)}
 */
 
-
-
-
 function populateAnswers(i) {
   //LET answerArray = [];
   //GET the answers for question matching counter index and assign to answerArray
   //let trueAnswer = answerArray[0];
   //SHUFFLE answers
   //INSERT answers into answer divs
-
   //ONCLICK answer - check if innerHtml == trueAnswer
 }

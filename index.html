@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta name="description"
-          content=""/>
+          content="Test your MCU knoweldge in the Ultimate Marvel Fan Quiz"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Marvel Quiz</title>
+    <title>The Ultimate Marvel Fan Quiz</title>
     <link rel="stylesheet" href="./styles/css/style.css"/>
-    <link rel="shortcut icon" href="./images/" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/shield.png" type="image/x-icon">
   </head>
   <body id="bodyId">
     <main id="main">
@@ -22,11 +22,11 @@
           <h1>THE ULTIMATE FAN QUIZ</h1>
         </div>
         <div id="landing-btn-wrapper" class="fade-in">
-          <div id="easy-btn" class="landing-btn">
-            EASY
+          <div id="easy-btn" class="landing-btn-div">
+            <button class="landing-btn">EASY</button>
           </div>
-          <div id="hard-btn" class="landing-btn landing-btn--alternate">
-            HARD
+          <div id="hard-btn" class="landing-btn-div landing-btn-div--alternate">
+            <button class="landing-btn">Hard</button>
           </div>
         </div>
       </div>
@@ -35,18 +35,16 @@
           <div class="item1" id="header"><img id="logo" src="./images/Marvel_Logo.svg" alt="Marvel Logo"></div>
           <div class="item2" id="title">THE ULTIMATE FAN QUIZ</div>
           <div class="item3" id="picture"><img id="game-picture" src="./images/avengers-infinity-war-poster-comic-con.jpeg" alt="Marvel heros"></div>
-          <div class="item4" id="question">Question</div> 
+          <div class="item4"><p id="question">Question</p></div> 
           <div class="item5" id="answers"> 
-            <Form id="form">
               <div class="grid-sub-container">
-                <div class="subitem1 answer1-4" id="answer1">Answer1 and to see how it looks</div>
-                <div class="subitem2 answer1-4" id="answer2">Answer2</div>
-                <div class="subitem3 answer1-4" id="answer3">Answer3</div>
-                <div class="subitem4 answer1-4" id="answer4">Answer4</div>
-              </div>  
-            </Form>
+                <div class="subitem1 answer1-4"><button id="answer1">Answer1 and to see how it looks</button></div>
+                <div class="subitem2 answer1-4"><button id="answer2">Answer2 and to see how it looks</button></div>
+                <div class="subitem3 answer1-4"><button id="answer3">Answer3 and to see how it looks</button></div>
+                <div class="subitem4 answer1-4"><button id="answer4">Answer4 and to see how it looks</button></div>
+              </div>
           </div>
-          <div class="item6" id="button-next"><button id="next-button">Next</button></div>
+          <div class="item6" id="button-next"><button class="next-btn" id="next-button">Next</button></div>
           <div class="item7" id="footer"></div>
         </div>
       </div>
