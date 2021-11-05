@@ -27,27 +27,21 @@
 }
 
 .grid-container {
-
-
   font-weight: 900;
   display: grid;
   height: 100vh;
   grid-template-areas: "header header title title title title" "question question question picture picture picture" "answers answers answers picture picture picture" "answers answers answers picture picture picture" ". . . . button ." "footer footer footer footer footer footer";
   grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
-
-
   grid-row-gap: 2vh;
 }
 
 @media screen and (max-width: 481px) {
   .grid-container {
-
-
     grid-template-areas: "header header header header" "picture picture picture picture" "question question question question" ". answers . ." ". button . ." "title title title footer";
     grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
-
   }
 }
+
 .grid-container button {
   padding: 10px;
   border-radius: 25px;
@@ -61,6 +55,7 @@
   background-size: 12px, 100%;
   border: 0.4rem solid #000000;
 }
+
 .grid-container h2, .grid-container p {
   color: #000000;
   padding: 10px;
@@ -75,6 +70,7 @@
 div.item5 {
   padding: 0;
 }
+
 @media screen and (max-width: 481px) {
   div.item5 {
     padding-top: 10px;
@@ -160,6 +156,7 @@ div.item4 {
   margin: 10px;
   margin-top: 20px;
 }
+
 @media screen and (max-width: 481px) {
   #question {
     margin: 0 10px;
@@ -169,20 +166,6 @@ div.item4 {
 #answers {
   margin: 0 10px;
 }
-
-
-#button-next {
-  padding: 0;
-  height: 2vh;
-}
-
-#button-next #next-button {
-  padding: 3px;
-  height: 30px;
-  border-radius: 25px;
-  background-color: white;
-}
-
 
 .subitem1 {
   grid-area: answer1;
@@ -202,7 +185,7 @@ div.item4 {
 
 .grid-sub-container {
   display: grid;
-
+  grid-template-areas: "answer1 answer2" "answer3 answer4";
   grid-gap: 2vh 4vh;
   max-height: 40vh;
   overflow: scroll;
@@ -211,18 +194,9 @@ div.item4 {
 
 @media screen and (max-width: 481px) {
   .grid-sub-container {
-
-
-        grid-template-areas: "answer1"
- "answer2"
- "answer3"
- "answer4";
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-
-    height: 30vh;
-
+    grid-template-areas: "answer1" "answer2" "answer3" "answer4";
+    justify-content: space-evenly;
+    max-height: 36vh;
   }
 }
 
@@ -230,6 +204,7 @@ div.item4 {
   padding: 0;
   height: 6vh;
 }
+
 #button-next #next-button {
   padding: 0px 18px;
   height: 6vh;
@@ -359,7 +334,11 @@ video {
 
 .fade-in {
   opacity: 0;
-
+  animation-name: fadeIn;
+  animation-duration: 3s;
+  animation-delay: 34s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 @keyframes fadeIn {
@@ -396,6 +375,30 @@ video {
 #score-page #topBar h1 {
   margin-right: 50px;
   margin-top: 25px;
+}
+
+#score-page #gifIMG {
+  margin-left: 50px;
+  margin-top: 25px;
+  height: 400px;
+  width: 500px;
+}
+
+#score-page #gifIMG img {
+  height: 400px;
+  width: 500px;
+}
+
+#score-page #gifText {
+  width: 500px;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+#score-page #gifText h3 {
+  margin-left: 75px;
+  height: 100px;
+  font-size: 50px;
 }
 
 #score-page #bottomBar {
