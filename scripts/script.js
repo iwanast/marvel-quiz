@@ -325,7 +325,7 @@ function finishGame() {
   //DISPLAY user score and play again button in innerHTML
   //RUN calculateAverage()
   //RUN showScorePageObjectsBasedOnScore()
-  //togglePage("score-page")
+  togglePage("score-page")
   displayScoreExtras(currentDifficulty, correctAnswers)
 }
 
@@ -405,6 +405,8 @@ let displayHardGif = [
 
 function displayScoreExtras(currentDifficulty, correctAnswers) {
    //DISPLAY scoreGif and scoreText in innerHTML depending on number of correctAnswers
+   let gifLink = "";
+   let gifText = "";
 if (currentDifficulty == "easy" && correctAnswers == 10) {
   gifLink = displayEasyGif[0]; 
   gifText = displayEasyGifText[0]
@@ -484,6 +486,9 @@ if (currentDifficulty == "easy" && correctAnswers == 10) {
                                             gifLink = displayHardGif[10]; 
                                             gifText = displayHardGifText[10]
                                             }
+
+document.getElementById("gif-source").src = gifLink;
+document.getElementById("gif-txt").innerHTML = gifText;                                      
 }
 
 //Pause landing page video as static image on last frame
