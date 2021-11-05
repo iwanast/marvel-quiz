@@ -38,12 +38,11 @@ let hardAvg = {
 let currentDifficulty = "";
 let questionCounter = 0;
 let correctAnswers = 0;
-let correctAnswerString = ""; 
+let correctAnswerString = "";
 let scoreGif = [];
 let scoreText = [];
 let randomizedAnswersArray = [];
 let userAnswerIndex; // index of the answer the user selected
-
 
 //Onclick difficulty and onclick try again from end page
 function togglePage(page) {
@@ -184,36 +183,38 @@ function shuffleArray(array) {
 
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
-//Disable the next-button until an answer is clicked
-putInOnclick("button-next", function(event){event.stopPropagation();alert("Not shure which answer is correct? Trust the process.")})
+  //Disable the next-button until an answer is clicked
+  putInOnclick("button-next", function (event) {
+    event.stopPropagation();
+    alert("Not shure which answer is correct? Trust the process.");
+  });
 
- //SET the answerbuttons onclick to a function again
- for(let j = 1; j<= 4; j++){
-   let funcBe = function() { 
-    userAnswerIndex = (j - 1);
-    hightlightAndCountingAnswer(); 
-    }
-    putInOnclick(`answer${j}`, funcBe); 
+  //SET the answerbuttons onclick to a function again
+  for (let j = 1; j <= 4; j++) {
+    let funcBe = function () {
+      userAnswerIndex = j - 1;
+      hightlightAndCountingAnswer();
+    };
+    putInOnclick(`answer${j}`, funcBe);
   }
   // Set the background-color of the buttons to none again
-  for(let i = 1; i <= 4; i++) {
-      document.getElementById(`answer${i}`).style.background = "";
-    }
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById(`answer${i}`).style.background = "";
+  }
 
-  //Clear the array with the four answers 
+  //Clear the array with the four answers
   randomizedAnswersArray = [];
 
   // Decide if there should be a new question or not and call the different functions
-  if (questionCounter < 10){
-    if(questionCounter == 9){
+  if (questionCounter < 10) {
+    if (questionCounter == 9) {
       document.getElementById("next-button").innerHTML = "submit";
     }
-    if(currentDifficulty == "easy") {
+    if (currentDifficulty == "easy") {
       correctAnswerString = easyQuestionsArray[questionCounter].answers[0];
       insertHTML("question", easyQuestionsArray[questionCounter].question);
       randomizeAnswers(easyQuestionsArray[questionCounter].answers);
-    }
-    else {
+    } else {
       correctAnswerString = hardQuestionsArray[questionCounter].answers[0];
       insertHTML("question", hardQuestionsArray[questionCounter].question);
       randomizeAnswers(hardQuestionsArray[questionCounter].answers);
@@ -224,7 +225,7 @@ putInOnclick("button-next", function(event){event.stopPropagation();alert("Not s
     }
   }
   // call the finishGame function when 10 questions have been displayed
-  else if (questionCounter == 10){
+  else if (questionCounter == 10) {
     finishGame();
     return;
   }
@@ -244,37 +245,37 @@ function randomizeAnswers(array) {
   }
 }
 function answerButtonNotClickable() {
-  for(let i = 1; i <= 4; i++){
+  for (let i = 1; i <= 4; i++) {
     putInOnclick(`answer${i}`, "");
   }
 }
 // Button for the answer 1
-document.getElementById("answer1").onclick = function (){ 
+document.getElementById("answer1").onclick = function () {
   userAnswerIndex = 0; // index of the answer
   hightlightAndCountingAnswer();
-}
+};
 
 // Button for the answer 2
-document.getElementById("answer2").onclick = function (){ 
+document.getElementById("answer2").onclick = function () {
   userAnswerIndex = 1; // index of the answer
   hightlightAndCountingAnswer();
-}
+};
 
 // Button for the answer 3
-document.getElementById("answer3").onclick = function (){ 
+document.getElementById("answer3").onclick = function () {
   userAnswerIndex = 2; // index of the answer
   hightlightAndCountingAnswer();
-}
+};
 
 // Button for the answer 4
-document.getElementById("answer4").onclick = function (){ 
+document.getElementById("answer4").onclick = function () {
   userAnswerIndex = 3; // index of the answer
   hightlightAndCountingAnswer();
-}
+};
 
-// function to put a function after onclick 
-function putInOnclick(idHtml, theFunction){
-  return document.getElementById(idHtml).onclick = theFunction; 
+// function to put a function after onclick
+function putInOnclick(idHtml, theFunction) {
+  return (document.getElementById(idHtml).onclick = theFunction);
 }
 
 // this function is hightlighting the correct answer green and
@@ -284,10 +285,12 @@ function hightlightAndCountingAnswer() {
   //Disable the answers to be clickable
   answerButtonNotClickable();
   // Enable the next-button to work again
-  putInOnclick("button-next", function(){goToNextQuestion()});
+  putInOnclick("button-next", function () {
+    goToNextQuestion();
+  });
   // hightlight the correct answer green and adds 1 to correctAnswer
-  for(let i = 0; i < 4; i++){
-    if(correctAnswerString == randomizedAnswersArray[i]){
+  for (let i = 0; i < 4; i++) {
+    if (correctAnswerString == randomizedAnswersArray[i]) {
       let backgrGreen = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
       #35db35;`;
       document.getElementById(`answer${i + 1}`).style.background = "#35db35";
@@ -295,10 +298,11 @@ function hightlightAndCountingAnswer() {
     }
   }
   // if the user clicked the wrong answer, it will become red and the variable correctAnswer will get -1
-  if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]){
+  if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]) {
     let backgrRed = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
     #ed1d23;`;
-    document.getElementById(`answer${userAnswerIndex + 1}`).style.background = "#ed1d23";
+    document.getElementById(`answer${userAnswerIndex + 1}`).style.background =
+      "#ed1d23";
     correctAnswers--;
   }
   console.log(correctAnswers);
@@ -306,14 +310,15 @@ function hightlightAndCountingAnswer() {
 //PULLED BY SCORE PAGE//
 function calculateAvg() {
   retrieveAvgDataFromFirebase();
+  let avg = 0;
   if (currentDifficulty == "easy") {
     easyAvg.scores = easyAvg.scores + correctAnswers;
     easyAvg.users++;
-    let avg = easyAvg.scores / easyAvg.users;
+    avg = easyAvg.scores / easyAvg.users;
   } else if (currentDifficulty == "hard") {
     hardAvg.scores = hardAvg.scores + correctAnswers;
     hardAvg.users++;
-    let avg = hardAvg.scores / hardAvg.users;
+    avg = hardAvg.scores / hardAvg.users;
   } else {
     console.log("No difficulty set");
   }
@@ -326,12 +331,14 @@ function finishGame() {
   //RUN calculateAverage()
   //RUN showScorePageObjectsBasedOnScore()
   //togglePage("score-page")
-  displayScoreExtras(currentDifficulty, correctAnswers)
+  displayScoreExtras(currentDifficulty, correctAnswers);
 }
 
-//eventlistener
-//if play again button is clicked
-//RUN toggleScorePage() and togglePage("landing-page")
+//toggle landing page after Play Again button is clicked
+document.getElementById("play-again-button").onclick = function () {
+  togglePage("landing-page");
+  togglePage("score-page");
+};
 
 function saveAvgDataToFirebase() {
   if (currentDifficulty == "easy") {
@@ -348,17 +355,17 @@ function saveAvgDataToFirebase() {
 }
 
 let displayEasyGif = [
-"../gifs/10Easy.gif",
-"../gifs/9Easy.gif",
-"../gifs/8Easy.gif",
-"../gifs/7Easy.gif",
-"../gifs/6Easy.gif",
-"../gifs/5Easy.gif",
-"../gifs/4Easy.gif",
-"../gifs/3Easy.gif",
-"../gifs/2Easy.gif",
-"../gifs/1Easy.gif",
-"../gifs/0Easy.gif",
+  "../gifs/10Easy.gif",
+  "../gifs/9Easy.gif",
+  "../gifs/8Easy.gif",
+  "../gifs/7Easy.gif",
+  "../gifs/6Easy.gif",
+  "../gifs/5Easy.gif",
+  "../gifs/4Easy.gif",
+  "../gifs/3Easy.gif",
+  "../gifs/2Easy.gif",
+  "../gifs/1Easy.gif",
+  "../gifs/0Easy.gif",
 ];
 
 let displayHardGif = [
@@ -373,117 +380,106 @@ let displayHardGif = [
   "../gifs/2Hard.gif",
   "../gifs/1Hard.gif",
   "../gifs/0Hard.gif",
-  ];
+];
 
-  let displayEasyGifText = [
-    "easy 10 score",
-    "easy 9 score",
-    "easy 8 score",
-    "easy 7 score",
-    "easy 6 score",
-    "easy 5 score",
-    "easy 4 score",
-    "easy 3 score",
-    "easy 2 score",
-    "easy 1 score",
-    "easy 0 score",
-  ];
+let displayEasyGifText = [
+  "easy 10 score",
+  "easy 9 score",
+  "easy 8 score",
+  "easy 7 score",
+  "easy 6 score",
+  "easy 5 score",
+  "easy 4 score",
+  "easy 3 score",
+  "easy 2 score",
+  "easy 1 score",
+  "easy 0 score",
+];
 
-  let displayHardGifText = [
-    "hard 10 score",
-    "hard 9 score",
-    "hard 8 score",
-    "hard 7 score",
-    "hard 6 score",
-    "hard 5 score",
-    "hard 4 score",
-    "hard 3 score",
-    "hard 2 score",
-    "hard 1 score",
-    "hard 0 score",
-  ];
+let displayHardGifText = [
+  "hard 10 score",
+  "hard 9 score",
+  "hard 8 score",
+  "hard 7 score",
+  "hard 6 score",
+  "hard 5 score",
+  "hard 4 score",
+  "hard 3 score",
+  "hard 2 score",
+  "hard 1 score",
+  "hard 0 score",
+];
 
 function displayScoreExtras(currentDifficulty, correctAnswers) {
-   //DISPLAY scoreGif and scoreText in innerHTML depending on number of correctAnswers
-if (currentDifficulty == "easy" && correctAnswers == 10) {
-  gifLink = displayEasyGif[0]; 
-  gifText = displayEasyGifText[0]
+  //DISPLAY scoreGif and scoreText in innerHTML depending on number of correctAnswers
+  if (currentDifficulty == "easy" && correctAnswers == 10) {
+    gifLink = displayEasyGif[0];
+    gifText = displayEasyGifText[0];
   } else if (currentDifficulty == "easy" && correctAnswers == 9) {
-    gifLink = displayEasyGif[1]; 
-    gifText = displayEasyGifText[1]
-    } else if (currentDifficulty == "easy" && correctAnswers == 8) {
-      gifLink = displayEasyGif[2]; 
-      gifText = displayEasyGifText[2]
-      } else if (currentDifficulty == "easy" && correctAnswers == 7) {
-        gifLink = displayEasyGif[3]; 
-        gifText = displayEasyGifText[3]
-        } else if (currentDifficulty == "easy" && correctAnswers == 6) {
-          gifLink = displayEasyGif[4]; 
-          gifText = displayEasyGifText[4]
-          }
-          else if (currentDifficulty == "easy" && correctAnswers == 5) {
-            gifLink = displayEasyGif[5]; 
-            gifText = displayEasyGifText[5]
-            }
-            else if (currentDifficulty == "easy" && correctAnswers == 4) {
-              gifLink = displayEasyGif[6]; 
-              gifText = displayEasyGifText[6]
-              }
-              else if (currentDifficulty == "easy" && correctAnswers == 3) {
-                gifLink = displayEasyGif[7]; 
-                gifText = displayEasyGifText[7]
-                }
-                else if (currentDifficulty == "easy" && correctAnswers == 2) {
-                  gifLink = displayEasyGif[8]; 
-                  gifText = displayEasyGifText[8]
-                  }
-                  else if (currentDifficulty == "easy" && correctAnswers == 1) {
-                    gifLink = displayEasyGif[9]; 
-                    gifText = displayEasyGifText[9]
-                    }
-                    else if (currentDifficulty == "easy" && correctAnswers == 0) {
-                      gifLink = displayEasyGif[10]; 
-                      gifText = displayEasyGifText[10]
-                      } if (currentDifficulty == "hard" && correctAnswers == 10) {
-                        gifLink = displayHardGif[0]; 
-                        gifText = displayHardGifText[0]
-                        } else if (currentDifficulty == "hard" && correctAnswers == 9) {
-                          gifLink = displayHardGif[1]; 
-                          gifText = displayHardGifText[1]
-                          } else if (currentDifficulty == "hard" && correctAnswers == 8) {
-                            gifLink = displayHardGif[2]; 
-                            gifText = displayHardGifText[2]
-                            } else if (currentDifficulty == "hard" && correctAnswers == 7) {
-                              gifLink = displayHardGif[3]; 
-                              gifText = displayHardGifText[3]
-                              } else if (currentDifficulty == "hard" && correctAnswers == 6) {
-                                gifLink = displayHardGif[4]; 
-                                gifText = displayHardGifText[4]
-                                }
-                                else if (currentDifficulty == "hard" && correctAnswers == 5) {
-                                  gifLink = displayHardGif[5]; 
-                                  gifText = displayHardGifText[5]
-                                  }
-                                  else if (currentDifficulty == "hard" && correctAnswers == 4) {
-                                    gifLink = displayHardGif[6]; 
-                                    gifText = displayHardGifText[6]
-                                    }
-                                    else if (currentDifficulty == "hard" && correctAnswers == 3) {
-                                      gifLink = displayHardGif[7]; 
-                                      gifText = displayHardGifText[7]
-                                      }
-                                      else if (currentDifficulty == "hard" && correctAnswers == 2) {
-                                        gifLink = displayHardGif[8]; 
-                                        gifText = displayHardGifText[8]
-                                        }
-                                        else if (currentDifficulty == "hard" && correctAnswers == 1) {
-                                          gifLink = displayHardGif[9]; 
-                                          gifText = displayHardGifText[9]
-                                          }
-                                          else if (currentDifficulty == "hard" && correctAnswers == 0) {
-                                            gifLink = displayHardGif[10]; 
-                                            gifText = displayHardGifText[10]
-                                            }
+    gifLink = displayEasyGif[1];
+    gifText = displayEasyGifText[1];
+  } else if (currentDifficulty == "easy" && correctAnswers == 8) {
+    gifLink = displayEasyGif[2];
+    gifText = displayEasyGifText[2];
+  } else if (currentDifficulty == "easy" && correctAnswers == 7) {
+    gifLink = displayEasyGif[3];
+    gifText = displayEasyGifText[3];
+  } else if (currentDifficulty == "easy" && correctAnswers == 6) {
+    gifLink = displayEasyGif[4];
+    gifText = displayEasyGifText[4];
+  } else if (currentDifficulty == "easy" && correctAnswers == 5) {
+    gifLink = displayEasyGif[5];
+    gifText = displayEasyGifText[5];
+  } else if (currentDifficulty == "easy" && correctAnswers == 4) {
+    gifLink = displayEasyGif[6];
+    gifText = displayEasyGifText[6];
+  } else if (currentDifficulty == "easy" && correctAnswers == 3) {
+    gifLink = displayEasyGif[7];
+    gifText = displayEasyGifText[7];
+  } else if (currentDifficulty == "easy" && correctAnswers == 2) {
+    gifLink = displayEasyGif[8];
+    gifText = displayEasyGifText[8];
+  } else if (currentDifficulty == "easy" && correctAnswers == 1) {
+    gifLink = displayEasyGif[9];
+    gifText = displayEasyGifText[9];
+  } else if (currentDifficulty == "easy" && correctAnswers == 0) {
+    gifLink = displayEasyGif[10];
+    gifText = displayEasyGifText[10];
+  }
+  if (currentDifficulty == "hard" && correctAnswers == 10) {
+    gifLink = displayHardGif[0];
+    gifText = displayHardGifText[0];
+  } else if (currentDifficulty == "hard" && correctAnswers == 9) {
+    gifLink = displayHardGif[1];
+    gifText = displayHardGifText[1];
+  } else if (currentDifficulty == "hard" && correctAnswers == 8) {
+    gifLink = displayHardGif[2];
+    gifText = displayHardGifText[2];
+  } else if (currentDifficulty == "hard" && correctAnswers == 7) {
+    gifLink = displayHardGif[3];
+    gifText = displayHardGifText[3];
+  } else if (currentDifficulty == "hard" && correctAnswers == 6) {
+    gifLink = displayHardGif[4];
+    gifText = displayHardGifText[4];
+  } else if (currentDifficulty == "hard" && correctAnswers == 5) {
+    gifLink = displayHardGif[5];
+    gifText = displayHardGifText[5];
+  } else if (currentDifficulty == "hard" && correctAnswers == 4) {
+    gifLink = displayHardGif[6];
+    gifText = displayHardGifText[6];
+  } else if (currentDifficulty == "hard" && correctAnswers == 3) {
+    gifLink = displayHardGif[7];
+    gifText = displayHardGifText[7];
+  } else if (currentDifficulty == "hard" && correctAnswers == 2) {
+    gifLink = displayHardGif[8];
+    gifText = displayHardGifText[8];
+  } else if (currentDifficulty == "hard" && correctAnswers == 1) {
+    gifLink = displayHardGif[9];
+    gifText = displayHardGifText[9];
+  } else if (currentDifficulty == "hard" && correctAnswers == 0) {
+    gifLink = displayHardGif[10];
+    gifText = displayHardGifText[10];
+  }
 }
 
 //Pause landing page video as static image on last frame
