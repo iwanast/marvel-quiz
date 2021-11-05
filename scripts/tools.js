@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs you need 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
 import {
   getFirestore,
@@ -6,7 +6,7 @@ import {
   setDoc,
 } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
 
-// Import Firebase configuration settings
+// Imported Firebase configuration settings
 const firebaseConfig = {
   apiKey: "AIzaSyBAjhZsNJ7urNqtWrUTam_f8_qiVdO3lhc",
   authDomain: "marvel-quiz-616.firebaseapp.com",
