@@ -28,9 +28,29 @@
   }
 
   #gifIMG {
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 400px;
+    width: 500px;
+    
+    img {
+    height: 400px;
+    width: 500px;
+    }
+    
   }
 
   #gifText {
+    width: 500px;
+    margin-left: 50px;
+    margin-top: 50px;
+    
+
+    h3 {
+      margin-left: 75px;
+      height: 100px;
+      font-size:50px;
+    }
   }
 
   #scoreTitle {
