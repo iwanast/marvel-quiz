@@ -12,12 +12,19 @@ Questions and answers are stored in a Firestore database. The easy and hard ques
 Key Learnings:
 
     Functions:
-
+        Storing quiz data in Friebase/Firestore.
+        Generating a fully randomised quiz each time the user plays.
+        Generate randomly ordered answers for each question.
+        Seperate questions into easy and hard difficulty brackets.
+        Store the user's score in Firebase/Firestore, and generate an average for them to compare to when the game ends.
+        Display a different gif and text on the score page depending on the user's score.
 
     Responsiveness:
 
 
     Style/Animation:
+        Splash page video logo with Marvel fanfare on load.
+        Buttons and title timed to fade in as the video ends.
 
 
     Workflow:
