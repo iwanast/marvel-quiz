@@ -20,7 +20,8 @@ Key Learnings:
         Display a different gif and text on the score page depending on the user's score.
 
     Responsiveness:
-
+        Fully responsive.
+        Displays correctly from widescreen down to phone.
 
     Style/Animation:
         Splash page video logo with Marvel fanfare on load.
