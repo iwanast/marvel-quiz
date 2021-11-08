@@ -7,30 +7,31 @@
 .item4 { grid-area: question; }
 .item5 { grid-area: answers; }
 .item6 { grid-area: button; }
-.item7 { grid-area: footer; }
+// .item7 { grid-area: footer; }
 
 .grid-container {
   font-weight: 900;
   display: grid;
   height: 100vh;
   grid-template-areas:
-    "header header title title title title"
+    "title title title title title title"
     "question question question picture picture picture"
     "answers answers answers picture picture picture"
     "answers answers answers picture picture picture"
     ". . . . button ."
-    "footer footer footer footer footer footer";
+    "header header header header header header";
   grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
   grid-row-gap: 2vh;
 
   @media screen and (max-width: 481px) {
     grid-template-areas:
-    "header header header header"
+    "title title title title"
+    
     "picture picture picture picture"
     "question question question question"
     ". answers . ."
     ". button . ."
-    "title title title footer";
+    "header header header header";
     grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
   }
   button{
@@ -70,11 +71,6 @@ div.item4{
   align-self: center;
 }
 
-div.item7{
-  @media screen and (max-width: 481px) {
-    width: 0;
-  }
-}
 div.item2{
   @media screen and (max-width: 481px) {
     width: 100vw;
@@ -85,11 +81,11 @@ div.item2{
   background-color: $marvelred;
   color: $marvelwhite;
 }
-#footer, #header, #title{
+#header, #title{
   font-size: 3em;
-  @media screen and (max-width: 699px) {
-    font-size: 2em;
-  }
+  // @media screen and (max-width: 699px) {
+  //   font-size: 2em;
+  // }
   @media screen and (max-width: 481px) {
     font-size: 1.4em;
   } 
@@ -166,7 +162,7 @@ div.item2{
   padding: 0;
   height: 6vh;
   cursor: pointer;
-  visibility: visible;
+  // visibility: visible;
   .next-btn{
     padding: 0px 18px; 
     height: 6vh;

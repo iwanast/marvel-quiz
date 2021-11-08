@@ -22,21 +22,17 @@
   grid-area: button;
 }
 
-.item7 {
-  grid-area: footer;
-}
-
 .grid-container {
   font-weight: 900;
   display: grid;
   height: 100vh;
-  grid-template-areas: "header header title title title title" "question question question picture picture picture" "answers answers answers picture picture picture" "answers answers answers picture picture picture" ". . . . button ." "footer footer footer footer footer footer";
+  grid-template-areas: "title title title title title title" "question question question picture picture picture" "answers answers answers picture picture picture" "answers answers answers picture picture picture" ". . . . button ." "header header header header header header";
   grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
   grid-row-gap: 2vh;
 }
 @media screen and (max-width: 481px) {
   .grid-container {
-    grid-template-areas: "header header header header" "picture picture picture picture" "question question question question" ". answers . ." ". button . ." "title title title footer";
+    grid-template-areas: "title title title title" "picture picture picture picture" "question question question question" ". answers . ." ". button . ." "header header header header";
     grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
   }
 }
@@ -79,12 +75,6 @@ div.item4 {
 }
 
 @media screen and (max-width: 481px) {
-  div.item7 {
-    width: 0;
-  }
-}
-
-@media screen and (max-width: 481px) {
   div.item2 {
     width: 100vw;
     padding-top: 10px;
@@ -96,25 +86,20 @@ div.item4 {
   color: white;
 }
 
-#footer, #header, #title {
+#header, #title {
   font-size: 3em;
 }
-@media screen and (max-width: 699px) {
-  #footer, #header, #title {
-    font-size: 2em;
-  }
-}
 @media screen and (max-width: 481px) {
-  #footer, #header, #title {
+  #header, #title {
     font-size: 1.4em;
   }
 }
-#footer #logo, #header #logo, #title #logo {
+#header #logo, #title #logo {
   height: 12vh;
   margin: 1vh 0;
 }
 @media screen and (max-width: 481px) {
-  #footer #logo, #header #logo, #title #logo {
+  #header #logo, #title #logo {
     height: 6vh;
     margin: 1vh 0;
   }
@@ -193,7 +178,6 @@ div.item4 {
   padding: 0;
   height: 6vh;
   cursor: pointer;
-  visibility: visible;
 }
 .grid-container > .item6 .next-btn {
   padding: 0px 18px;

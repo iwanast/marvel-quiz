@@ -97,6 +97,10 @@ function startGame() {
   goToNextQuestion();
 }
 
+document.getElementById("play-again-button").onclick = function(){
+  playAgain();
+}
+
 function playAgain() {
   toggleClass("score-page", "hidden-overlay");
   toggleClass("landing-page", "hidden-overlay");
