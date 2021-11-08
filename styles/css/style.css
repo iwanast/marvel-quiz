@@ -566,7 +566,7 @@ video {
   font-size: 40px;
 }
 
-#score-page #full-wrapper #wrapper-right #avg-score-wrapper button {
+#score-page #full-wrapper #wrapper-right #avg-score-wrapper #play-again-button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -581,9 +581,14 @@ video {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: 700;
-  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ADD8E6;
   background-size: 12px, 100%;
   border: 0.4rem solid #000000;
+}
+
+#score-page #full-wrapper #wrapper-right #avg-score-wrapper #play-again-button:hover {
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
+  background-size: 12px, 100%;
 }
 
 #score-page #bottom-bar {

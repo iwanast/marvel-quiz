@@ -106,7 +106,7 @@
       font-size: 40px;
     }
 
-    button {
+    #play-again-button {
     display: flex;
     text-align: center;
     margin-top: 160px;
@@ -120,15 +120,19 @@
     letter-spacing: 0.2rem;
     font-weight: 700;
     background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
-      $white;
+      $btn-blue;
     background-size: 12px, 100%;
     border: 0.4rem solid $black;
-      
+    }
+    #play-again-button:hover {
+        background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+        $white;
+        background-size: 12px, 100%;
     }
   }
+}
+}
 
-
-}}
   #bottom-bar {
     width: 100vw;
     height: 12vh;
@@ -144,5 +148,6 @@
       width: auto;
       display: inline-block;
     }
-  }}
+  }
+}
 
