@@ -47,6 +47,7 @@
       $white;
     background-size: 12px, 100%;
     border: 0.4rem solid $black;
+    cursor: pointer;
   }
   h2, p{
     color: $black;
@@ -164,6 +165,7 @@ div.item2{
 #button-next{
   padding: 0;
   height: 6vh;
+  cursor: pointer;
   #next-button{
     padding: 0px 18px; 
     height: 6vh;
