@@ -3,7 +3,7 @@
 
 Brief: Group project to create a quiz game that incorporates Firebase.
 
-Timeframe: three weeks.
+Timeframe: Three weeks.
 
 Description: The Ultimate Marvel Fan Quiz is an online game that tests the user's knowledge of the Marvel Cinematic Universe by presenting them with a series of questions, chosen randomly from a large pool, and asks them to select an answer from the four provided. The quiz can be taken on easy or hard difficulty, to cater to both casual and hardcore fans. 
 
