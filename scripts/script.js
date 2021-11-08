@@ -437,90 +437,77 @@ let displayHardGifText = [
 ];
 
 function displayScoreExtras(currentDifficulty, correctAnswers) {
-   //DISPLAY scoreGif and scoreText in innerHTML depending on number of correctAnswers
-   let gifLink = "";
-   let gifText = "";
-if (currentDifficulty == "easy" && correctAnswers == 10) {
-  gifLink = displayEasyGif[0]; 
-  gifText = displayEasyGifText[0]
+  //DISPLAY scoreGif and scoreText in innerHTML depending on number of correctAnswers
+  let gifLink = "";
+  let gifText = "";
+  if (currentDifficulty == "easy" && correctAnswers == 10) {
+    gifLink = displayEasyGif[0]; 
+    gifText = displayEasyGifText[0]
   } else if (currentDifficulty == "easy" && correctAnswers == 9) {
     gifLink = displayEasyGif[1]; 
     gifText = displayEasyGifText[1]
-    } else if (currentDifficulty == "easy" && correctAnswers == 8) {
-      gifLink = displayEasyGif[2]; 
-      gifText = displayEasyGifText[2]
-      } else if (currentDifficulty == "easy" && correctAnswers == 7) {
-        gifLink = displayEasyGif[3]; 
-        gifText = displayEasyGifText[3]
-        } else if (currentDifficulty == "easy" && correctAnswers == 6) {
-          gifLink = displayEasyGif[4]; 
-          gifText = displayEasyGifText[4]
-          }
-          else if (currentDifficulty == "easy" && correctAnswers == 5) {
-            gifLink = displayEasyGif[5]; 
-            gifText = displayEasyGifText[5]
-            }
-            else if (currentDifficulty == "easy" && correctAnswers == 4) {
-              gifLink = displayEasyGif[6]; 
-              gifText = displayEasyGifText[6]
-              }
-              else if (currentDifficulty == "easy" && correctAnswers == 3) {
-                gifLink = displayEasyGif[7]; 
-                gifText = displayEasyGifText[7]
-                }
-                else if (currentDifficulty == "easy" && correctAnswers == 2) {
-                  gifLink = displayEasyGif[8]; 
-                  gifText = displayEasyGifText[8]
-                  }
-                  else if (currentDifficulty == "easy" && correctAnswers == 1) {
-                    gifLink = displayEasyGif[9]; 
-                    gifText = displayEasyGifText[9]
-                    }
-                    else if (currentDifficulty == "easy" && correctAnswers == 0) {
-                      gifLink = displayEasyGif[10]; 
-                      gifText = displayEasyGifText[10]
-                      } if (currentDifficulty == "hard" && correctAnswers == 10) {
-                        gifLink = displayHardGif[0]; 
-                        gifText = displayHardGifText[0]
-                        } else if (currentDifficulty == "hard" && correctAnswers == 9) {
-                          gifLink = displayHardGif[1]; 
-                          gifText = displayHardGifText[1]
-                          } else if (currentDifficulty == "hard" && correctAnswers == 8) {
-                            gifLink = displayHardGif[2]; 
-                            gifText = displayHardGifText[2]
-                            } else if (currentDifficulty == "hard" && correctAnswers == 7) {
-                              gifLink = displayHardGif[3]; 
-                              gifText = displayHardGifText[3]
-                              } else if (currentDifficulty == "hard" && correctAnswers == 6) {
-                                gifLink = displayHardGif[4]; 
-                                gifText = displayHardGifText[4]
-                                }
-                                else if (currentDifficulty == "hard" && correctAnswers == 5) {
-                                  gifLink = displayHardGif[5]; 
-                                  gifText = displayHardGifText[5]
-                                  }
-                                  else if (currentDifficulty == "hard" && correctAnswers == 4) {
-                                    gifLink = displayHardGif[6]; 
-                                    gifText = displayHardGifText[6]
-                                    }
-                                    else if (currentDifficulty == "hard" && correctAnswers == 3) {
-                                      gifLink = displayHardGif[7]; 
-                                      gifText = displayHardGifText[7]
-                                      }
-                                      else if (currentDifficulty == "hard" && correctAnswers == 2) {
-                                        gifLink = displayHardGif[8]; 
-                                        gifText = displayHardGifText[8]
-                                        }
-                                        else if (currentDifficulty == "hard" && correctAnswers == 1) {
-                                          gifLink = displayHardGif[9]; 
-                                          gifText = displayHardGifText[9]
-                                          }
-                                          else if (currentDifficulty == "hard" && correctAnswers == 0) {
-                                            gifLink = displayHardGif[10]; 
-                                            gifText = displayHardGifText[10]
-                                            }
-
-document.getElementById("gif-source").src = gifLink;
-document.getElementById("gif-txt").innerHTML = gifText;                                      
-
+  } else if (currentDifficulty == "easy" && correctAnswers == 8) {
+    gifLink = displayEasyGif[2]; 
+    gifText = displayEasyGifText[2]
+  } else if (currentDifficulty == "easy" && correctAnswers == 7) {
+    gifLink = displayEasyGif[3]; 
+    gifText = displayEasyGifText[3]
+  } else if (currentDifficulty == "easy" && correctAnswers == 6) {
+    gifLink = displayEasyGif[4]; 
+    gifText = displayEasyGifText[4]
+  } else if (currentDifficulty == "easy" && correctAnswers == 5) {
+    gifLink = displayEasyGif[5]; 
+    gifText = displayEasyGifText[5]
+  } else if (currentDifficulty == "easy" && correctAnswers == 4) {
+    gifLink = displayEasyGif[6]; 
+    gifText = displayEasyGifText[6]
+  } else if (currentDifficulty == "easy" && correctAnswers == 3) {
+    gifLink = displayEasyGif[7]; 
+    gifText = displayEasyGifText[7]
+  } else if (currentDifficulty == "easy" && correctAnswers == 2) {
+    gifLink = displayEasyGif[8]; 
+    gifText = displayEasyGifText[8]
+  } else if (currentDifficulty == "easy" && correctAnswers == 1) {
+    gifLink = displayEasyGif[9]; 
+    gifText = displayEasyGifText[9]
+  } else if (currentDifficulty == "easy" && correctAnswers == 0) {
+    gifLink = displayEasyGif[10]; 
+    gifText = displayEasyGifText[10]
+  } 
+  if (currentDifficulty == "hard" && correctAnswers == 10) {
+  gifLink = displayHardGif[0]; 
+  gifText = displayHardGifText[0]
+  } else if (currentDifficulty == "hard" && correctAnswers == 9) {
+  gifLink = displayHardGif[1]; 
+  gifText = displayHardGifText[1]
+  } else if (currentDifficulty == "hard" && correctAnswers == 8) {
+  gifLink = displayHardGif[2]; 
+  gifText = displayHardGifText[2]
+  } else if (currentDifficulty == "hard" && correctAnswers == 7) {
+  gifLink = displayHardGif[3]; 
+  gifText = displayHardGifText[3]
+  } else if (currentDifficulty == "hard" && correctAnswers == 6) {
+  gifLink = displayHardGif[4]; 
+  gifText = displayHardGifText[4]
+  } else if (currentDifficulty == "hard" && correctAnswers == 5) {
+  gifLink = displayHardGif[5]; 
+  gifText = displayHardGifText[5]
+  } else if (currentDifficulty == "hard" && correctAnswers == 4) {
+  gifLink = displayHardGif[6]; 
+  gifText = displayHardGifText[6]
+  } else if (currentDifficulty == "hard" && correctAnswers == 3) {
+  gifLink = displayHardGif[7]; 
+  gifText = displayHardGifText[7]
+  } else if (currentDifficulty == "hard" && correctAnswers == 2) {
+  gifLink = displayHardGif[8]; 
+  gifText = displayHardGifText[8]
+  } else if (currentDifficulty == "hard" && correctAnswers == 1) {
+  gifLink = displayHardGif[9]; 
+  gifText = displayHardGifText[9]
+  } else if (currentDifficulty == "hard" && correctAnswers == 0) {
+  gifLink = displayHardGif[10]; 
+  gifText = displayHardGifText[10]
+  }
+  document.getElementById("gif-source").src = gifLink;
+  document.getElementById("gif-txt").innerHTML = gifText;                                      
 }
