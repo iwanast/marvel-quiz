@@ -50,11 +50,7 @@ let video = document.querySelector(".video");
 video.addEventListener(
   "ended",
   function () {
-    //Pause the video
-    this.pause();
-    //Set play time to the last frame
-    this.currentTime = this.duration;
-    //Set variable that indicated video has been played
+    pauseVideo();
     videoPlayed = true;
   },
   false
@@ -89,6 +85,22 @@ function pauseVideo() {
   video.pause();
   //Set play time to the last frame
   video.currentTime = video.duration;
+  //Set variable to tell page video has been played
+  videoPlayed = true;
+}
+
+//Onclick event for skip into button
+document.getElementById("skip-intro-btn").addEventListener("click", function () {
+  skipIntro();
+});
+
+function skipIntro() {
+  pauseVideo;
+  //Make buttons clickable
+  document.querySelector(".landing-btn-div").style.pointerEvents = "auto";
+  document.querySelector(".landing-btn-div--alternate").style.pointerEvents = "auto";
+  //Show buttons
+  document.querySelector(".fade-in").style.opacity = "1";
 }
 
 //Called onclick difficulty
