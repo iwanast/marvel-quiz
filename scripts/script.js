@@ -43,6 +43,9 @@ let userAnswerIndex; // index of the answer the user selected
 let videoPlayed = false;
 let video = document.querySelector(".video");
 
+
+///////////////////////////////LANDING PAGE////////////////////////////////////
+
 //Pause landing page video as static image on last frame
 video.addEventListener(
   "ended",
@@ -81,16 +84,21 @@ document.getElementById("hard-btn").addEventListener("click", function () {
   startGame();
 });
 
+function pauseVideo() {
+  //Pause the video
+  video.pause();
+  //Set play time to the last frame
+  video.currentTime = video.duration;
+}
+
 //Called onclick difficulty
 function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
   togglePage("landing-page");
+  //Checks if video has been played and prevents it from playing again if it has
   if (videoPlayed == true) {
-    //Pause the video
-    video.pause();
-    //Set play time to the last frame
-    video.currentTime = video.duration;
+    pauseVideo();
   }
   document.getElementById("next-button").innerHTML = "next";
   goToNextQuestion();
