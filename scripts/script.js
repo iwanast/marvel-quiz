@@ -316,16 +316,21 @@ function hightlightAndCountingAnswer() {
   answerButtonNotClickable();
   // Enable the next-button to work again
   toggleClass("button-next", "hidden-class-button");
-  // hightlight the correct answer green and adds 1 to correctAnswer
+  // hightlight the correct answer green and the rest white (so no hover anymore) and adds 1 to correctAnswer
   for (let i = 0; i < 4; i++) {
+    let backgrSize = `12px, 100%`;
     if (correctAnswerString == randomizedAnswersArray[i]) {
       let backgrGreen = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
       #35db35`;
-      let backgrSize = `12px, 100%`;
       document.getElementById(`answer${i + 1}`).style.background = backgrGreen;
       document.getElementById(`answer${i + 1}`).style.backgroundSize = backgrSize;   
 
       correctAnswers++;
+    } else {
+        let backgrWhite = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+        #ffffff`;
+        document.getElementById(`answer${i + 1}`).style.background = backgrWhite;
+        document.getElementById(`answer${i + 1}`).style.backgroundSize = backgrSize;
     }
   }
   // if the user clicked the wrong answer, it will become red and the variable correctAnswer will get -1

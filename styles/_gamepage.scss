@@ -22,16 +22,14 @@
   grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
   grid-template-columns: 20vw 20vw 10vw 10vw 20vw 20vw;
   grid-row-gap: 2vh;
-
   @media screen and (max-width: 481px) {
     grid-template-areas:
-    "title title title title"
-    
-    "picture picture picture picture"
-    "question question question question"
-    ". answers answers ."
-    ". button button ."
-    "header header header header";
+      "title title title title"
+      "picture picture picture picture"
+      "question question question question"
+      ". answers answers ."
+      ". button button ."
+      "header header header header";
     grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
     grid-template-columns: 10vw 40vw 40vw 10vw;
   }
@@ -55,7 +53,6 @@
     padding: 10px;
   }
 }
-
 .grid-container > div {
   text-align: center;
   padding-top: 20px;
@@ -70,7 +67,6 @@ div.item5{
 div.item4{
   align-self: center;
 }
-
 div.item2{
   @media screen and (max-width: 481px) {
     width: 100vw;
@@ -147,16 +143,15 @@ div.item2{
   justify-content: center; 
   @media screen and (max-width: 481px) {
     grid-template-areas:
-    "answer1"
-    "answer2"
-    "answer3"
-    "answer4";
+      "answer1"
+      "answer2"
+      "answer3"
+      "answer4";
     justify-content: space-evenly;
     max-height: 36vh;
     grid-template-columns: max-content;
   }
 }
-
 .grid-container > .item6{
   padding: 0;
   height: 6vh;
@@ -175,21 +170,23 @@ div.item2{
     background-size: 12px, 100%;
     border: 0.4rem solid $black;
     pointer-events: none;
-    
   }
 }
-
 .answer1-4 > button{
   min-width: 150px;
 }
 .item6:hover {
   .next-btn{
-    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
     $white;
     background-size: 12px, 100%;
   }
 }
-
+.answer1-4 > button:hover{
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+  $btn-light-yellow;
+  background-size: 12px, 100%;
+}
 .grid-container > .hidden-class-button{
   visibility: hidden;
 }
