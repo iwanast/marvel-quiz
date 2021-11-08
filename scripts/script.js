@@ -292,18 +292,22 @@ function hightlightAndCountingAnswer() {
   for (let i = 0; i < 4; i++) {
     if (correctAnswerString == randomizedAnswersArray[i]) {
       let backgrGreen = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
-      #35db35;`;
-      document.getElementById(`answer${i + 1}`).style.background = "#35db35";
+      #35db35`;
+      let backgrSize = `12px, 100%`;
+      document.getElementById(`answer${i + 1}`).style.background = backgrGreen;
+      document.getElementById(`answer${i + 1}`).style.backgroundSize = backgrSize;   
+
       correctAnswers++;
     }
   }
   // if the user clicked the wrong answer, it will become red and the variable correctAnswer will get -1
   if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]) {
-    let backgrRed = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
-    #ed1d23;`;
-    document.getElementById(`answer${userAnswerIndex + 1}`).style.background =
-      "#ed1d23";
-    correctAnswers--;
+    let backgrRed = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+    #ed1d23`;
+    let backgrSize = `12px, 100%`;
+    document.getElementById(`answer${userAnswerIndex + 1}`).style.background = backgrRed;
+    document.getElementById(`answer${userAnswerIndex + 1}`).style.backgroundSize = backgrSize;   
+    correctAnswers--; //Do we want to reduce their score if they choose incorrectly?
   }
   console.log(correctAnswers);
 }
