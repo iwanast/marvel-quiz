@@ -327,6 +327,15 @@ video {
   background-color: #000000;
 }
 
+#skip-intro-btn {
+  background-color: transparent;
+  border: none;
+  color: darkgray;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
 .fade-in {
   opacity: 0;
   animation-name: fadeIn;
