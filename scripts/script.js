@@ -206,14 +206,19 @@ function shuffleArray(array) {
   return array;
 }
 
+function toggleClass(theId, theClass){
+  document.getElementById(theId).classList.toggle(theClass);
+}
+
+// Set onclick on the next-button to trigger the next question or the finishGame-function
+document.getElementById("button-next").onclick = function() {
+  goToNextQuestion();
+}
+
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
-  //Disable the next-button until an answer is clicked
-  putInOnclick("button-next", function (event) {
-    event.stopPropagation();
-    alert("Not shure which answer is correct? Trust the process.");
-  });
-
+  // hide the next-button until an answer is clicked
+  toggleClass("button-next", "hidden-class-button");
   //SET the answerbuttons onclick to a function again
   for (let j = 1; j <= 4; j++) {
     let funcBe = function () {
@@ -274,14 +279,15 @@ function answerButtonNotClickable() {
     putInOnclick(`answer${i}`, "");
   }
 }
+
 // Button for the answer 1
-document.getElementById("answer1").onclick = function () {
+document.getElementById("answer1").onclick = function() {
   userAnswerIndex = 0; // index of the answer
   hightlightAndCountingAnswer();
 };
 
 // Button for the answer 2
-document.getElementById("answer2").onclick = function () {
+document.getElementById("answer2").onclick = function() {
   userAnswerIndex = 1; // index of the answer
   hightlightAndCountingAnswer();
 };
@@ -310,9 +316,7 @@ function hightlightAndCountingAnswer() {
   //Disable the answers to be clickable
   answerButtonNotClickable();
   // Enable the next-button to work again
-  putInOnclick("button-next", function () {
-    goToNextQuestion();
-  });
+  toggleClass("button-next", "hidden-class-button");
   // hightlight the correct answer green and adds 1 to correctAnswer
   for (let i = 0; i < 4; i++) {
     if (correctAnswerString == randomizedAnswersArray[i]) {
