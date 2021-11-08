@@ -43,15 +43,14 @@ let userAnswerIndex; // index of the answer the user selected
 let videoPlayed = false;
 let video = document.querySelector(".video");
 
+
+///////////////////////////////LANDING PAGE////////////////////////////////////
+
 //Pause landing page video as static image on last frame
 video.addEventListener(
   "ended",
   function () {
-    //Pause the video
-    this.pause();
-    //Set play time to the last frame
-    this.currentTime = this.duration;
-    //Set variable that indicated video has been played
+    pauseVideo();
     videoPlayed = true;
   },
   false
@@ -81,16 +80,40 @@ document.getElementById("hard-btn").addEventListener("click", function () {
   startGame();
 });
 
+function pauseVideo() {
+  //Pause the video
+  video.pause();
+  //Set play time to the last frame
+  video.currentTime = video.duration - 1;
+  //Set variable to tell page video has been played
+  videoPlayed = true;
+}
+
+//Onclick event for skip into button
+document.getElementById("skip-intro-btn").addEventListener("click", function () {
+  skipIntro();
+});
+
+function skipIntro() {
+  pauseVideo();
+  //Make buttons clickable
+  document.querySelector(".landing-btn-div").style.pointerEvents = "auto";
+  document.querySelector(".landing-btn-div--alternate").style.pointerEvents = "auto";
+  //Show buttons
+  document.querySelectorAll('.fade-in')[0].style.opacity = "1";
+  document.querySelectorAll('.fade-in')[1].style.opacity = "1";
+  //Remove skip video button
+  document.getElementById("skip-intro-btn").style.display = "none";
+}
+
 //Called onclick difficulty
 function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
   togglePage("landing-page");
+  //Checks if video has been played and prevents it from playing again if it has
   if (videoPlayed == true) {
-    //Pause the video
-    video.pause();
-    //Set play time to the last frame
-    video.currentTime = video.duration;
+    pauseVideo();
   }
   document.getElementById("next-button").innerHTML = "next";
   goToNextQuestion();
