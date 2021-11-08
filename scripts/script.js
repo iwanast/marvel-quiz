@@ -135,9 +135,6 @@ async function retrieveQuestionDataFromFirebase() {
 
   populateEasyQuestionsArray(easyQuestionsData);
   populateHardQuestionsArray(hardQuestionsData);
-
-  console.log("the first answer: " + easyQuestionsArray[0].answers);
-  consoleLogs();
 }
 
 async function retrieveAvgDataFromFirebase() {
@@ -263,10 +260,12 @@ function goToNextQuestion() {
     if (currentDifficulty == "easy") {
       correctAnswerString = easyQuestionsArray[questionCounter].answers[0];
       insertHTML("question", easyQuestionsArray[questionCounter].question);
+      document.getElementById("game-picture").src = `${easyQuestionsArray[questionCounter].image}.jpg`;
       randomizeAnswers(easyQuestionsArray[questionCounter].answers);
     } else {
       correctAnswerString = hardQuestionsArray[questionCounter].answers[0];
       insertHTML("question", hardQuestionsArray[questionCounter].question);
+      document.getElementById("game-picture").src = `${hardQuestionsArray[questionCounter].image}.jpg`;
       randomizeAnswers(hardQuestionsArray[questionCounter].answers);
     }
     //Inserts created random array of answers into the four answer divs
@@ -363,7 +362,6 @@ function hightlightAndCountingAnswer() {
     document.getElementById(`answer${userAnswerIndex + 1}`).style.backgroundSize = backgrSize;   
     correctAnswers--; //Do we want to reduce their score if they choose incorrectly?
   }
-  console.log(correctAnswers);
 }
 //PULLED BY SCORE PAGE//
 function calculateAvg() {
