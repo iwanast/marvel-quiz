@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+// Import firebase functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
 import {
   getFirestore,
@@ -8,8 +8,6 @@ import {
   deleteDoc,
   getDocs,
 } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
-
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Import Firebase configuration settings
 const firebaseConfig = {
@@ -25,6 +23,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Declare global variables
 let easyQuestionsArray = [];
 let hardQuestionsArray = [];
 let easyAvg = {
@@ -39,17 +38,12 @@ let currentDifficulty = "";
 let questionCounter = 0;
 let correctAnswers = 0;
 let correctAnswerString = "";
-let scoreGif = [];
-let scoreText = [];
 let randomizedAnswersArray = [];
 let userAnswerIndex; // index of the answer the user selected
 let videoPlayed = false;
-
-//Pause landing page video as static image on last frame
-// select the video element
 let video = document.querySelector(".video");
 
-//Listen for the event that fires when your video has finished playing
+//Pause landing page video as static image on last frame
 video.addEventListener(
   "ended",
   function () {
@@ -63,7 +57,7 @@ video.addEventListener(
   false
 );
 
-//Onclick difficulty and onclick try again from end page
+//Called by onclick difficulty and onclick try again from end page
 function togglePage(page) {
   document.getElementById(page).classList.toggle("hidden-overlay");
 }
@@ -87,7 +81,7 @@ document.getElementById("hard-btn").addEventListener("click", function () {
   startGame();
 });
 
-//onclick difficulty (event listener)
+//Called onclick difficulty
 function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
@@ -102,12 +96,11 @@ function startGame() {
   goToNextQuestion();
 }
 
-function playAgain() {
-  togglePage("score-page");
-  togglePage("landing-page");
-}
 ///////////////////////////////FIREBASE FUNCTIONS////////////////////////////////////
-retrieveQuestionDataFromFirebase();
+
+//toggle landing page after Play Again button is clicked
+document.getElementById("bodyId").onload = retrieveQuestionDataFromFirebase();
+
 //run onload
 async function retrieveQuestionDataFromFirebase() {
   let easyQuestionsData = await retrieveQuestionDocs("easy");
@@ -440,162 +433,77 @@ let displayHardGifText = [
 ];
 
 function displayScoreExtras(currentDifficulty, correctAnswers) {
-   //DISPLAY scoreGif and scoreText in innerHTML depending on number of correctAnswers
-   let gifLink = "";
-   let gifText = "";
-if (currentDifficulty == "easy" && correctAnswers == 10) {
-  gifLink = displayEasyGif[0]; 
-  gifText = displayEasyGifText[0]
+  //DISPLAY scoreGif and scoreText in innerHTML depending on number of correctAnswers
+  let gifLink = "";
+  let gifText = "";
+  if (currentDifficulty == "easy" && correctAnswers == 10) {
+    gifLink = displayEasyGif[0]; 
+    gifText = displayEasyGifText[0]
   } else if (currentDifficulty == "easy" && correctAnswers == 9) {
     gifLink = displayEasyGif[1]; 
     gifText = displayEasyGifText[1]
-    } else if (currentDifficulty == "easy" && correctAnswers == 8) {
-      gifLink = displayEasyGif[2]; 
-      gifText = displayEasyGifText[2]
-      } else if (currentDifficulty == "easy" && correctAnswers == 7) {
-        gifLink = displayEasyGif[3]; 
-        gifText = displayEasyGifText[3]
-        } else if (currentDifficulty == "easy" && correctAnswers == 6) {
-          gifLink = displayEasyGif[4]; 
-          gifText = displayEasyGifText[4]
-          }
-          else if (currentDifficulty == "easy" && correctAnswers == 5) {
-            gifLink = displayEasyGif[5]; 
-            gifText = displayEasyGifText[5]
-            }
-            else if (currentDifficulty == "easy" && correctAnswers == 4) {
-              gifLink = displayEasyGif[6]; 
-              gifText = displayEasyGifText[6]
-              }
-              else if (currentDifficulty == "easy" && correctAnswers == 3) {
-                gifLink = displayEasyGif[7]; 
-                gifText = displayEasyGifText[7]
-                }
-                else if (currentDifficulty == "easy" && correctAnswers == 2) {
-                  gifLink = displayEasyGif[8]; 
-                  gifText = displayEasyGifText[8]
-                  }
-                  else if (currentDifficulty == "easy" && correctAnswers == 1) {
-                    gifLink = displayEasyGif[9]; 
-                    gifText = displayEasyGifText[9]
-                    }
-                    else if (currentDifficulty == "easy" && correctAnswers == 0) {
-                      gifLink = displayEasyGif[10]; 
-                      gifText = displayEasyGifText[10]
-                      } if (currentDifficulty == "hard" && correctAnswers == 10) {
-                        gifLink = displayHardGif[0]; 
-                        gifText = displayHardGifText[0]
-                        } else if (currentDifficulty == "hard" && correctAnswers == 9) {
-                          gifLink = displayHardGif[1]; 
-                          gifText = displayHardGifText[1]
-                          } else if (currentDifficulty == "hard" && correctAnswers == 8) {
-                            gifLink = displayHardGif[2]; 
-                            gifText = displayHardGifText[2]
-                            } else if (currentDifficulty == "hard" && correctAnswers == 7) {
-                              gifLink = displayHardGif[3]; 
-                              gifText = displayHardGifText[3]
-                              } else if (currentDifficulty == "hard" && correctAnswers == 6) {
-                                gifLink = displayHardGif[4]; 
-                                gifText = displayHardGifText[4]
-                                }
-                                else if (currentDifficulty == "hard" && correctAnswers == 5) {
-                                  gifLink = displayHardGif[5]; 
-                                  gifText = displayHardGifText[5]
-                                  }
-                                  else if (currentDifficulty == "hard" && correctAnswers == 4) {
-                                    gifLink = displayHardGif[6]; 
-                                    gifText = displayHardGifText[6]
-                                    }
-                                    else if (currentDifficulty == "hard" && correctAnswers == 3) {
-                                      gifLink = displayHardGif[7]; 
-                                      gifText = displayHardGifText[7]
-                                      }
-                                      else if (currentDifficulty == "hard" && correctAnswers == 2) {
-                                        gifLink = displayHardGif[8]; 
-                                        gifText = displayHardGifText[8]
-                                        }
-                                        else if (currentDifficulty == "hard" && correctAnswers == 1) {
-                                          gifLink = displayHardGif[9]; 
-                                          gifText = displayHardGifText[9]
-                                          }
-                                          else if (currentDifficulty == "hard" && correctAnswers == 0) {
-                                            gifLink = displayHardGif[10]; 
-                                            gifText = displayHardGifText[10]
-                                            }
-
-document.getElementById("gif-source").src = gifLink;
-document.getElementById("gif-txt").innerHTML = gifText;                                      
-
-}
-
-//data structure
-/*let easy = [
-    {
-        picture =
-        questionText =
-        relatedCharacter =
-        answers = [
-            {
-                answerText =
-                answerCorrect = true/false
-            },
-            {
-                answerText =
-                answerCorrect = true/false
-            },
-            {
-                answerText =
-                answerCorrect = true/false
-            },
-            {
-                answerText =
-                answerCorrect = true/false
-            }
-        ]
-    }
-]
-
-let hard = [
-    {
-        picture =
-        questionText =
-        relatedCharacter =
-        answers = [
-            {
-                answerText =
-                answerCorrect = true/false
-            },
-            {
-                answerText =
-                answerCorrect = true/false
-            },
-            {
-                answerText =
-                answerCorrect = true/false
-            },
-            {
-                answerText =
-                answerCorrect = true/false
-            }
-        ]
-    }
-]
-
-//To insert into the database
-// easyAvg {
-// let easyScores = (total sum of all easy scores)
-// let easyUsers = (total count of all easy players)}
-
-// hardAvg {
-// let hardScores = (total sum of all hard scores)
-// let hardUsers = (total count of all hard players)}
-*/
-
-function populateAnswers(i) {
-  //LET answerArray = [];
-  //GET the answers for question matching counter index and assign to answerArray
-  //let trueAnswer = answerArray[0];
-  //SHUFFLE answers
-  //INSERT answers into answer divs
-  //ONCLICK answer - check if innerHtml == trueAnswer
+  } else if (currentDifficulty == "easy" && correctAnswers == 8) {
+    gifLink = displayEasyGif[2]; 
+    gifText = displayEasyGifText[2]
+  } else if (currentDifficulty == "easy" && correctAnswers == 7) {
+    gifLink = displayEasyGif[3]; 
+    gifText = displayEasyGifText[3]
+  } else if (currentDifficulty == "easy" && correctAnswers == 6) {
+    gifLink = displayEasyGif[4]; 
+    gifText = displayEasyGifText[4]
+  } else if (currentDifficulty == "easy" && correctAnswers == 5) {
+    gifLink = displayEasyGif[5]; 
+    gifText = displayEasyGifText[5]
+  } else if (currentDifficulty == "easy" && correctAnswers == 4) {
+    gifLink = displayEasyGif[6]; 
+    gifText = displayEasyGifText[6]
+  } else if (currentDifficulty == "easy" && correctAnswers == 3) {
+    gifLink = displayEasyGif[7]; 
+    gifText = displayEasyGifText[7]
+  } else if (currentDifficulty == "easy" && correctAnswers == 2) {
+    gifLink = displayEasyGif[8]; 
+    gifText = displayEasyGifText[8]
+  } else if (currentDifficulty == "easy" && correctAnswers == 1) {
+    gifLink = displayEasyGif[9]; 
+    gifText = displayEasyGifText[9]
+  } else if (currentDifficulty == "easy" && correctAnswers == 0) {
+    gifLink = displayEasyGif[10]; 
+    gifText = displayEasyGifText[10]
+  } 
+  if (currentDifficulty == "hard" && correctAnswers == 10) {
+  gifLink = displayHardGif[0]; 
+  gifText = displayHardGifText[0]
+  } else if (currentDifficulty == "hard" && correctAnswers == 9) {
+  gifLink = displayHardGif[1]; 
+  gifText = displayHardGifText[1]
+  } else if (currentDifficulty == "hard" && correctAnswers == 8) {
+  gifLink = displayHardGif[2]; 
+  gifText = displayHardGifText[2]
+  } else if (currentDifficulty == "hard" && correctAnswers == 7) {
+  gifLink = displayHardGif[3]; 
+  gifText = displayHardGifText[3]
+  } else if (currentDifficulty == "hard" && correctAnswers == 6) {
+  gifLink = displayHardGif[4]; 
+  gifText = displayHardGifText[4]
+  } else if (currentDifficulty == "hard" && correctAnswers == 5) {
+  gifLink = displayHardGif[5]; 
+  gifText = displayHardGifText[5]
+  } else if (currentDifficulty == "hard" && correctAnswers == 4) {
+  gifLink = displayHardGif[6]; 
+  gifText = displayHardGifText[6]
+  } else if (currentDifficulty == "hard" && correctAnswers == 3) {
+  gifLink = displayHardGif[7]; 
+  gifText = displayHardGifText[7]
+  } else if (currentDifficulty == "hard" && correctAnswers == 2) {
+  gifLink = displayHardGif[8]; 
+  gifText = displayHardGifText[8]
+  } else if (currentDifficulty == "hard" && correctAnswers == 1) {
+  gifLink = displayHardGif[9]; 
+  gifText = displayHardGifText[9]
+  } else if (currentDifficulty == "hard" && correctAnswers == 0) {
+  gifLink = displayHardGif[10]; 
+  gifText = displayHardGifText[10]
+  }
+  document.getElementById("gif-source").src = gifLink;
+  document.getElementById("gif-txt").innerHTML = gifText;                                      
 }
