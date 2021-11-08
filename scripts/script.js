@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+// Import firebase functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
 import {
   getFirestore,
@@ -23,6 +23,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Declare global variables
 let easyQuestionsArray = [];
 let hardQuestionsArray = [];
 let easyAvg = {
@@ -40,12 +41,9 @@ let correctAnswerString = "";
 let randomizedAnswersArray = [];
 let userAnswerIndex; // index of the answer the user selected
 let videoPlayed = false;
-
-//Pause landing page video as static image on last frame
-// select the video element
 let video = document.querySelector(".video");
 
-//Listen for the event that fires when your video has finished playing
+//Pause landing page video as static image on last frame
 video.addEventListener(
   "ended",
   function () {
@@ -59,7 +57,7 @@ video.addEventListener(
   false
 );
 
-//Onclick difficulty and onclick try again from end page
+//Called by onclick difficulty and onclick try again from end page
 function togglePage(page) {
   document.getElementById(page).classList.toggle("hidden-overlay");
 }
@@ -83,7 +81,7 @@ document.getElementById("hard-btn").addEventListener("click", function () {
   startGame();
 });
 
-//onclick difficulty (event listener)
+//Called onclick difficulty
 function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
@@ -98,10 +96,6 @@ function startGame() {
   goToNextQuestion();
 }
 
-function playAgain() {
-  togglePage("score-page");
-  togglePage("landing-page");
-}
 ///////////////////////////////FIREBASE FUNCTIONS////////////////////////////////////
 
 //toggle landing page after Play Again button is clicked
