@@ -39,8 +39,6 @@ let currentDifficulty = "";
 let questionCounter = 0;
 let correctAnswers = 0;
 let correctAnswerString = "";
-let scoreGif = [];
-let scoreText = [];
 let randomizedAnswersArray = [];
 let userAnswerIndex; // index of the answer the user selected
 let videoPlayed = false;
