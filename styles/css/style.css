@@ -188,8 +188,14 @@ div.item4 {
   grid-template-areas: "answer1 answer2" "answer3 answer4";
   grid-gap: 2vh 4vh;
   max-height: 40vh;
+<<<<<<< Updated upstream
   overflow: scroll;
   justify-content: center;
+=======
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+>>>>>>> Stashed changes
 }
 
 @media screen and (max-width: 481px) {

@@ -149,7 +149,6 @@ div.item2{
     "answer3 answer4";
   grid-gap: 2vh 4vh;
   max-height: 40vh;
-  overflow: scroll;
   justify-content: center; 
   @media screen and (max-width: 481px) {
     grid-template-areas:
