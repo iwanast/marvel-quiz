@@ -361,8 +361,8 @@ function finishGame() {
 
 //toggle landing page after Play Again button is clicked
 document.getElementById("play-again-button").onclick = function () {
-  togglePage("landing-page");
   togglePage("score-page");
+  startGame();
 };
 
 function saveAvgDataToFirebase() {
