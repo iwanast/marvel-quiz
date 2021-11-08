@@ -107,7 +107,10 @@ function playAgain() {
   togglePage("landing-page");
 }
 ///////////////////////////////FIREBASE FUNCTIONS////////////////////////////////////
-retrieveQuestionDataFromFirebase();
+
+//toggle landing page after Play Again button is clicked
+document.getElementById("bodyId").onload = retrieveQuestionDataFromFirebase();
+
 //run onload
 async function retrieveQuestionDataFromFirebase() {
   let easyQuestionsData = await retrieveQuestionDocs("easy");
