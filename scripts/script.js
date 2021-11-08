@@ -9,8 +9,6 @@ import {
   getDocs,
 } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
 
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 // Import Firebase configuration settings
 const firebaseConfig = {
   apiKey: "AIzaSyBAjhZsNJ7urNqtWrUTam_f8_qiVdO3lhc",
