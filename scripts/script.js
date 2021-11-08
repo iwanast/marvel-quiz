@@ -63,11 +63,6 @@ video.addEventListener(
   false
 );
 
-//Onclick difficulty and onclick try again from end page
-function togglePage(page) {
-  document.getElementById(page).classList.toggle("hidden-overlay");
-}
-
 setTimeout(function () {
   document.querySelector(".landing-btn-div").style.pointerEvents = "auto";
   document.querySelector(".landing-btn-div--alternate").style.pointerEvents =
@@ -91,7 +86,7 @@ document.getElementById("hard-btn").addEventListener("click", function () {
 function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
-  togglePage("landing-page");
+  toggleClass("landing-page", "hidden-overlay");
   if (videoPlayed == true) {
     //Pause the video
     video.pause();
@@ -103,8 +98,8 @@ function startGame() {
 }
 
 function playAgain() {
-  togglePage("score-page");
-  togglePage("landing-page");
+  toggleClass("score-page", "hidden-overlay");
+  toggleClass("landing-page", "hidden-overlay");
 }
 ///////////////////////////////FIREBASE FUNCTIONS////////////////////////////////////
 retrieveQuestionDataFromFirebase();
@@ -363,13 +358,13 @@ function finishGame() {
   //DISPLAY user score and play again button in innerHTML
   //RUN calculateAverage()
   //RUN showScorePageObjectsBasedOnScore()
-  togglePage("score-page")
+  toggleClass("score-page", "hidden-overlay")
   displayScoreExtras(currentDifficulty, correctAnswers)
 }
 
 //toggle landing page after Play Again button is clicked
 document.getElementById("play-again-button").onclick = function () {
-  togglePage("score-page");
+  toggleClass("score-page", "hidden-overlay");
   startGame();
 };
 
