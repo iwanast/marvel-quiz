@@ -113,10 +113,13 @@ video {
   background-color: $black;
 }
 
-#skip-intro-button {
+#skip-intro-btn {
   background-color: transparent;
   border: none;
   color: darkgray;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 .fade-in {

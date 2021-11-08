@@ -84,7 +84,7 @@ function pauseVideo() {
   //Pause the video
   video.pause();
   //Set play time to the last frame
-  video.currentTime = video.duration;
+  video.currentTime = video.duration - 1;
   //Set variable to tell page video has been played
   videoPlayed = true;
 }
@@ -95,12 +95,15 @@ document.getElementById("skip-intro-btn").addEventListener("click", function () 
 });
 
 function skipIntro() {
-  pauseVideo;
+  pauseVideo();
   //Make buttons clickable
   document.querySelector(".landing-btn-div").style.pointerEvents = "auto";
   document.querySelector(".landing-btn-div--alternate").style.pointerEvents = "auto";
   //Show buttons
-  document.querySelector(".fade-in").style.opacity = "1";
+  document.querySelectorAll('.fade-in')[0].style.opacity = "1";
+  document.querySelectorAll('.fade-in')[1].style.opacity = "1";
+  //Remove skip video button
+  document.getElementById("skip-intro-btn").style.display = "none";
 }
 
 //Called onclick difficulty
