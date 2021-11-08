@@ -43,6 +43,25 @@ let scoreGif = [];
 let scoreText = [];
 let randomizedAnswersArray = [];
 let userAnswerIndex; // index of the answer the user selected
+let videoPlayed = false;
+
+//Pause landing page video as static image on last frame
+// select the video element
+let video = document.querySelector(".video");
+
+//Listen for the event that fires when your video has finished playing
+video.addEventListener(
+  "ended",
+  function () {
+    //Pause the video
+    this.pause();
+    //Set play time to the last frame
+    this.currentTime = this.duration;
+    //Set variable that indicated video has been played
+    videoPlayed = true;
+  },
+  false
+);
 
 //Onclick difficulty and onclick try again from end page
 function togglePage(page) {
@@ -73,6 +92,12 @@ function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
   togglePage("landing-page");
+  if (videoPlayed == true) {
+    //Pause the video
+    video.pause();
+    //Set play time to the last frame
+    video.currentTime = video.duration;
+  }
   document.getElementById("next-button").innerHTML = "next";
   goToNextQuestion();
 }
@@ -340,8 +365,8 @@ function finishGame() {
 
 //toggle landing page after Play Again button is clicked
 document.getElementById("play-again-button").onclick = function () {
-  togglePage("landing-page");
   togglePage("score-page");
+  startGame();
 };
 
 function saveAvgDataToFirebase() {
@@ -502,22 +527,6 @@ document.getElementById("gif-source").src = gifLink;
 document.getElementById("gif-txt").innerHTML = gifText;                                      
 
 }
-
-//Pause landing page video as static image on last frame
-// select the video element
-let video = document.querySelector(".video");
-
-//Listen for the event that fires when your video has finished playing
-video.addEventListener(
-  "ended",
-  function () {
-    //Pause the video
-    this.pause();
-    //Set play time to the last frame
-    this.currentTime = this.duration;
-  },
-  false
-);
 
 //data structure
 /*let easy = [

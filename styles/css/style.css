@@ -53,7 +53,12 @@
   display: -ms-grid;
   display: grid;
   height: 100vh;
-      grid-template-areas: "header header title title title title" "question question question picture picture picture" "answers answers answers picture picture picture" "answers answers answers picture picture picture" ". . . . button ." "footer footer footer footer footer footer";
+      grid-template-areas: "header header title title title title"
+ "question question question picture picture picture"
+ "answers answers answers picture picture picture"
+ "answers answers answers picture picture picture"
+ ". . . . button ."
+ "footer footer footer footer footer footer";
   -ms-grid-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
       grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
   grid-row-gap: 2vh;
@@ -61,7 +66,12 @@
 
 @media screen and (max-width: 481px) {
   .grid-container {
-        grid-template-areas: "header header header header" "picture picture picture picture" "question question question question" ". answers . ." ". button . ." "title title title footer";
+        grid-template-areas: "header header header header"
+ "picture picture picture picture"
+ "question question question question"
+ ". answers . ."
+ ". button . ."
+ "title title title footer";
     -ms-grid-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
         grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
   }
@@ -223,9 +233,13 @@ div.item4 {
 .grid-sub-container {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "answer1 answer2" "answer3 answer4";
+      grid-template-areas: "answer1 answer2"
+ "answer3 answer4";
   grid-gap: 2vh 4vh;
   max-height: 40vh;
+
+  overflow: scroll;
+
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -233,7 +247,10 @@ div.item4 {
 
 @media screen and (max-width: 481px) {
   .grid-sub-container {
-        grid-template-areas: "answer1" "answer2" "answer3" "answer4";
+        grid-template-areas: "answer1"
+ "answer2"
+ "answer3"
+ "answer4";
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
@@ -568,7 +585,9 @@ video {
   font-size: 40px;
 }
 
-#score-page #full-wrapper #wrapper-right #avg-score-wrapper #play-again-button {
+
+#score-page #full-wrapper #wrapper-right #avg-score-wrapper button {
+
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
