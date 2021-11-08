@@ -28,12 +28,14 @@
   height: 100vh;
   grid-template-areas: "title title title title title title" "question question question picture picture picture" "answers answers answers picture picture picture" "answers answers answers picture picture picture" ". . . . button ." "header header header header header header";
   grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
+  grid-template-columns: 20vw 20vw 10vw 10vw 20vw 20vw;
   grid-row-gap: 2vh;
 }
 @media screen and (max-width: 481px) {
   .grid-container {
-    grid-template-areas: "title title title title" "picture picture picture picture" "question question question question" ". answers . ." ". button . ." "header header header header";
+    grid-template-areas: "title title title title" "picture picture picture picture" "question question question question" ". answers answers ." ". button button ." "header header header header";
     grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
+    grid-template-columns: 10vw 40vw 40vw 10vw;
   }
 }
 .grid-container button {
