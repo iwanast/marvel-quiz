@@ -379,15 +379,22 @@ function calculateAvg() {
     console.log("No difficulty set");
   }
   saveAvgDataToFirebase();
-  document.getElementById(INSERTID).innerHTML = avg;
+  populateScores();
+}
+
+function populateScores() {
+  document.getElementById("display-score").innerHTML = `${correctAnswers}/10`;      
+  document.getElementById("display-avg-score").innerHTML = `${avg}/10`;                                      
+                                
 }
 
 function finishGame() {
   //DISPLAY user score and play again button in innerHTML
   //RUN calculateAverage()
   //RUN showScorePageObjectsBasedOnScore()
-  toggleClass("score-page", "hidden-overlay")
-  displayScoreExtras(currentDifficulty, correctAnswers)
+  toggleClass("score-page", "hidden-overlay");
+  displayScoreExtras(currentDifficulty, correctAnswers);
+  calculateAverage();
 }
 
 //toggle landing page after Play Again button is clicked
