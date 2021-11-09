@@ -35,7 +35,6 @@ let hardAvg = {
   scores: 0,
   users: 0,
 };
-console.log("1 When declared globally " + easyAvg.scores)
 let currentDifficulty = "";
 let questionCounter = 0;
 let correctAnswers = 0;
@@ -142,7 +141,6 @@ async function retrieveQuestionDataFromFirebase() {
 
 async function retrieveAvgDataFromFirebase() {
   let easyAvgData = await retrieveAvgDocs("easy");
-  console.log("retrieveAvgData " + easyAvgData);
   let hardAvgData = await retrieveAvgDocs("hard");
 
   populateAvgVariables(easyAvgData, hardAvgData);
@@ -192,14 +190,11 @@ function populateHardQuestionsArray(db) {
 
 //Populate the avg global variables with data from firebase
 function populateAvgVariables(easyDb, hardDb) {
-  console.log("Running populateAvgVariables");
   easyDb.forEach((doc) => {
-    console.log("doc.data().scores " + doc.data().scores);
     easyAvg = {
       scores: doc.data().scores,
       users: doc.data().users,
     };
-    console.log("easyAvg populateAvgVariables" + easyAvg.scores);
   });
 
   hardDb.forEach((doc) => {
@@ -371,7 +366,6 @@ function calculateAvg() {
   let avg = 0;
   if (currentDifficulty == "easy") {
     easyAvg.scores = easyAvg.scores + correctAnswers;
-    console.log("calculateAvg adding correct " + easyAvg.scores);
     easyAvg.users++;
     avg = easyAvg.scores / easyAvg.users;
   } else if (currentDifficulty == "hard") {
@@ -408,7 +402,6 @@ function saveAvgDataToFirebase() {
       scores: easyAvg.scores,
       users: easyAvg.users,
     });
-    console.log("saveAvgDataToFirebase saving score "+ easyAvg.scores);
   } else if (currentDifficulty == "hard") {
     setDoc(doc(db, "hard-avg", "havg"), {
       scores: hardAvg.scores,
