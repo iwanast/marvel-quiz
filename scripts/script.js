@@ -203,13 +203,6 @@ function populateAvgVariables(easyDb, hardDb) {
   });
 }
 
-//To check the arrays and objects are being populated properly - remove later
-function consoleLogs() {
-  // console.log(easyQuestionsArray);
-  // console.log(hardQuestionsArray);
-  // console.log(easyAvg);
-  // console.log(hardAvg);
-}
 ////////////////////////////////QUIZ FUNCTIONS///////////////////////////////////////
 function shuffleArray(array) {
   //SHUFFLE question array matching difficulty
@@ -360,9 +353,12 @@ function hightlightAndCountingAnswer() {
     let backgrSize = `12px, 100%`;
     document.getElementById(`answer${userAnswerIndex + 1}`).style.background = backgrRed;
     document.getElementById(`answer${userAnswerIndex + 1}`).style.backgroundSize = backgrSize;   
-    correctAnswers--; //Do we want to reduce their score if they choose incorrectly?
+    correctAnswers--;
   }
 }
+
+////////////////////////////////SCORE PAGE///////////////////////////////////////
+
 //PULLED BY SCORE PAGE//
 function calculateAvg() {
   retrieveAvgDataFromFirebase();
