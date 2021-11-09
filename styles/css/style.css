@@ -159,7 +159,7 @@ div.item4 {
 
 #header, #title {
   font-size: 3em;
-  font-family: palooka-bb;
+  font-family: palooka-bb, "Dekko", sans serif;
   text-shadow: -6px 6px #000000;
 }
 
@@ -487,6 +487,15 @@ video {
   }
 }
 
+@media screen and (max-width: 481px) {
+  #landing-page #landing-btn-wrapper button {
+    font-size: 14px;
+  }
+  #landing-page #title-wrapper h1 {
+    font-size: 50px;
+  }
+}
+
 @font-face {
   font-family: 'palooka-bb';
   src: url("../../fonts/palooka/webkit/palooka-bb.eot");
@@ -705,7 +714,7 @@ video {
 * h1 {
   color: #ffffff;
   text-align: center;
-  font-family: palooka-bb;
+  font-family: palooka-bb, "Dekko", sans serif;
   font-size: 70px;
   text-shadow: -6px 6px #000000;
 }
