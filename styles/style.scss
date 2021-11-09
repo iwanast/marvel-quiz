@@ -5,17 +5,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: monospace;
+  font-family: digitalstrip;
+  font-size: 18px;
   p {
     color: $white;
-    font-size: 14px;
   }
   h1 {
     color: $white;
     text-align: center;
-    font-family: "Dekko", cursive;
-    font-size: 2rem;
-    text-shadow: -3px 3px $black;
+    font-family: $palooka;
+    font-size: 70px;
+    text-shadow: -6px 6px $black;
   }
   h2 {
     color: $white;

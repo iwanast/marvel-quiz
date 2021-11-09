@@ -10,3 +10,31 @@ $green: #1d4c19;
 $btn-yellow: #ffcd28;
 $btn-light-yellow: #fffda0;
 $btn-blue: #ADD8E6;
+
+@font-face {
+    font-family: 'palooka-bb';
+    src: url('../../fonts/palooka/webkit/palooka-bb.eot'); /* IE9 Compat Modes */
+    src: url('../../fonts/palooka/webkit/palooka-bb.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../../fonts/palooka/webkit/palooka-bb.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../../fonts/palooka/webkit/palooka-bb.woff') format('woff'), /* Pretty Modern Browsers */
+         url('../../fonts/palooka/webkit/palooka-bb.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../../fonts/palooka/webkit/palooka-bb.svg#palooka-bb') format('svg'); /* Legacy iOS */
+    font-weight: normal;
+    font-style: normal;
+}
+
+$palooka: palooka-bb;
+
+@font-face {
+    font-family: 'digitalstrip';
+    src: url('../../fonts/digitalstrip/webkit/digitalstrip.eot'); /* IE9 Compat Modes */
+    src: url('../../fonts/digitalstrip/webkit/digitalstrip.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../../fonts/digitalstrip/webkit/digitalstrip.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../../fonts/digitalstrip/webkit/digitalstrip.woff') format('woff'), /* Pretty Modern Browsers */
+         url('../../fonts/digitalstrip/webkit/digitalstrip.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../../fonts/digitalstrip/webkit/digitalstrip.svg#digitalstrip') format('svg'); /* Legacy iOS */
+    font-weight: normal;
+    font-style: normal;
+}
+
+$digitalstrip: digitalstrip;

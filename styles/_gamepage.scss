@@ -38,7 +38,7 @@
     border-radius: 25px;
     text-align: center;
     font-weight: 900;
-    font-family: "Dekko", cursive;
+    // font-family: "Dekko", cursive;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     font-weight: 700;
@@ -79,6 +79,8 @@ div.item2{
 }
 #header, #title{
   font-size: 3em;
+  font-family: $palooka;
+  text-shadow: -6px 6px $black;
   @media screen and (max-width: 481px) {
     font-size: 1.4em;
   } 
@@ -106,7 +108,7 @@ div.item2{
   }
 }
 #question{
-  font-family: "Dekko", cursive;
+  // font-family: "Dekko", cursive;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: 700;
@@ -160,7 +162,7 @@ div.item2{
     height: 6vh;
     border-radius: 25px;
     text-align: center;
-    font-family: "Dekko", cursive;
+    // font-family: "Dekko", cursive;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     font-weight: 700;
