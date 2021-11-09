@@ -41,7 +41,7 @@
 
   #wrapper-left {
 
-  #gif-IMG {
+  #gif-img {
     margin-left: 50px;
     margin-top: 25px;
     height: 400px;
@@ -54,7 +54,7 @@
     
   }
 
-  #gif-Text {
+  #gif-text {
     width: 500px;
     margin-left: 50px;
     margin-top: 50px;
@@ -78,12 +78,12 @@
       flex-direction: column;
       align-items: center;
       
-    #score-Title {
+    #score-title {
     font-size: 40px;
     margin-top: 30%;
     }
 
-    #display-Score {
+    #display-score {
       margin-top: 20%;
       font-size: 40px;
     }}
@@ -94,13 +94,13 @@
       flex-direction: column;
       align-items: center;
 
-    #avg-score-Title {
+    #avg-score-title {
       font-size: 40px;
       margin-top: 30%;
       
     }
 
-    #display-AvgScore {
+    #display-avg-score {
       text-align: center;
       margin-top: 20%;
       font-size: 40px;
