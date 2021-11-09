@@ -367,7 +367,7 @@ function calculateAvg() {
   if (currentDifficulty == "easy") {
     easyAvg.scores = easyAvg.scores + correctAnswers;
     easyAvg.users++;
-    avg = easyAvg.scores / easyAvg.users;
+    avg = (easyAvg.scores / easyAvg.users).toFixed(1);
   } else if (currentDifficulty == "hard") {
     hardAvg.scores = hardAvg.scores + correctAnswers;
     hardAvg.users++;
