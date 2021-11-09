@@ -449,6 +449,11 @@ video {
   right: 10px;
 }
 
+#skip-intro-btn:hover {
+  cursor: pointer;
+  color: white;
+}
+
 .fade-in {
   opacity: 0;
   -webkit-animation-name: fadeIn;
