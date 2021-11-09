@@ -7,6 +7,7 @@ import {
   doc,
   deleteDoc,
   getDocs,
+  setDoc,
 } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
 
 // Import Firebase configuration settings
@@ -105,6 +106,7 @@ function skipIntro() {
 function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
+  retrieveAvgDataFromFirebase();
   toggleClass("landing-page", "hidden-overlay");
   //Checks if video has been played and prevents it from playing again if it has
   if (videoPlayed == true) {
@@ -203,13 +205,6 @@ function populateAvgVariables(easyDb, hardDb) {
   });
 }
 
-//To check the arrays and objects are being populated properly - remove later
-function consoleLogs() {
-  // console.log(easyQuestionsArray);
-  // console.log(hardQuestionsArray);
-  // console.log(easyAvg);
-  // console.log(hardAvg);
-}
 ////////////////////////////////QUIZ FUNCTIONS///////////////////////////////////////
 function shuffleArray(array) {
   //SHUFFLE question array matching difficulty
@@ -360,34 +355,39 @@ function hightlightAndCountingAnswer() {
     let backgrSize = `12px, 100%`;
     document.getElementById(`answer${userAnswerIndex + 1}`).style.background = backgrRed;
     document.getElementById(`answer${userAnswerIndex + 1}`).style.backgroundSize = backgrSize;   
-    correctAnswers--; //Do we want to reduce their score if they choose incorrectly?
+    correctAnswers--;
   }
 }
+
+////////////////////////////////SCORE PAGE///////////////////////////////////////
+
 //PULLED BY SCORE PAGE//
 function calculateAvg() {
-  retrieveAvgDataFromFirebase();
   let avg = 0;
   if (currentDifficulty == "easy") {
     easyAvg.scores = easyAvg.scores + correctAnswers;
     easyAvg.users++;
-    avg = easyAvg.scores / easyAvg.users;
+    avg = (easyAvg.scores / easyAvg.users).toFixed(1);
   } else if (currentDifficulty == "hard") {
     hardAvg.scores = hardAvg.scores + correctAnswers;
     hardAvg.users++;
-    avg = hardAvg.scores / hardAvg.users;
+    avg = (hardAvg.scores / hardAvg.users).toFixed(1);
   } else {
     console.log("No difficulty set");
   }
+  displayScores(avg);
   saveAvgDataToFirebase();
-  document.getElementById(INSERTID).innerHTML = avg;
+}
+
+function displayScores(avg) {
+  document.getElementById("display-Score").innerHTML = correctAnswers + "/10";
+  document.getElementById("display-AvgScore").innerHTML = avg + " /10";
 }
 
 function finishGame() {
-  //DISPLAY user score and play again button in innerHTML
-  //RUN calculateAverage()
-  //RUN showScorePageObjectsBasedOnScore()
-  toggleClass("score-page", "hidden-overlay")
-  displayScoreExtras(currentDifficulty, correctAnswers)
+  toggleClass("score-page", "hidden-overlay");
+  displayScoreExtras(currentDifficulty, correctAnswers);
+  calculateAvg();
 }
 
 //toggle landing page after Play Again button is clicked
@@ -398,12 +398,12 @@ document.getElementById("play-again-button").onclick = function () {
 
 function saveAvgDataToFirebase() {
   if (currentDifficulty == "easy") {
-    setDoc(doc(db, "easy-avg", eavg), {
+    setDoc(doc(db, "easy-avg", "eavg"), {
       scores: easyAvg.scores,
       users: easyAvg.users,
     });
   } else if (currentDifficulty == "hard") {
-    setDoc(doc(db, "hard-avg", havg), {
+    setDoc(doc(db, "hard-avg", "havg"), {
       scores: hardAvg.scores,
       users: hardAvg.users,
     });
