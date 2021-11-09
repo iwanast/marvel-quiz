@@ -371,7 +371,7 @@ function calculateAvg() {
   } else if (currentDifficulty == "hard") {
     hardAvg.scores = hardAvg.scores + correctAnswers;
     hardAvg.users++;
-    avg = hardAvg.scores / hardAvg.users;
+    avg = (hardAvg.scores / hardAvg.users).toFixed(1);
   } else {
     console.log("No difficulty set");
   }
