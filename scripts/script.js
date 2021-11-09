@@ -56,11 +56,6 @@ video.addEventListener(
   false
 );
 
-//Called by onclick difficulty and onclick try again from end page
-function togglePage(page) {
-  document.getElementById(page).classList.toggle("hidden-overlay");
-}
-
 setTimeout(function () {
   document.querySelector(".landing-btn-div").style.pointerEvents = "auto";
   document.querySelector(".landing-btn-div--alternate").style.pointerEvents =
@@ -110,13 +105,22 @@ function skipIntro() {
 function startGame() {
   questionCounter = 0;
   correctAnswers = 0;
-  togglePage("landing-page");
+  toggleClass("landing-page", "hidden-overlay");
   //Checks if video has been played and prevents it from playing again if it has
   if (videoPlayed == true) {
     pauseVideo();
   }
   document.getElementById("next-button").innerHTML = "next";
   goToNextQuestion();
+}
+
+document.getElementById("play-again-button").onclick = function(){
+  playAgain();
+}
+
+function playAgain() {
+  toggleClass("score-page", "hidden-overlay");
+  toggleClass("landing-page", "hidden-overlay");
 }
 
 ///////////////////////////////FIREBASE FUNCTIONS////////////////////////////////////
@@ -222,14 +226,19 @@ function shuffleArray(array) {
   return array;
 }
 
+function toggleClass(theId, theClass){
+  document.getElementById(theId).classList.toggle(theClass);
+}
+
+// Set onclick on the next-button to trigger the next question or the finishGame-function
+document.getElementById("button-next").onclick = function() {
+  goToNextQuestion();
+}
+
 //called by startGame() and onclick next question button
 function goToNextQuestion() {
-  //Disable the next-button until an answer is clicked
-  putInOnclick("button-next", function (event) {
-    event.stopPropagation();
-    alert("Not shure which answer is correct? Trust the process.");
-  });
-
+  // hide the next-button until an answer is clicked
+  toggleClass("button-next", "hidden-class-button");
   //SET the answerbuttons onclick to a function again
   for (let j = 1; j <= 4; j++) {
     let funcBe = function () {
@@ -290,14 +299,15 @@ function answerButtonNotClickable() {
     putInOnclick(`answer${i}`, "");
   }
 }
+
 // Button for the answer 1
-document.getElementById("answer1").onclick = function () {
+document.getElementById("answer1").onclick = function() {
   userAnswerIndex = 0; // index of the answer
   hightlightAndCountingAnswer();
 };
 
 // Button for the answer 2
-document.getElementById("answer2").onclick = function () {
+document.getElementById("answer2").onclick = function() {
   userAnswerIndex = 1; // index of the answer
   hightlightAndCountingAnswer();
 };
@@ -326,19 +336,22 @@ function hightlightAndCountingAnswer() {
   //Disable the answers to be clickable
   answerButtonNotClickable();
   // Enable the next-button to work again
-  putInOnclick("button-next", function () {
-    goToNextQuestion();
-  });
-  // hightlight the correct answer green and adds 1 to correctAnswer
+  toggleClass("button-next", "hidden-class-button");
+  // hightlight the correct answer green and the rest white (so no hover anymore) and adds 1 to correctAnswer
   for (let i = 0; i < 4; i++) {
+    let backgrSize = `12px, 100%`;
     if (correctAnswerString == randomizedAnswersArray[i]) {
       let backgrGreen = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
       #35db35`;
-      let backgrSize = `12px, 100%`;
       document.getElementById(`answer${i + 1}`).style.background = backgrGreen;
       document.getElementById(`answer${i + 1}`).style.backgroundSize = backgrSize;   
 
       correctAnswers++;
+    } else {
+        let backgrWhite = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+        #ffffff`;
+        document.getElementById(`answer${i + 1}`).style.background = backgrWhite;
+        document.getElementById(`answer${i + 1}`).style.backgroundSize = backgrSize;
     }
   }
   // if the user clicked the wrong answer, it will become red and the variable correctAnswer will get -1
@@ -375,13 +388,13 @@ function finishGame() {
   //DISPLAY user score and play again button in innerHTML
   //RUN calculateAverage()
   //RUN showScorePageObjectsBasedOnScore()
-  togglePage("score-page")
+  toggleClass("score-page", "hidden-overlay")
   displayScoreExtras(currentDifficulty, correctAnswers)
 }
 
 //toggle landing page after Play Again button is clicked
 document.getElementById("play-again-button").onclick = function () {
-  togglePage("score-page");
+  toggleClass("score-page", "hidden-overlay");
   startGame();
 };
 
