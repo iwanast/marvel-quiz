@@ -136,99 +136,6 @@ function startGame() {
   goToNextQuestion();
 }
 
-
-///////////////////////////////FIREBASE FUNCTIONS////////////////////////////////////
-
-document.getElementById("bodyId").onload = retrieveQuestionDataFromFirebase();
-
-//Retrieve the questions/answers/imagesrc from Firebase
-async function retrieveQuestionDataFromFirebase() {
-  let easyQuestionsData = await retrieveQuestionDocs("easy");
-  let hardQuestionsData = await retrieveQuestionDocs("hard");
-  populateEasyQuestionsArray(easyQuestionsData);
-  populateHardQuestionsArray(hardQuestionsData);
-}
-
-async function retrieveAvgDataFromFirebase() {
-  let easyAvgData = await retrieveAvgDocs("easy");
-  let hardAvgData = await retrieveAvgDocs("hard");
-
-  populateAvgVariables(easyAvgData, hardAvgData);
-}
-
-//Retrieve each of the difficulty databases
-async function retrieveQuestionDocs(diff) {
-  let coll = diff + "-questions";
-  const questions = await getDocs(collection(db, coll));
-  return questions;
-}
-
-//Retrieve each of the avg databases
-async function retrieveAvgDocs(diff) {
-  let coll = diff + "-avg";
-  const avg = await getDocs(collection(db, coll));
-  return avg;
-}
-
-//Insert each of the docs into the easyQuestionsArray
-function populateEasyQuestionsArray(db) {
-  let i = 0;
-  db.forEach((doc) => {
-    let question = {
-      question: doc.data().question,
-      image: doc.data().image,
-      answers: doc.data().answers,
-    };
-    easyQuestionsArray[i] = question;
-    i++;
-  });
-}
-
-//Insert each of the docs into the hardQuestionsArray
-function populateHardQuestionsArray(db) {
-  let i = 0;
-  db.forEach((doc) => {
-    let question = {
-      question: doc.data().question,
-      image: doc.data().image,
-      answers: doc.data().answers,
-    };
-    hardQuestionsArray[i] = question;
-    i++;
-  });
-}
-
-//Populate the avg global variables with data from firebase
-function populateAvgVariables(easyDb, hardDb) {
-  easyDb.forEach((doc) => {
-    easyAvg = {
-      scores: doc.data().scores,
-      users: doc.data().users,
-    };
-  });
-
-  hardDb.forEach((doc) => {
-    hardAvg = {
-      scores: doc.data().scores,
-      users: doc.data().users,
-    };
-  });
-}
-
-function saveAvgDataToFirebase() {
-  if (currentDifficulty == "easy") {
-    setDoc(doc(db, "easy-avg", "eavg"), {
-      scores: easyAvg.scores,
-      users: easyAvg.users,
-    });
-  } else if (currentDifficulty == "hard") {
-    setDoc(doc(db, "hard-avg", "havg"), {
-      scores: hardAvg.scores,
-      users: hardAvg.users,
-    });
-  }
-}
-
 ////////////////////////////////////GAME PAGE//////////////////////////////////////////
 
 // Set onclick on the next-button to trigger the next question or the finishGame-function
@@ -288,14 +195,10 @@ function showNewQuestion(){
 
 // shuffles the array of answers and putting it in the randomizedAnswersArray
 function randomizeAnswers(array) {
-  let newArray = [];
   for (var a of array){
-    newArray.push(a);
+    randomizedAnswersArray.push(a);;
   }
-  shuffleArray(newArray);
-  for (var i of newArray) {
-    randomizedAnswersArray.push(i);
-  }
+  shuffleArray(randomizedAnswersArray);
 }
 
 function answerButtonNotClickable() {
@@ -529,4 +432,97 @@ function displayScoreExtras(currentDifficulty, correctAnswers) {
 document.getElementById("play-again-button").onclick = function(){
   toggleClass("score-page", "hidden-overlay");
   toggleClass("landing-page", "hidden-overlay");
+}
+
+
+///////////////////////////////FIREBASE FUNCTIONS////////////////////////////////////
+
+document.getElementById("bodyId").onload = retrieveQuestionDataFromFirebase();
+
+//Retrieve the questions/answers/imagesrc from Firebase
+async function retrieveQuestionDataFromFirebase() {
+  let easyQuestionsData = await retrieveQuestionDocs("easy");
+  let hardQuestionsData = await retrieveQuestionDocs("hard");
+  populateEasyQuestionsArray(easyQuestionsData);
+  populateHardQuestionsArray(hardQuestionsData);
+}
+
+async function retrieveAvgDataFromFirebase() {
+  let easyAvgData = await retrieveAvgDocs("easy");
+  let hardAvgData = await retrieveAvgDocs("hard");
+
+  populateAvgVariables(easyAvgData, hardAvgData);
+}
+
+//Retrieve each of the difficulty databases
+async function retrieveQuestionDocs(diff) {
+  let coll = diff + "-questions";
+  const questions = await getDocs(collection(db, coll));
+  return questions;
+}
+
+//Retrieve each of the avg databases
+async function retrieveAvgDocs(diff) {
+  let coll = diff + "-avg";
+  const avg = await getDocs(collection(db, coll));
+  return avg;
+}
+
+//Insert each of the docs into the easyQuestionsArray
+function populateEasyQuestionsArray(db) {
+  let i = 0;
+  db.forEach((doc) => {
+    let question = {
+      question: doc.data().question,
+      image: doc.data().image,
+      answers: doc.data().answers,
+    };
+    easyQuestionsArray[i] = question;
+    i++;
+  });
+}
+
+//Insert each of the docs into the hardQuestionsArray
+function populateHardQuestionsArray(db) {
+  let i = 0;
+  db.forEach((doc) => {
+    let question = {
+      question: doc.data().question,
+      image: doc.data().image,
+      answers: doc.data().answers,
+    };
+    hardQuestionsArray[i] = question;
+    i++;
+  });
+}
+
+//Populate the avg global variables with data from firebase
+function populateAvgVariables(easyDb, hardDb) {
+  easyDb.forEach((doc) => {
+    easyAvg = {
+      scores: doc.data().scores,
+      users: doc.data().users,
+    };
+  });
+
+  hardDb.forEach((doc) => {
+    hardAvg = {
+      scores: doc.data().scores,
+      users: doc.data().users,
+    };
+  });
+}
+
+function saveAvgDataToFirebase() {
+  if (currentDifficulty == "easy") {
+    setDoc(doc(db, "easy-avg", "eavg"), {
+      scores: easyAvg.scores,
+      users: easyAvg.users,
+    });
+  } else if (currentDifficulty == "hard") {
+    setDoc(doc(db, "hard-avg", "havg"), {
+      scores: hardAvg.scores,
+      users: hardAvg.users,
+    });
+  }
 }

@@ -175,6 +175,7 @@ div.item4 {
 @media screen and (max-width: 481px) {
   #question {
     margin: 0 10px;
+    font-size: 14px;
   }
 }
 
@@ -578,6 +579,11 @@ video {
   box-sizing: border-box;
   font-family: digitalstrip;
   font-size: 18px;
+}
+@media screen and (max-width: 481px) {
+  * {
+    font-size: 14px;
+  }
 }
 * p {
   color: #ffffff;
