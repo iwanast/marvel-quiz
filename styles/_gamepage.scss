@@ -1,7 +1,7 @@
 @import "variables";
 
 // Grid for the game-page
-.item1 { grid-area: header; }
+.item1 { grid-area: footer; }
 .item2 { grid-area: title; }
 .item3 { grid-area: picture; }
 .item4 { grid-area: question; }
@@ -18,7 +18,7 @@
     "answers answers answers picture picture picture"
     "answers answers answers picture picture picture"
     ". . . . button ."
-    "header header header header header header";
+    "footer footer footer footer footer footer";
   grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
   grid-template-columns: 20vw 20vw 10vw 10vw 20vw 20vw;
   grid-row-gap: 2vh;
@@ -29,7 +29,7 @@
       "question question question question"
       ". answers answers ."
       ". button button ."
-      "header header header header";
+      "footer footer footer footer";
     grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
     grid-template-columns: 10vw 40vw 40vw 10vw;
   }
@@ -38,7 +38,6 @@
     border-radius: 25px;
     text-align: center;
     font-weight: 900;
-    // font-family: "Dekko", cursive;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     font-weight: 700;
@@ -77,7 +76,7 @@ div.item2{
   background-color: $marvelred;
   color: $marvelwhite;
 }
-#header, #title{
+#footer, #title{
   font-size: 3em;
   font-family: $palooka;
   text-shadow: -6px 6px $black;
@@ -93,7 +92,7 @@ div.item2{
     }
   }
 }
-#header{
+#footer{
   padding: 0; 
 }
 #picture{
@@ -108,7 +107,6 @@ div.item2{
   }
 }
 #question{
-  // font-family: "Dekko", cursive;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: 700;
