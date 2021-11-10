@@ -41,6 +41,8 @@ let randomizedAnswersArray = []; // in here we store the randomized answers for 
 let userAnswerIndex; // index of the answer the user selected from 0 till 3
 let videoPlayed = false;
 let video = document.querySelector(".video");
+const answerButtons = document.getElementsByClassName("answer-buttons");
+const backgrSize = `12px, 100%`;
 
 ////////////////////////////////////GLOBAL FUNCTIONS///////////////////////////////////////
 
@@ -139,22 +141,19 @@ function startGame() {
 ////////////////////////////////////GAME PAGE//////////////////////////////////////////
 
 // Set onclick on the next-button to trigger the next question or the finishGame-function
-document.getElementById("button-next").onclick = function() {
+document.getElementById("button-next").onclick = function(event) {
   goToNextQuestion();
+  event.stopPropagation();
 }
 
 function goToNextQuestion() {
   toggleClass("button-next", "hidden-class-button"); // hide the next-button until an answer is clicked
   
-  //SET the answerbuttons onclick to a function again
-  for (let j = 1; j <= 4; j++) {
-    let funcBe = function() {
-      userAnswerIndex = j - 1;
-      hightlightAndCountingAnswer();
-    };
-    putInOnclick(`answer${j}`, funcBe);
+  // //Set the answerbuttons onclick to a function again
+  for (let i = 0; i < answerButtons.length; i++) {
+    answerButtons[i].addEventListener("click", whenClickedOnAnswer); 
   }
-
+  
   // Set the background-color of the buttons to none again
   for (let i = 1; i <= 4; i++) {
     document.getElementById(`answer${i}`).style.background = "";
@@ -170,6 +169,7 @@ function goToNextQuestion() {
     showNewQuestion();
   } else if (questionCounter == 10) {
     finishGame();
+    toggleClass("button-next", "hidden-class-button");
     return;
   }
   questionCounter++;
@@ -202,34 +202,16 @@ function randomizeAnswers(array) {
 }
 
 function answerButtonNotClickable() {
-  for (let i = 1; i <= 4; i++) {
-    putInOnclick(`answer${i}`, "");
+  for (let i = 0; i < answerButtons.length; i++) {
+    answerButtons[i].removeEventListener("click", whenClickedOnAnswer); 
   }
 }
 
-// Button for the answer 1
-document.getElementById("answer1").onclick = function() {
-  userAnswerIndex = 0; // index of the answer
+function whenClickedOnAnswer(event) {
+  userAnswerIndex = parseInt(event.target.getAttribute("data-userAnswerIndex")); // index of the answer
   hightlightAndCountingAnswer();
-};
-
-// Button for the answer 2
-document.getElementById("answer2").onclick = function() {
-  userAnswerIndex = 1; // index of the answer
-  hightlightAndCountingAnswer();
-};
-
-// Button for the answer 3
-document.getElementById("answer3").onclick = function () {
-  userAnswerIndex = 2; // index of the answer
-  hightlightAndCountingAnswer();
-};
-
-// Button for the answer 4
-document.getElementById("answer4").onclick = function () {
-  userAnswerIndex = 3; // index of the answer
-  hightlightAndCountingAnswer();
-};
+  event.stopPropagation();
+}
 
 // this function is hightlighting the correct answer green and
 // if the user clicked wrong, the wrong one red
@@ -240,7 +222,6 @@ function hightlightAndCountingAnswer() {
 
   // hightlight the correct answer green and the rest white (so no hover anymore) and adds 1 to correctAnswer
   for (let i = 0; i < 4; i++) {
-    let backgrSize = `12px, 100%`;
     if (correctAnswerString == randomizedAnswersArray[i]) {
       let backgrGreen = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
       #35db35`;
@@ -258,7 +239,6 @@ function hightlightAndCountingAnswer() {
   if (correctAnswerString != randomizedAnswersArray[userAnswerIndex]) {
     let backgrRed = `url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
     #ed1d23`;
-    let backgrSize = `12px, 100%`;
     document.getElementById(`answer${userAnswerIndex + 1}`).style.background = backgrRed;
     document.getElementById(`answer${userAnswerIndex + 1}`).style.backgroundSize = backgrSize;   
     correctAnswers--;
