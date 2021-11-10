@@ -42,7 +42,7 @@
   -ms-grid-row: 6;
   -ms-grid-column: 1;
   -ms-grid-column-span: 6;
-  grid-area: header;
+  grid-area: footer;
 }
 
 .item2 {
@@ -86,7 +86,7 @@
   display: -ms-grid;
   display: grid;
   height: 100vh;
-      grid-template-areas: "title title title title title title" "question question question picture picture picture" "answers answers answers picture picture picture" "answers answers answers picture picture picture" ". . . . button ." "header header header header header header";
+      grid-template-areas: "title title title title title title" "question question question picture picture picture" "answers answers answers picture picture picture" "answers answers answers picture picture picture" ". . . . button ." "footer footer footer footer footer footer";
   -ms-grid-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
       grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
   -ms-grid-columns: 20vw 20vw 10vw 10vw 20vw 20vw;
@@ -96,7 +96,7 @@
 
 @media screen and (max-width: 481px) {
   .grid-container {
-        grid-template-areas: "title title title title" "picture picture picture picture" "question question question question" ". answers answers ." ". button button ." "header header header header";
+        grid-template-areas: "title title title title" "picture picture picture picture" "question question question question" ". answers answers ." ". button button ." "footer footer footer footer";
     -ms-grid-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
         grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
     -ms-grid-columns: 10vw 40vw 40vw 10vw;
@@ -157,31 +157,31 @@ div.item4 {
   color: white;
 }
 
-#header, #title {
+#footer, #title {
   font-size: 3em;
   font-family: palooka-bb, "Dekko", sans serif;
   text-shadow: -6px 6px #000000;
 }
 
 @media screen and (max-width: 481px) {
-  #header, #title {
+  #footer, #title {
     font-size: 1.4em;
   }
 }
 
-#header #logo, #title #logo {
+#footer #logo, #title #logo {
   height: 12vh;
   margin: 1vh 0;
 }
 
 @media screen and (max-width: 481px) {
-  #header #logo, #title #logo {
+  #footer #logo, #title #logo {
     height: 6vh;
     margin: 1vh 0;
   }
 }
 
-#header {
+#footer {
   padding: 0;
 }
 
