@@ -281,13 +281,18 @@ function insertHTML(htmlId, htmlValue) {
   document.getElementById(`${htmlId}`).innerHTML = htmlValue;
 }
 
-// shuffles the array of answers and putting it in the randomizedAnssersArray
+// shuffles the array of answers and putting it in the randomizedAnswersArray
 function randomizeAnswers(array) {
-  array = shuffleArray(array);
-  for (var i of array) {
+  let newArray = [];
+  for (var a of array){
+    newArray.push(a);
+  }
+  shuffleArray(newArray);
+  for (var i of newArray) {
     randomizedAnswersArray.push(i);
   }
 }
+
 function answerButtonNotClickable() {
   for (let i = 1; i <= 4; i++) {
     putInOnclick(`answer${i}`, "");
