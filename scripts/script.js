@@ -439,31 +439,31 @@ let displayHardGif = [
 ];
 
 let displayEasyGifText = [
-  "easy 10 score",
-  "easy 9 score",
-  "easy 8 score",
-  "easy 7 score",
-  "easy 6 score",
-  "easy 5 score",
-  "easy 4 score",
-  "easy 3 score",
-  "easy 2 score",
-  "easy 1 score",
-  "easy 0 score",
+  "Puny god...",
+  "You just peed in the suit...",
+  "What a bunch of A-holes.",
+  "I think it's gratuitous, but whatever.",
+  "Reality is often disappointing.",
+  "Boom. You looking for this?",
+  "You know, they told me you people were conceited douchebags, but that isn't true at all!",
+  "I got something kind of big, but I can't hold it for long!",
+  "You don't get to make that choice for me.",
+  "You guys know I can move things with my mind, right?",
+  "Higher, further, faster baby."
 ];
 
 let displayHardGifText = [
-  "hard 10 score",
-  "hard 9 score",
-  "hard 8 score",
-  "hard 7 score",
-  "hard 6 score",
-  "hard 5 score",
-  "hard 4 score",
-  "hard 3 score",
-  "hard 2 score",
-  "hard 1 score",
-  "hard 0 score",
+  "Whose kitty litter did I just shit in?",
+  "You're unworthy of your title. I cast you out!",
+  "If you throw one more moon at me, I'm gonna lose it!",
+  "Do you guys put the word quantum in front of everything?",
+  "Forget everything you think you know.",
+  "Just because something works, doesn't mean it can't be improved.",
+  "Kill mode, activate!",
+  "I can do this all day!",
+  "Do I look to be in a gaming mood?!",
+  "I love you 3000.",
+  "This does put a smile on my face."
 ];
 
 function displayScoreExtras(currentDifficulty, correctAnswers) {
