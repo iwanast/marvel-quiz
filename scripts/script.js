@@ -447,9 +447,16 @@ async function retrieveQuestionDataFromFirebase() {
   populateHardQuestionsArray(hardQuestionsData);
 }
 
+//Retrieve each of the difficulty databases
+async function retrieveQuestionDocs(diff) {
+  let coll = diff + "-questions";
+  const questions = await getDocs(collection(db, coll));
+  return questions;
+}
+
 //Insert each of the docs into the easyQuestionsArray
-function populateEasyQuestionsArray(db) {
-  db.forEach((doc) => {
+function populateEasyQuestionsArray(collData) {
+  collData.forEach((doc) => {
     let question = {
       question: doc.data().question,
       image: doc.data().image,
@@ -460,8 +467,8 @@ function populateEasyQuestionsArray(db) {
 }
 
 //Insert each of the docs into the hardQuestionsArray
-function populateHardQuestionsArray(db) {
-  db.forEach((doc) => {
+function populateHardQuestionsArray(collData) {
+  collData.forEach((doc) => {
     let question = {
       question: doc.data().question,
       image: doc.data().image,
@@ -478,12 +485,7 @@ async function retrieveAvgDataFromFirebase() {
   populateAvgVariables(easyAvgData, hardAvgData);
 }
 
-//Retrieve each of the difficulty databases
-async function retrieveQuestionDocs(diff) {
-  let coll = diff + "-questions";
-  const questions = await getDocs(collection(db, coll));
-  return questions;
-}
+
 
 //Retrieve each of the avg databases
 async function retrieveAvgDocs(diff) {
@@ -493,15 +495,15 @@ async function retrieveAvgDocs(diff) {
 }
 
 //Populate the avg global variables with data from firebase
-function populateAvgVariables(easyDb, hardDb) {
-  easyDb.forEach((doc) => {
+function populateAvgVariables(easyCollData, hardCollData) {
+  easyCollData.forEach((doc) => {
     easyAvg = {
       scores: doc.data().scores,
       users: doc.data().users,
     };
   });
 
-  hardDb.forEach((doc) => {
+  hardCollData.forEach((doc) => {
     hardAvg = {
       scores: doc.data().scores,
       users: doc.data().users,
