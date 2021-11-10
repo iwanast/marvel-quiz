@@ -31,6 +31,7 @@
   grid-template-columns: 20vw 20vw 10vw 10vw 20vw 20vw;
   grid-row-gap: 2vh;
 }
+
 @media screen and (max-width: 481px) {
   .grid-container {
     grid-template-areas: "title title title title" "picture picture picture picture" "question question question question" ". answers answers ." ". button button ." "header header header header";
@@ -38,6 +39,7 @@
     grid-template-columns: 10vw 40vw 40vw 10vw;
   }
 }
+
 .grid-container button {
   padding: 10px;
   border-radius: 25px;
@@ -52,6 +54,7 @@
   border: 0.4rem solid #000000;
   cursor: pointer;
 }
+
 .grid-container h2, .grid-container p {
   color: #000000;
   padding: 10px;
@@ -66,6 +69,7 @@
 div.item5 {
   padding: 0;
 }
+
 @media screen and (max-width: 481px) {
   div.item5 {
     padding-top: 10px;
@@ -91,15 +95,18 @@ div.item4 {
 #header, #title {
   font-size: 3em;
 }
+
 @media screen and (max-width: 481px) {
   #header, #title {
     font-size: 1.4em;
   }
 }
+
 #header #logo, #title #logo {
   height: 12vh;
   margin: 1vh 0;
 }
+
 @media screen and (max-width: 481px) {
   #header #logo, #title #logo {
     height: 6vh;
@@ -116,6 +123,7 @@ div.item4 {
   padding-bottom: 8px;
   margin: 0 10px;
 }
+
 #picture #game-picture {
   object-fit: cover;
   width: 100%;
@@ -135,6 +143,7 @@ div.item4 {
   margin: 10px;
   margin-top: 20px;
 }
+
 @media screen and (max-width: 481px) {
   #question {
     margin: 0 10px;
@@ -169,6 +178,7 @@ div.item4 {
   max-height: 40vh;
   justify-content: center;
 }
+
 @media screen and (max-width: 481px) {
   .grid-sub-container {
     grid-template-areas: "answer1" "answer2" "answer3" "answer4";
@@ -183,6 +193,7 @@ div.item4 {
   height: 6vh;
   cursor: pointer;
 }
+
 .grid-container > .item6 .next-btn {
   padding: 0px 18px;
   height: 6vh;
@@ -223,7 +234,7 @@ div.item4 {
   top: 0;
   left: 0;
   background-color: transparent;
-  transition: all 0.3s linear;
+  transition: all .3s linear;
 }
 
 .hidden-overlay {
@@ -257,6 +268,7 @@ div.item4 {
   justify-content: space-evenly;
   align-items: center;
 }
+
 #landing-btn-wrapper button {
   background-color: transparent;
   border: none;
@@ -353,6 +365,7 @@ video {
     opacity: 1;
   }
 }
+
 .hidden-overlay {
   position: absolute;
   transform: translateX(-100%);
@@ -365,10 +378,11 @@ video {
   position: absolute;
   top: 0;
   left: 0;
-  transition: all 0.3s linear;
+  transition: all .3s linear;
   z-index: 4;
   background-color: white;
 }
+
 #score-page #top-Bar {
   width: 100vw;
   height: 12vh;
@@ -380,69 +394,83 @@ video {
   justify-content: center;
   align-items: center;
 }
+
 #score-page #top-Bar h1 {
   text-align: center;
   display: inline-block;
 }
+
 #score-page #full-wrapper {
   display: flex;
   height: 76vh;
   width: 100vw;
 }
+
 #score-page #full-wrapper #wrapper-left #gif-IMG {
   margin-left: 50px;
-  margin-top: 25px;
-  height: 400px;
-  width: 40%;
+  margin-top: 70px;
+  height: auto;
+  width: 40vw;
 }
+
 #score-page #full-wrapper #wrapper-left #gif-IMG img {
-  height: 400px;
-  width: 500px;
+  height: auto;
+  width: 40vw;
 }
+
 #score-page #full-wrapper #wrapper-left #gif-Text {
   width: 500px;
   margin-left: 50px;
   margin-top: 50px;
 }
+
 #score-page #full-wrapper #wrapper-left #gif-Text h3 {
   margin-left: 75px;
   height: 100px;
   font-size: 50px;
 }
+
 #score-page #full-wrapper #wrapper-right {
   display: flex;
   flex-direction: row;
   width: 100%;
 }
+
 #score-page #full-wrapper #wrapper-right #score-wrapper {
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 #score-page #full-wrapper #wrapper-right #score-wrapper #score-Title {
   font-size: 40px;
   margin-top: 30%;
 }
+
 #score-page #full-wrapper #wrapper-right #score-wrapper #display-Score {
   margin-top: 20%;
   font-size: 40px;
 }
+
 #score-page #full-wrapper #wrapper-right #avg-score-wrapper {
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 #score-page #full-wrapper #wrapper-right #avg-score-wrapper #avg-score-Title {
   font-size: 40px;
   margin-top: 30%;
 }
+
 #score-page #full-wrapper #wrapper-right #avg-score-wrapper #display-AvgScore {
   text-align: center;
   margin-top: 20%;
   font-size: 40px;
 }
+
 #score-page #full-wrapper #wrapper-right #avg-score-wrapper #play-again-button {
   display: flex;
   text-align: center;
@@ -461,10 +489,12 @@ video {
   border: 0.4rem solid #000000;
   cursor: pointer;
 }
+
 #score-page #full-wrapper #wrapper-right #avg-score-wrapper #play-again-button:hover {
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
   background-size: 12px, 100%;
 }
+
 #score-page #bottom-bar {
   width: 100vw;
   height: 12vh;
@@ -474,10 +504,131 @@ video {
   display: flex;
   justify-content: center;
 }
+
 #score-page #bottom-bar img {
   height: 100%;
   width: auto;
   display: inline-block;
+}
+
+@media screen and (max-width: 1175px) {
+  #score-page {
+    width: 100vw;
+    height: 100vh;
+    flex-flow: column wrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .3s linear;
+    z-index: 4;
+    background-color: white;
+  }
+  #score-page #full-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  #score-page #full-wrapper #wrapper-left {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-self: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: rosybrown;
+  }
+  #score-page #full-wrapper #wrapper-left #gif-IMG {
+    margin-left: 50px;
+    margin-top: 25px;
+    height: auto;
+    width: 40vw;
+    justify-self: center;
+    justify-content: center;
+    background-color: saddlebrown;
+  }
+  #score-page #full-wrapper #wrapper-left #gif-IMG img {
+    height: auto;
+    width: 40vw;
+    justify-self: center;
+    justify-content: center;
+  }
+  #score-page #full-wrapper #wrapper-left #gif-IMG #gif-Text {
+    width: 40vw;
+    margin-left: 50px;
+    margin-top: 10px;
+    justify-self: center;
+    justify-content: center;
+    background-color: seagreen;
+  }
+  #score-page #full-wrapper #wrapper-left #gif-IMG #gif-Text h3 {
+    margin-left: 50px;
+    height: 100px;
+    font-size: 50px;
+  }
+  #score-page #full-wrapper #wrapper-right {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-end;
+    justify-content: flex-end;
+    background-color: silver;
+  }
+  #score-page #full-wrapper #score-wrapper {
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: flex-end;
+    justify-content: flex-end;
+    background-color: skyblue;
+  }
+  #score-page #full-wrapper #score-wrapper #score-Title {
+    font-size: 40px;
+    margin-top: 30%;
+  }
+  #score-page #full-wrapper #score-wrapper #display-Score {
+    margin-top: 20%;
+    font-size: 40px;
+  }
+  #score-page #full-wrapper #avg-score-wrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: flex-end;
+    justify-content: flex-end;
+    margin-top: 30%;
+    background-color: tomato;
+  }
+  #score-page #full-wrapper #avg-score-wrapper #avg-score-Title {
+    font-size: 40px;
+    margin-top: 30%;
+  }
+  #score-page #full-wrapper #avg-score-wrapper #display-AvgScore {
+    margin-top: 20%;
+    font-size: 40px;
+  }
+  #score-page #full-wrapper #avg-score-wrapper #play-again-button {
+    display: flex;
+    justify-self: flex-end;
+    justify-content: flex-end;
+    text-align: center;
+    margin-top: 20%px;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: 900;
+    font-family: "Dekko", cursive;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: 700;
+    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ADD8E6;
+    background-size: 12px, 100%;
+    border: 0.4rem solid #000000;
+    cursor: pointer;
+  }
 }
 
 * {
@@ -486,10 +637,12 @@ video {
   box-sizing: border-box;
   font-family: monospace;
 }
+
 * p {
   color: #ffffff;
   font-size: 14px;
 }
+
 * h1 {
   color: #ffffff;
   text-align: center;
@@ -497,6 +650,7 @@ video {
   font-size: 2rem;
   text-shadow: -3px 3px #000000;
 }
+
 * h2 {
   color: #ffffff;
 }
@@ -505,9 +659,9 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
 body #main {
   width: 100vw;
   height: 100vh;
 }
-
 /*# sourceMappingURL=style.css.map */
