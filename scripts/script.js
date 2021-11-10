@@ -441,10 +441,34 @@ document.getElementById("bodyId").onload = retrieveQuestionDataFromFirebase();
 
 //Retrieve the questions/answers/imagesrc from Firebase
 async function retrieveQuestionDataFromFirebase() {
-  let easyQuestionsData = await retrieveQuestionDocs("easy");
-  let hardQuestionsData = await retrieveQuestionDocs("hard");
+  let easyQuestionsData = await retrieveQuestionDocs("easy"); //Import easy collection and store
+  let hardQuestionsData = await retrieveQuestionDocs("hard"); //Import hard collection and store
   populateEasyQuestionsArray(easyQuestionsData);
   populateHardQuestionsArray(hardQuestionsData);
+}
+
+//Insert each of the docs into the easyQuestionsArray
+function populateEasyQuestionsArray(db) {
+  db.forEach((doc) => {
+    let question = {
+      question: doc.data().question,
+      image: doc.data().image,
+      answers: doc.data().answers,
+    };
+    easyQuestionsArray.push(question); //Insert data from each question into the array
+  });
+}
+
+//Insert each of the docs into the hardQuestionsArray
+function populateHardQuestionsArray(db) {
+  db.forEach((doc) => {
+    let question = {
+      question: doc.data().question,
+      image: doc.data().image,
+      answers: doc.data().answers,
+    };
+    hardQuestionsArray.push(question); //Insert data from each question into the array
+  });
 }
 
 async function retrieveAvgDataFromFirebase() {
@@ -466,34 +490,6 @@ async function retrieveAvgDocs(diff) {
   let coll = diff + "-avg";
   const avg = await getDocs(collection(db, coll));
   return avg;
-}
-
-//Insert each of the docs into the easyQuestionsArray
-function populateEasyQuestionsArray(db) {
-  let i = 0;
-  db.forEach((doc) => {
-    let question = {
-      question: doc.data().question,
-      image: doc.data().image,
-      answers: doc.data().answers,
-    };
-    easyQuestionsArray[i] = question;
-    i++;
-  });
-}
-
-//Insert each of the docs into the hardQuestionsArray
-function populateHardQuestionsArray(db) {
-  let i = 0;
-  db.forEach((doc) => {
-    let question = {
-      question: doc.data().question,
-      image: doc.data().image,
-      answers: doc.data().answers,
-    };
-    hardQuestionsArray[i] = question;
-    i++;
-  });
 }
 
 //Populate the avg global variables with data from firebase
