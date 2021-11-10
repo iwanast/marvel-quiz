@@ -47,19 +47,23 @@
       align-items: center; 
       #gif-IMG {
         height: auto;
+        max-height: 70%;
         width: 80%;
         img {
         height: auto;
         width: 100%;
-        }
-        #gif-Text {
-        width: 90%;
-        margin-top: 3vh;
-          h3 {
-            font-size:20px;
-          }
+        border-radius: 25px;
         }
       }
+      #gif-Text {
+      width: 90%;
+      margin-top: 3vh;
+        h3 {
+          font-size: 28px;
+          width: 100%;
+          text-align: center;
+        }
+      } 
     }
     #wrapper-right {
       height: 100%;
@@ -69,7 +73,7 @@
       justify-content: space-around;
       align-items: center;
       #score-wrapper {
-        width: 50%;
+        width: 80%;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -81,13 +85,13 @@
           justify-content: space-around;
           align-items: center;
           #score-Title {
-            font-size: 2vw + 10px;
+            font-size: calc(2vw + 12px);
             text-align: center;
 
           }
           #display-Score {
             margin-top: 8%;
-            font-size: 2vw + 10px;
+            font-size: calc(2vw + 12px);
             text-align: center;
 
           }
@@ -99,13 +103,13 @@
           justify-content: space-around;
           align-items: center;
           #avg-score-Title {
-            font-size: 2vw + 10px;
+            font-size: calc(2vw + 12px);
             text-align: center;
           }
           #display-AvgScore {
             text-align: center;
             margin-top: 8%;
-            font-size: 2vw +10px;
+            font-size: calc(2vw + 12px);
           }
         }
       }
