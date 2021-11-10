@@ -490,6 +490,7 @@ video {
 #score-page #content-wrapper #wrapper-right {
   height: 100%;
   width: 50%;
+  padding-right: 10%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
