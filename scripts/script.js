@@ -236,7 +236,6 @@ document.getElementById("button-next").onclick = function() {
   goToNextQuestion();
 }
 
-//
 function goToNextQuestion() {
   toggleClass("button-next", "hidden-class-button"); // hide the next-button until an answer is clicked
   
@@ -373,11 +372,11 @@ function calculateAvg() {
     easyAvg.users++;
     avg = (easyAvg.scores / easyAvg.users).toFixed(1);
   } else if (currentDifficulty == "hard") {
-    hardAvg.scores = hardAvg.scores + correctAnswers;
-    hardAvg.users++;
-    avg = (hardAvg.scores / hardAvg.users).toFixed(1);
+      hardAvg.scores = hardAvg.scores + correctAnswers;
+      hardAvg.users++;
+      avg = (hardAvg.scores / hardAvg.users).toFixed(1);
   } else {
-    console.log("No difficulty set");
+      console.log("No difficulty set");
   }
   displayScores(avg);
   saveAvgDataToFirebase();
