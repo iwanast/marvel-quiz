@@ -7,6 +7,10 @@
   box-sizing: border-box;
   font-family: digitalstrip;
   font-size: 18px;
+  @media screen and (max-width: 481px) {
+    font-size: 14px;
+  }
+  
   p {
     color: $white;
   }
