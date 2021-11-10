@@ -46,7 +46,6 @@
       align-items: center; 
       #gif-IMG {
         height: auto;
-        max-height: 70%;
         width: 80%;
         img {
         height: auto;
@@ -151,6 +150,74 @@
       height: 100%;
       width: auto;
       display: inline-block;
+    }
+  }
+}
+
+
+@media screen and (max-width: 550px) {
+  #score-page {
+    #top-Bar {
+      h1 {
+        font-size: 45px;
+      }
+      h3 {
+      }
+    }
+    #content-wrapper {
+      flex-direction: column;
+      #wrapper-left {
+        height: 65%;
+        width: 100vw;
+        #gif-IMG {
+          width: 95%;
+          }
+        #gif-Text {
+          h3 {
+            font-size: 18px;
+          }
+        } 
+      }
+      #wrapper-right {
+        width: 100vw;
+        height: 35%;
+        padding-right: 0;
+        #score-wrapper {
+          #score-box {
+            #score-Title {
+            }
+            #display-Score {
+            }
+          }
+          #avg-box {
+            #avg-score-Title {
+            }
+            #display-AvgScore {
+            }
+          }
+        }
+        #play-again-wrapper {
+          #play-again-button {
+            font-size: 18px;
+          }
+          #play-again-button:hover {
+          }
+        }
+      } 
+    } 
+    #bottom-bar {
+      img {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  #score-page {
+    #top-Bar {
+      h1 {
+        font-size: 30px;
+      }
     }
   }
 }
