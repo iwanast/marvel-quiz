@@ -45,7 +45,7 @@
     width: 100%;
     padding: 0.2rem 1.25rem;
     text-align: center;
-    font-family: "Dekko", cursive;
+    // font-family: "Dekko", cursive;
     text-transform: uppercase;
     font-size: 1.5rem;
     letter-spacing: 0.2rem;
@@ -122,6 +122,11 @@ video {
   right: 10px;
 }
 
+#skip-intro-btn:hover{
+  cursor: pointer;
+  color: white;
+}
+
 .fade-in {
   opacity: 0;
   animation-name: fadeIn;
@@ -134,4 +139,19 @@ video {
 @keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}
+}
+
+@media screen and (max-width: 481px) {
+  #landing-page {
+    #landing-btn-wrapper {
+      button {
+        font-size: 14px;
+      }
+    }
+    #title-wrapper {
+      h1 {
+        font-size: 50px;
+      }
+    }
+  }
 }

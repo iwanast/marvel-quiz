@@ -1,42 +1,116 @@
+@font-face {
+  font-family: 'palooka-bb';
+  src: url("../../fonts/palooka/webkit/palooka-bb.eot");
+  /* IE9 Compat Modes */
+  src: url("../../fonts/palooka/webkit/palooka-bb.eot?#iefix") format("embedded-opentype"), url("../../fonts/palooka/webkit/palooka-bb.woff2") format("woff2"), url("../../fonts/palooka/webkit/palooka-bb.woff") format("woff"), url("../../fonts/palooka/webkit/palooka-bb.ttf") format("truetype"), url("../../fonts/palooka/webkit/palooka-bb.svg#palooka-bb") format("svg");
+  /* Legacy iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'digitalstrip';
+  src: url("../../fonts/digitalstrip/webkit/digitalstrip.eot");
+  /* IE9 Compat Modes */
+  src: url("../../fonts/digitalstrip/webkit/digitalstrip.eot?#iefix") format("embedded-opentype"), url("../../fonts/digitalstrip/webkit/digitalstrip.woff2") format("woff2"), url("../../fonts/digitalstrip/webkit/digitalstrip.woff") format("woff"), url("../../fonts/digitalstrip/webkit/digitalstrip.ttf") format("truetype"), url("../../fonts/digitalstrip/webkit/digitalstrip.svg#digitalstrip") format("svg");
+  /* Legacy iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'palooka-bb';
+  src: url("../../fonts/palooka/webkit/palooka-bb.eot");
+  /* IE9 Compat Modes */
+  src: url("../../fonts/palooka/webkit/palooka-bb.eot?#iefix") format("embedded-opentype"), url("../../fonts/palooka/webkit/palooka-bb.woff2") format("woff2"), url("../../fonts/palooka/webkit/palooka-bb.woff") format("woff"), url("../../fonts/palooka/webkit/palooka-bb.ttf") format("truetype"), url("../../fonts/palooka/webkit/palooka-bb.svg#palooka-bb") format("svg");
+  /* Legacy iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'digitalstrip';
+  src: url("../../fonts/digitalstrip/webkit/digitalstrip.eot");
+  /* IE9 Compat Modes */
+  src: url("../../fonts/digitalstrip/webkit/digitalstrip.eot?#iefix") format("embedded-opentype"), url("../../fonts/digitalstrip/webkit/digitalstrip.woff2") format("woff2"), url("../../fonts/digitalstrip/webkit/digitalstrip.woff") format("woff"), url("../../fonts/digitalstrip/webkit/digitalstrip.ttf") format("truetype"), url("../../fonts/digitalstrip/webkit/digitalstrip.svg#digitalstrip") format("svg");
+  /* Legacy iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
 .item1 {
+  -ms-grid-row: 6;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 6;
   grid-area: header;
 }
 
 .item2 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 6;
   grid-area: title;
 }
 
 .item3 {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 3;
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 3;
   grid-area: picture;
 }
 
 .item4 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
   grid-area: question;
 }
 
 .item5 {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
   grid-area: answers;
 }
 
 .item6 {
+  -ms-grid-row: 5;
+  -ms-grid-column: 5;
   grid-area: button;
 }
 
 .grid-container {
   font-weight: 900;
+  display: -ms-grid;
   display: grid;
   height: 100vh;
-  grid-template-areas: "title title title title title title" "question question question picture picture picture" "answers answers answers picture picture picture" "answers answers answers picture picture picture" ". . . . button ." "header header header header header header";
-  grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
-  grid-template-columns: 20vw 20vw 10vw 10vw 20vw 20vw;
+      grid-template-areas: "title title title title title title"
+ "question question question picture picture picture"
+ "answers answers answers picture picture picture"
+ "answers answers answers picture picture picture"
+ ". . . . button ."
+ "header header header header header header";
+  -ms-grid-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
+      grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
+  -ms-grid-columns: 20vw 20vw 10vw 10vw 20vw 20vw;
+      grid-template-columns: 20vw 20vw 10vw 10vw 20vw 20vw;
   grid-row-gap: 2vh;
 }
 
 @media screen and (max-width: 481px) {
   .grid-container {
-    grid-template-areas: "title title title title" "picture picture picture picture" "question question question question" ". answers answers ." ". button button ." "header header header header";
-    grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
-    grid-template-columns: 10vw 40vw 40vw 10vw;
+        grid-template-areas: "title title title title"
+ "picture picture picture picture"
+ "question question question question"
+ ". answers answers ."
+ ". button button ."
+ "header header header header";
+    -ms-grid-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
+        grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
+    -ms-grid-columns: 10vw 40vw 40vw 10vw;
+        grid-template-columns: 10vw 40vw 40vw 10vw;
   }
 }
 
@@ -45,13 +119,12 @@
   border-radius: 25px;
   text-align: center;
   font-weight: 900;
-  font-family: "Dekko", cursive;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: 700;
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
   background-size: 12px, 100%;
-  border: 0.4rem solid #000000;
+  border: 0.3rem solid #000000;
   cursor: pointer;
 }
 
@@ -77,7 +150,9 @@ div.item5 {
 }
 
 div.item4 {
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 @media screen and (max-width: 481px) {
@@ -94,6 +169,8 @@ div.item4 {
 
 #header, #title {
   font-size: 3em;
+  font-family: palooka-bb, "Dekko", sans serif;
+  text-shadow: -6px 6px #000000;
 }
 
 @media screen and (max-width: 481px) {
@@ -125,17 +202,18 @@ div.item4 {
 }
 
 #picture #game-picture {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
   height: 100%;
   border-radius: 25px;
 }
 
 #question {
-  font-family: "Dekko", cursive;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: 700;
+  font-size: 20px;
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'), #ffffff;
   background-size: 12px, 100%;
   border: 0.4rem solid #000000;
@@ -155,36 +233,56 @@ div.item4 {
 }
 
 .subitem1 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: answer1;
 }
 
 .subitem2 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
   grid-area: answer2;
 }
 
 .subitem3 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
   grid-area: answer3;
 }
 
 .subitem4 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
   grid-area: answer4;
 }
 
 .grid-sub-container {
+  display: -ms-grid;
   display: grid;
-  grid-template-areas: "answer1 answer2" "answer3 answer4";
+      grid-template-areas: "answer1 answer2"
+ "answer3 answer4";
   grid-gap: 2vh 4vh;
-  grid-template-columns: auto auto;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
   max-height: 40vh;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 @media screen and (max-width: 481px) {
   .grid-sub-container {
-    grid-template-areas: "answer1" "answer2" "answer3" "answer4";
-    justify-content: space-evenly;
+        grid-template-areas: "answer1"
+ "answer2"
+ "answer3"
+ "answer4";
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
     max-height: 36vh;
-    grid-template-columns: max-content;
+    -ms-grid-columns: max-content;
+        grid-template-columns: -webkit-max-content;
+        grid-template-columns: max-content;
   }
 }
 
@@ -199,7 +297,6 @@ div.item4 {
   height: 6vh;
   border-radius: 25px;
   text-align: center;
-  font-family: "Dekko", cursive;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: 700;
@@ -234,12 +331,14 @@ div.item4 {
   top: 0;
   left: 0;
   background-color: transparent;
+
   transition: all .3s linear;
 }
 
 .hidden-overlay {
   position: absolute;
-  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
 }
 
 #title-wrapper {
@@ -249,10 +348,19 @@ div.item4 {
   bottom: 70%;
   background-color: transparent;
   z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 0 2vw 0 2vw;
 }
 
@@ -263,10 +371,19 @@ div.item4 {
   top: 70%;
   background-color: transparent;
   z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #landing-btn-wrapper button {
@@ -276,7 +393,6 @@ div.item4 {
   width: 100%;
   padding: 0.2rem 1.25rem;
   text-align: center;
-  font-family: "Dekko", cursive;
   text-transform: uppercase;
   font-size: 1.5rem;
   letter-spacing: 0.2rem;
@@ -348,13 +464,32 @@ video {
   right: 10px;
 }
 
+#skip-intro-btn:hover {
+  cursor: pointer;
+  color: white;
+}
+
 .fade-in {
   opacity: 0;
-  animation-name: fadeIn;
-  animation-duration: 3s;
-  animation-delay: 34s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-delay: 34s;
+          animation-delay: 34s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
@@ -366,56 +501,7 @@ video {
   }
 }
 
-.hidden-overlay {
-  position: absolute;
-  transform: translateX(-100%);
-}
 
-#score-page {
-  width: 100vw;
-  height: 100vh;
-  flex-flow: column wrap;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: all .3s linear;
-  z-index: 4;
-  background-color: white;
-}
-
-#score-page #top-Bar {
-  width: 100vw;
-  height: 12vh;
-  top: 0;
-  display: flex;
-  background-color: #E52325;
-  text-align: center;
-  font-size: 2em;
-  justify-content: center;
-  align-items: center;
-}
-
-#score-page #top-Bar h1 {
-  text-align: center;
-  display: inline-block;
-}
-
-#score-page #full-wrapper {
-  display: flex;
-  height: 76vh;
-  width: 100vw;
-}
-
-#score-page #full-wrapper #wrapper-left #gif-IMG {
-  margin-left: 50px;
-  margin-top: 70px;
-  height: auto;
-  width: 40vw;
-}
-
-#score-page #full-wrapper #wrapper-left #gif-IMG img {
-  height: auto;
-  width: 40vw;
 }
 
 #score-page #full-wrapper #wrapper-left #gif-Text {
@@ -431,16 +517,28 @@ video {
 }
 
 #score-page #full-wrapper #wrapper-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   width: 100%;
 }
 
 #score-page #full-wrapper #wrapper-right #score-wrapper {
   width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #score-page #full-wrapper #wrapper-right #score-wrapper #score-Title {
@@ -455,9 +553,16 @@ video {
 
 #score-page #full-wrapper #wrapper-right #avg-score-wrapper {
   width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #score-page #full-wrapper #wrapper-right #avg-score-wrapper #avg-score-Title {
@@ -472,6 +577,8 @@ video {
 }
 
 #score-page #full-wrapper #wrapper-right #avg-score-wrapper #play-again-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   text-align: center;
   margin-top: 160px;
@@ -480,7 +587,6 @@ video {
   border-radius: 25px;
   text-align: center;
   font-weight: 900;
-  font-family: "Dekko", cursive;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: 700;
@@ -501,8 +607,12 @@ video {
   background-color: #E52325;
   position: absolute;
   bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #score-page #bottom-bar img {
@@ -634,21 +744,22 @@ video {
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: monospace;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: digitalstrip;
+  font-size: 18px;
 }
 
 * p {
   color: #ffffff;
-  font-size: 14px;
 }
 
 * h1 {
   color: #ffffff;
   text-align: center;
-  font-family: "Dekko", cursive;
-  font-size: 2rem;
-  text-shadow: -3px 3px #000000;
+  font-family: palooka-bb, "Dekko", sans serif;
+  font-size: 70px;
+  text-shadow: -6px 6px #000000;
 }
 
 * h2 {
