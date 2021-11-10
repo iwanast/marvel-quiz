@@ -4,7 +4,6 @@
   position: absolute;
   transform: translateX(-100%);
 }
-
 #score-page {
   width: 100vw;
   height: 100vh;
@@ -88,13 +87,11 @@
           #score-Title {
             font-size: calc(2vw + 12px);
             text-align: center;
-
           }
           #display-Score {
             margin-top: 8%;
             font-size: calc(2vw + 12px);
             text-align: center;
-
           }
         }
         #avg-box {
@@ -150,8 +147,6 @@
     bottom: 0;
     display: flex;
     justify-content: center;
-    
-
     img {
       height: 100%;
       width: auto;
