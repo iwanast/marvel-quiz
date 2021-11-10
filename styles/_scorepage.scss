@@ -161,8 +161,6 @@
       h1 {
         font-size: 45px;
       }
-      h3 {
-      }
     }
     #content-wrapper {
       flex-direction: column;
@@ -182,33 +180,13 @@
         width: 100vw;
         height: 35%;
         padding-right: 0;
-        #score-wrapper {
-          #score-box {
-            #score-Title {
-            }
-            #display-Score {
-            }
-          }
-          #avg-box {
-            #avg-score-Title {
-            }
-            #display-AvgScore {
-            }
-          }
-        }
         #play-again-wrapper {
           #play-again-button {
             font-size: 18px;
           }
-          #play-again-button:hover {
-          }
         }
       } 
     } 
-    #bottom-bar {
-      img {
-      }
-    }
   }
 }
 
