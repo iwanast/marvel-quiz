@@ -24,32 +24,36 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+
 //Create an instance of the Facebook provider object
-var provider = new firebase.auth.FacebookAuthProvider(); 
+import { FacebookAuthProvider } from "firebase/auth";
 
-//To sign in by redirecting to the sign-in page
-firebase.auth().signInWithRedirect(provider);
+const provider = new FacebookAuthProvider();
 
-firebase.auth()
-  .getRedirectResult()
+
+//To sign in with a pop-up window
+import { getAuth, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
+
+const auth = getAuth();
+signInWithPopup(auth, provider)
   .then((result) => {
-    if (result.credential) {
-      /** @type {firebase.auth.OAuthCredential} */
-      var credential = result.credential;
-
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      var token = credential.accessToken;
-      // ...
-    }
     // The signed-in user info.
-    var user = result.user;
-  }).catch((error) => {
+    const user = result.user;
+
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
+
+    // ...
+  })
+  .catch((error) => {
     // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
+    const errorCode = error.code;
+    const errorMessage = error.message;
     // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = FacebookAuthProvider.credentialFromError(error);
+
     // ...
   });
