@@ -148,7 +148,7 @@ div.item4 {
 @media screen and (max-width: 481px) {
   div.item2 {
     width: 100vw;
-    padding-top: 10px;
+    padding-top: 30px;
   }
 }
 
