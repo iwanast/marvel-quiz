@@ -1,25 +1,25 @@
-@import "variables";
+@import 'variables';
 
 .hidden-overlay {
   position: absolute;
   transform: translateX(-100%);
 }
 #score-page {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   flex-flow: column wrap;
   position: absolute;
   top: 0;
   left: 0;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
   z-index: 4;
   background-color: white;
   #top-Bar {
-    width: 100vw;
-    height: 12vh;
+    width: 100%;
+    height: 12%;
     top: 0;
     display: flex;
-    background-color: #E52325;
+    background-color: #e52325;
     text-align: center;
     font-size: 2em;
     justify-content: center;
@@ -35,33 +35,33 @@
   #content-wrapper {
     display: flex;
     flex-direction: row;
-    height: 76vh;
-    width: 100vw;
+    height: 76%;
+    width: 100%;
     #wrapper-left {
       width: 50%;
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      align-items: center; 
+      align-items: center;
       #gif-IMG {
         height: auto;
         width: 80%;
         img {
-        height: auto;
-        width: 100%;
-        border-radius: 25px;
+          height: auto;
+          width: 100%;
+          border-radius: 25px;
         }
       }
       #gif-Text {
-      width: 90%;
-      margin-top: 3vh;
+        width: 90%;
+        margin-top: 3vh;
         h3 {
           font-size: 28px;
           width: 100%;
           text-align: center;
         }
-      } 
+      }
     }
     #wrapper-right {
       height: 100%;
@@ -132,16 +132,16 @@
         }
         #play-again-button:hover {
           background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.3" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
-          $white;
+            $white;
           background-size: 12px, 100%;
         }
       }
-    } 
-  } 
+    }
+  }
   #bottom-bar {
-    width: 100vw;
-    height: 12vh;
-    background-color: #E52325;
+    width: 100%;
+    height: 12%;
+    background-color: #e52325;
     position: absolute;
     bottom: 0;
     display: flex;
@@ -154,7 +154,6 @@
   }
 }
 
-
 @media screen and (max-width: 550px) {
   #score-page {
     #top-Bar {
@@ -166,18 +165,18 @@
       flex-direction: column;
       #wrapper-left {
         height: 65%;
-        width: 100vw;
+        width: 100%;
         #gif-IMG {
           width: 95%;
-          }
+        }
         #gif-Text {
           h3 {
             font-size: 18px;
           }
-        } 
+        }
       }
       #wrapper-right {
-        width: 100vw;
+        width: 100%;
         height: 35%;
         padding-right: 0;
         #play-again-wrapper {
@@ -185,8 +184,8 @@
             font-size: 18px;
           }
         }
-      } 
-    } 
+      }
+    }
   }
 }
 

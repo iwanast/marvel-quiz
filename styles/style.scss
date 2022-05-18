@@ -1,4 +1,4 @@
-@import "variables", "gamepage", "landingpage", "scorepage";
+@import 'variables', 'gamepage', 'landingpage', 'scorepage';
 
 //General styling
 * {
@@ -10,7 +10,7 @@
   @media screen and (max-width: 481px) {
     font-size: 14px;
   }
-  
+
   p {
     color: $white;
   }
@@ -29,7 +29,7 @@ body {
   width: 100vw;
   height: 100vh;
   #main {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
   }
 }

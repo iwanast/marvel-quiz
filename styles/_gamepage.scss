@@ -1,112 +1,136 @@
-@import "variables";
+@import 'variables';
 
 // Grid for the game-page
-.item1 { grid-area: footer; }
-.item2 { grid-area: title; }
-.item3 { grid-area: picture; }
-.item4 { grid-area: question; }
-.item5 { grid-area: answers; }
-.item6 { grid-area: button; }
+.item1 {
+  grid-area: footer;
+}
+.item2 {
+  grid-area: title;
+}
+.item3 {
+  grid-area: picture;
+}
+.item4 {
+  grid-area: question;
+}
+.item5 {
+  grid-area: answers;
+}
+.item6 {
+  grid-area: button;
+}
 
-.grid-container {
-  font-weight: 900;
-  display: grid;
-  height: 100vh;
-  grid-template-areas:
-    "title title title title title title"
-    "question question question picture picture picture"
-    "answers answers answers picture picture picture"
-    "answers answers answers picture picture picture"
-    ". . . . button ."
-    "footer footer footer footer footer footer";
-  grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
-  grid-template-columns: 20vw 20vw 10vw 10vw 20vw 20vw;
-  grid-row-gap: 2vh;
-  @media screen and (max-width: 481px) {
-    grid-template-areas:
-      "title title title title"
-      "picture picture picture picture"
-      "question question question question"
-      ". answers answers ."
-      ". button button ."
-      "footer footer footer footer";
-    grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
-    grid-template-columns: 10vw 40vw 40vw 10vw;
-  }
-  button{
-    padding: 10px;
-    border-radius: 25px;
-    text-align: center;
+#question-page {
+  height: 100%;
+  .grid-container {
     font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    font-weight: 700;
-    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
-      $white;
-    background-size: 12px, 100%;
-    border: 0.3rem solid $black;
-    cursor: pointer;
-  }
-  h2, p{
-    color: $black;
-    padding: 10px;
+    display: grid;
+    height: 100%;
+    grid-template-areas:
+      'title title title title title title'
+      'question question question picture picture picture'
+      'answers answers answers picture picture picture'
+      'answers answers answers picture picture picture'
+      '. . . . button .'
+      'footer footer footer footer footer footer';
+    grid-template-rows: 14vh 22vh 17vh 17vh 6vh 14vh;
+    grid-template-columns: 20vw 20vw 10vw 10vw 20vw 20vw;
+    grid-row-gap: 2vh;
+    @media screen and (max-width: 481px) {
+      grid-template-areas:
+        'title title title title'
+        'picture picture picture picture'
+        'question question question question'
+        '. answers answers .'
+        '. button button .'
+        'footer footer footer footer';
+      grid-template-rows: 8vh 20vh 12vh 36vh 6vh 8vh;
+      grid-template-columns: 10vw 40vw 40vw 10vw;
+    }
+    button {
+      padding: 10px;
+      border-radius: 25px;
+      text-align: center;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.2rem;
+      font-weight: 700;
+      background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="123250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
+        $white;
+      background-size: 12px, 100%;
+      border: 0.3rem solid $black;
+      cursor: pointer;
+    }
+    h2,
+    p {
+      color: $black;
+      padding: 10px;
+    }
   }
 }
 .grid-container > div {
   text-align: center;
   padding-top: 20px;
   font-size: 1.2em;
+  height: 100%;
 }
-div.item5{
+div.item5 {
   padding: 0;
   @media screen and (max-width: 481px) {
     padding-top: 10px;
   }
 }
-div.item4{
+div.item4 {
   align-self: center;
 }
-div.item2{
+div.item2 {
   @media screen and (max-width: 481px) {
     width: 100vw;
     padding-top: 30px;
   }
 }
-.grid-container > .item1, .grid-container > .item2, .grid-container > .item7{
+.grid-container > .item1,
+.grid-container > .item2,
+.grid-container > .item7 {
   background-color: $marvelred;
   color: $marvelwhite;
 }
-#footer, #title{
+
+#title {
   font-size: 3em;
   font-family: $palooka;
   text-shadow: -6px 6px $black;
   @media screen and (max-width: 481px) {
     font-size: 1.4em;
-  } 
-  #logo{
-    height: 12vh;
-    margin: 1vh 0; 
-    @media screen and (max-width: 481px) {
-      height: 6vh;
-      margin: 1vh 0; 
-    }
   }
 }
-#footer{
-  padding: 0; 
+#footer {
+  height: 150px;
+  padding: 0;
+  #logo {
+    height: 100%;
+    padding: 1% 0;
+    @media screen and (max-width: 481px) {
+      height: 100%;
+      padding: 1% 0;
+    }
+  }
+  @media screen and (max-width: 481px) {
+    height: 75px;
+  }
 }
-#picture{
+#picture {
   border-radius: 25px;
   padding-bottom: 8px;
   margin: 0 10px;
-  #game-picture{
+  #game-picture {
     object-fit: cover;
     width: 100%;
     height: 100%;
     border-radius: 25px;
   }
 }
-#question{
+#question {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: 700;
@@ -119,46 +143,54 @@ div.item2{
   margin: 10px;
   margin-top: 20px;
   @media screen and (max-width: 481px) {
-    margin: 0 10px; 
+    margin: 0 10px;
     font-size: 14px;
-  }  
+  }
 }
 #answers {
-  margin: 0 10px; 
+  margin: 0 10px;
 }
 
 // Grid for the answers
-.subitem1 { grid-area: answer1; }
-.subitem2 { grid-area: answer2; }
-.subitem3 { grid-area: answer3; }
-.subitem4 { grid-area: answer4; }
+.subitem1 {
+  grid-area: answer1;
+}
+.subitem2 {
+  grid-area: answer2;
+}
+.subitem3 {
+  grid-area: answer3;
+}
+.subitem4 {
+  grid-area: answer4;
+}
 
 .grid-sub-container {
   display: grid;
   grid-template-areas:
-    "answer1 answer2"
-    "answer3 answer4";
+    'answer1 answer2'
+    'answer3 answer4';
   grid-gap: 2vh 4vh;
   grid-template-columns: auto auto;
   max-height: 40vh;
-  justify-content: center; 
+  justify-content: center;
   @media screen and (max-width: 481px) {
     grid-template-areas:
-      "answer1"
-      "answer2"
-      "answer3"
-      "answer4";
+      'answer1'
+      'answer2'
+      'answer3'
+      'answer4';
     justify-content: space-evenly;
     max-height: 36vh;
     grid-template-columns: max-content;
   }
 }
-.grid-container > .item6{
+.grid-container > .item6 {
   padding: 0;
   height: 6vh;
   cursor: pointer;
-  .next-btn{
-    padding: 0px 18px; 
+  .next-btn {
+    padding: 0px 18px;
     height: 6vh;
     border-radius: 25px;
     text-align: center;
@@ -166,29 +198,27 @@ div.item2{
     letter-spacing: 0.2rem;
     font-weight: 700;
     background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
-    $btn-blue;
+      $btn-blue;
     background-size: 12px, 100%;
     border: 0.3rem solid $black;
     pointer-events: none;
   }
 }
-.answer1-4 > button{
+.answer1-4 > button {
   min-width: 150px;
 }
 .item6:hover {
-  .next-btn{
+  .next-btn {
     background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
-    $white;
+      $white;
     background-size: 12px, 100%;
   }
 }
-.answer1-4 > button:hover{
+.answer1-4 > button:hover {
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(25)" opacity="0.1" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>'),
-  $btn-light-yellow;
+    $btn-light-yellow;
   background-size: 12px, 100%;
 }
-.grid-container > .hidden-class-button{
+.grid-container > .hidden-class-button {
   visibility: hidden;
 }
-
-
